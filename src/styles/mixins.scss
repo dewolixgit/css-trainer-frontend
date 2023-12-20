@@ -1,4 +1,5 @@
 @import "./constants";
+@import "./typography";
 
 @mixin forMaxWidthPhoneS {
   @media screen and (max-width: #{$maxWidthPhoneS}) {
