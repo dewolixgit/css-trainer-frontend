@@ -4,6 +4,8 @@ import { createRoot } from 'react-dom/client';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
+import './styles/styles.scss';
+
 import App from './App';
 
 const startApp = () => {
