@@ -1,0 +1,61 @@
+@mixin base-heading {
+  font-family: "Rubik", sans-serif;
+  font-style: normal;
+}
+
+@mixin heading-xl($line-height: 1.3) {
+  line-height: $line-height;
+
+  @include base-heading;
+  @include adaptiveRule("font-size", 38px, 38px, 42px, 42px, 42px);
+}
+
+@mixin heading-xl-medium($line-height: 1.3) {
+  font-weight: 500;
+
+  @include heading-xl($line-height);
+}
+
+
+@mixin heading-m($line-height: 1.3) {
+  line-height: $line-height;
+
+  @include base-heading;
+  @include adaptiveRule("font-size", 32px, 32px, 36px, 36px, 36px);
+}
+
+@mixin heading-m-medium($line-height: 1.3) {
+  font-weight: 500;
+
+  @include heading-m($line-height);
+}
+
+@mixin base-text {
+  font-family: "Roboto", sans-serif;
+}
+
+@mixin text-m($line-height: 1.3) {
+  line-height: $line-height;
+
+  @include base-text;
+  @include adaptiveRule("font-size", 15px, 15px, 15px, 15px, 15px);
+}
+
+@mixin text-m-medium($line-height: 1.3) {
+  font-weight: 500;
+
+  @include text-m($line-height);
+}
+
+@mixin text-xs($line-height: 1.3) {
+  line-height: $line-height;
+
+  @include base-text;
+  @include adaptiveRule("font-size", 12px, 12px, 12px, 12px, 12px);
+}
+
+@mixin text-xs-medium($line-height: 1.3) {
+  font-weight: 500;
+
+  @include text-xs($line-height);
+}

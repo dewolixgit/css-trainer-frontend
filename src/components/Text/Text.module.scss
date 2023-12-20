@@ -1,0 +1,27 @@
+@import "~styles/mixins";
+
+.text {
+  &_size {
+    &-m {
+      @include text-m;
+    }
+
+    &-xs {
+      @include text-xs;
+    }
+  }
+
+  &_weight {
+    &-regular {
+      font-weight: 400;
+    }
+
+    &-medium {
+      font-weight: 500;
+    }
+  }
+
+  &_nobr {
+    white-space: nowrap;
+  }
+}

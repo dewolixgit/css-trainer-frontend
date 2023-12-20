@@ -1,0 +1,34 @@
+@import "./fonts/fonts";
+@import "./colors";
+
+$colorPureBlack: #000;
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+  color: $colorPureBlack;
+  background-color: var(--color-background-void-1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  outline: none;
+  border: none;
+  text-decoration: none;
+
+  -webkit-overflow-scrolling: touch;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

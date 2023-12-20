@@ -1,0 +1,61 @@
+@import "./constants";
+@import "./typography";
+
+@mixin forMaxWidthPhoneS {
+  @media screen and (max-width: #{$maxWidthPhoneS}) {
+    @content;
+  }
+}
+
+@mixin forMaxWidthPhoneL {
+  @media screen and (max-width: #{$maxWidthPhoneL}) {
+    @content;
+  }
+}
+
+@mixin forMaxWidthTabletM {
+  @media screen and (max-width: #{$maxWidthTabletM}) {
+    @content;
+  }
+}
+
+@mixin forMaxWidthDesktopS {
+  @media screen and (max-width: #{$maxWidthDesktopS}) {
+    @content;
+  }
+}
+
+@mixin forMinWidthDesktopM {
+  @media screen and (min-width: #{$minWidthDesktopM}) {
+    @content;
+  }
+}
+
+@mixin adaptiveRule(
+  $rule,
+  $maxWidthPhoneS,
+  $maxWidthPhoneL,
+  $maxWidthTabletM,
+  $maxWidthDesktopS,
+  $minWidthDesktopM
+) {
+  @include forMaxWidthPhoneS {
+    #{$rule}: $maxWidthPhoneS;
+  }
+
+  @include forMaxWidthPhoneL {
+    #{$rule}: $maxWidthPhoneL;
+  }
+
+  @include forMaxWidthTabletM {
+    #{$rule}: $maxWidthTabletM;
+  }
+
+  @include forMaxWidthDesktopS {
+    #{$rule}: $maxWidthDesktopS;
+  }
+
+  @include forMinWidthDesktopM {
+    #{$rule}: $minWidthDesktopM;
+  }
+}
