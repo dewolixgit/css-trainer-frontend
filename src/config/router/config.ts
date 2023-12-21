@@ -25,4 +25,8 @@ export const ROUTES = {
     // Todo: Типизация id набора
     create: (setId: string): string => `/trial_set/${setId}`,
   },
+  achievements: {
+    mask: '/achievements',
+    create: (): string => '/achievements',
+  },
 };

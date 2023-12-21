@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export type SvgrComponent = React.FC<React.SVGProps<SVGSVGElement>>;
+
 export type CommonProps = {
   className?: string;
   children?: React.ReactNode;

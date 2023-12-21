@@ -1,6 +1,55 @@
 @import "./constants";
 @import "./typography";
 
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin centerPos {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@mixin centerPosX {
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+@mixin centerPosY {
+  top: 50%;
+  transform: translate3d(0, -50%, 0) join($restProperties, (), space);
+}
+
+@mixin hover {
+  :global(.desktop) & {
+    &:hover {
+      cursor: pointer;
+      @content;
+    }
+  }
+
+  :global(.mobile) & {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin animate($properties, $transitionTime: 0.2) {
+  $resultElements: ();
+
+  @each $property in $properties {
+    $resultElements: append(
+        $resultElements,
+        $property #{$transitionTime}s ease
+    );
+  }
+
+  transition: join($resultElements, (), comma);
+}
+
 @mixin forMaxWidthPhoneS {
   @media screen and (max-width: #{$maxWidthPhoneS}) {
     @content;
@@ -39,23 +88,23 @@
   $maxWidthDesktopS,
   $minWidthDesktopM
 ) {
-  @include forMaxWidthPhoneS {
-    #{$rule}: $maxWidthPhoneS;
-  }
-
-  @include forMaxWidthPhoneL {
-    #{$rule}: $maxWidthPhoneL;
-  }
-
-  @include forMaxWidthTabletM {
-    #{$rule}: $maxWidthTabletM;
+  @include forMinWidthDesktopM {
+    #{$rule}: $minWidthDesktopM;
   }
 
   @include forMaxWidthDesktopS {
     #{$rule}: $maxWidthDesktopS;
   }
 
-  @include forMinWidthDesktopM {
-    #{$rule}: $minWidthDesktopM;
+  @include forMaxWidthTabletM {
+    #{$rule}: $maxWidthTabletM;
+  }
+
+  @include forMaxWidthPhoneL {
+    #{$rule}: $maxWidthPhoneL;
+  }
+
+  @include forMaxWidthPhoneS {
+    #{$rule}: $maxWidthPhoneS;
   }
 }

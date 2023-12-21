@@ -9,3 +9,5 @@ export * from './Topics';
 export * from './Topic';
 
 export * from './TrialExerciseSet';
+
+export * from './Achievements';

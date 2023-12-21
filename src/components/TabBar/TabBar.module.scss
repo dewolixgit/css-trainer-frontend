@@ -1,0 +1,23 @@
+@import "~styles/mixins";
+
+$maxWidthContent: 228px;
+
+.tabbar {
+  position: fixed;
+  bottom: 0;
+
+  width: 100%;
+  height: var(--adaptive-tabbar-height);
+
+  background-color: var(--color-background-content-1);
+  border-radius: $borderRadiusXL $borderRadiusXL 0 0;
+  box-shadow: var(--shadow-content-1);
+
+  @include adaptiveRule("max-width", 100%, 100%, 100%, $maxWidthContent, $maxWidthContent);
+  @include centerPosX;
+
+  &__content {
+    width: $maxWidthContent;
+    height: 100%;
+  }
+}

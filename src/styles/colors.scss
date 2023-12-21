@@ -2,7 +2,8 @@
   // Цвета для блоков с контентом
   --color-background-content-1: #5f8e3e;
   --color-text-content-1: #f9fff3;
-  --shadow-content-1: 0 0 8px 4px rgba(#496d30, 0.15);
+  --shadow-content-1: 0 0 8px 4px #{rgba(#496d30, 0.15)};
+  --drop-shadow-content-1: 0 0 8px #{rgba(#496d30, 0.15)};
 
   // Цвета для пустых фоновых зон
   --color-background-void-1: #f9fff3;
@@ -15,9 +16,9 @@
   --color-highlight-active-1: #a7de81;
   --color-highlight-inactive-1: #cbcbcb;
   --color-hightlight-inactive-2: #8b8b8b;
-  --shadow-highlight-1: 0 0 4px 4px rgba(#496d30, 0.25);
+  --shadow-highlight-1: 0 0 4px 4px #{rgba(#496d30, 0.25)};
 
   // Цвета для тултипов
   --color-text-tooltip-1: #f9fff3;
-  ---background-tooltip-1: rgba(#15250a, 0.9);
+  ---background-tooltip-1: #{rgba(#15250a, 0.9)};
 }
