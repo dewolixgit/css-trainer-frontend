@@ -80,6 +80,22 @@
   }
 }
 
+// В текущей реализации (22.12.23) можно использовать только forMaxWidthTabletM,
+// но для декларативности и точности имеется отдельный миксин
+@mixin forTabletAndPhones {
+  @include forMaxWidthTabletM {
+    @content;
+  }
+
+  @include forMaxWidthPhoneL {
+    @content;
+  }
+
+  @include forMaxWidthPhoneS {
+    @content;
+  }
+}
+
 @mixin adaptiveRule(
   $rule,
   $maxWidthPhoneS,

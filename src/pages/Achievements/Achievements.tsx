@@ -1,12 +1,17 @@
 import * as React from 'react';
 
-import { Flex, Pennant } from 'components';
+import { useLocalStore } from 'entities/localStore';
+import { AchievementsPageStore, AchievementsPageStoreProvider } from 'stores/locals';
+
+import { Content } from './Content';
 
 const Achievements: React.FC = () => {
+  const store = useLocalStore(() => new AchievementsPageStore());
+
   return (
-    <Flex direction="column" alignItems="center">
-      <Pennant>Навыки</Pennant>
-    </Flex>
+    <AchievementsPageStoreProvider store={store}>
+      <Content />
+    </AchievementsPageStoreProvider>
   );
 };
 

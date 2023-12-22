@@ -1,0 +1,53 @@
+@import "~styles/mixins";
+
+.root {
+  flex-grow: 1;
+}
+
+.pennant {
+  flex-shrink: 0;
+}
+
+.content {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: auto 480px auto;
+  grid-gap: 96px;
+
+  flex-grow: 1;
+
+  @include forMaxWidthDesktopS {
+    grid-template-columns: auto 300px auto;
+    grid-gap: 72px;
+  }
+
+  @include forTabletAndPhones {
+    grid-template-columns: none;
+  }
+
+  &__section {
+    &_skills {
+      border-radius: 0 $borderRadiusXL 0 0;
+    }
+
+    &_image {
+      margin-bottom: var(--adaptive-tabbar-height);
+    }
+
+    &_achievements {
+      border-radius: $borderRadiusXL 0 0 0;
+    }
+
+    &_skills,
+    &_achievements {
+      color: var(--color-text-content-1);
+      background-color: var(--color-background-content-1);
+      box-shadow: var(--shadow-content-1);
+
+      @include forTabletAndPhones {
+        border-radius: $borderRadiusXL;
+      }
+    }
+  }
+}

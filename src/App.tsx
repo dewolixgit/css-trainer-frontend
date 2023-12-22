@@ -5,11 +5,15 @@ import { BrowserRouter } from 'react-router-dom';
 import { Root } from 'pages/Root';
 import { stores } from 'stores/globals';
 
+import './App.module.scss';
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Provider {...stores}>
-        <Root />
+        <div styleName="flex">
+          <Root />
+        </div>
       </Provider>
     </BrowserRouter>
   );
