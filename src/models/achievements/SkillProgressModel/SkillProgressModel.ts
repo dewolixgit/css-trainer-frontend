@@ -8,16 +8,20 @@ import {
   SkillEnum,
   SkillProgressModelParams,
 } from 'entities/skill';
+import { t } from 'entities/translation';
 
 export class SkillProgressModel implements ILocalStore, ISkillProgressModel {
   readonly percent: number;
   readonly skill: SkillEnum;
   readonly color: string;
 
+  private readonly _getName: () => string;
+
   constructor(params: SkillProgressModelParams) {
     this.percent = params.percent;
     this.skill = params.skill;
     this.color = params.color;
+    this._getName = params.getName;
 
     makeObservable(this, {
       empty: computed,
@@ -28,6 +32,10 @@ export class SkillProgressModel implements ILocalStore, ISkillProgressModel {
     return this.percent === 0;
   }
 
+  get name(): string {
+    return this._getName();
+  }
+
   destroy = () => {};
 
   static fromApi(params: ApiSkillType): SkillProgressModel {
@@ -35,6 +43,7 @@ export class SkillProgressModel implements ILocalStore, ISkillProgressModel {
       percent: params.percent,
       skill: params.skill,
       color: SKILL_COLORS[params.skill],
+      getName: () => t().entities.skill[params.skill] ?? '',
     });
   }
 }

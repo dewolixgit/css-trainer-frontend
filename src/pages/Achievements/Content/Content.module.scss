@@ -2,6 +2,14 @@
 
 .root {
   flex-grow: 1;
+
+  overflow: hidden;
+  height: 100vh;
+
+  @include forTabletAndPhones {
+    overflow: auto;
+    height: auto;
+  }
 }
 
 .pennant {
@@ -11,43 +19,102 @@
 .content {
   width: 100%;
 
-  display: grid;
-  grid-template-columns: auto 480px auto;
-  grid-gap: 96px;
+  display: flex;
 
   flex-grow: 1;
 
-  @include forMaxWidthDesktopS {
-    grid-template-columns: auto 300px auto;
-    grid-gap: 72px;
-  }
-
   @include forTabletAndPhones {
-    grid-template-columns: none;
+    flex-direction: column;
   }
 
-  &__section {
-    &_skills {
-      border-radius: 0 $borderRadiusXL 0 0;
+  .section-skills {
+    order: 0;
+    border-radius: 0 $borderRadiusXL 0 0;
+
+    @include forTabletAndPhones {
+      order: 1;
     }
 
-    &_image {
-      margin-bottom: var(--adaptive-tabbar-height);
+    @include forMaxWidthTabletM {
+      margin: $indentXL auto 0;
+    }
+  }
+
+  .section-image {
+    flex: 1 0 0;
+    min-width: 100px;
+    max-width: 420px;
+
+    order: 1;
+    padding: $indentXXXL 0 $indentXXXL;
+    margin: 0 154px var(--adaptive-tabbar-height);
+
+    @include forMaxWidthDesktopS {
+      margin: 0 52px var(--adaptive-tabbar-height);
     }
 
-    &_achievements {
-      border-radius: $borderRadiusXL 0 0 0;
+    @include forTabletAndPhones {
+      margin: $indentXXXL auto $indentXXL;
+      padding: 0;
+      order: 0;
+      width: calc(100% - $indentM * 2);
     }
 
-    &_skills,
-    &_achievements {
-      color: var(--color-text-content-1);
-      background-color: var(--color-background-content-1);
-      box-shadow: var(--shadow-content-1);
+    @include forMaxWidthTabletM {
+      min-height: 360px;
+    }
 
-      @include forTabletAndPhones {
-        border-radius: $borderRadiusXL;
-      }
+    @include forMaxWidthPhoneS {
+      min-height: 240px;
+    }
+
+    &__loader,
+    &__inner {
+      border-radius: $borderRadiusXL;
+
+      @include square(100%);
+    }
+  }
+
+  .section-achievements {
+    order: 2;
+    border-radius: $borderRadiusXL 0 0 0;
+
+    @include forMaxWidthTabletM {
+      margin: $indentXL auto calc(var(--adaptive-tabbar-height) + $indentXL);
+    }
+
+    @include forTabletAndPhones {
+      order: 2;
+    }
+  }
+
+  .section-skills,
+  .section-achievements {
+    flex: 1 0 0;
+    min-width: 100px;
+
+    padding: $indentXL $indentXXXXXL 0;
+
+    display: flex;
+    flex-direction: column;
+
+    @include forMaxWidthDesktopS {
+      padding: $indentXL $indentXXXL 0;
+    }
+
+    @include forMaxWidthTabletM {
+      width: 100%;
+      max-width: 440px;
+      padding: $indentXL $indentXL $indentXL;
+    }
+
+    color: var(--color-text-content-1);
+    background-color: var(--color-background-content-1);
+    box-shadow: var(--shadow-content-1);
+
+    @include forTabletAndPhones {
+      border-radius: $borderRadiusXL;
     }
   }
 }

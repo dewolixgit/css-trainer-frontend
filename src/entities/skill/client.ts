@@ -5,12 +5,14 @@ export interface ISkillProgressModel {
   color: string;
   percent: number;
   empty: boolean;
+  name: string;
 }
 
 export type SkillProgressModelParams = {
   skill: SkillEnum;
   color: string;
   percent: number;
+  getName: () => string;
 };
 
 export const SKILL_COLORS: Record<SkillEnum, string> = {

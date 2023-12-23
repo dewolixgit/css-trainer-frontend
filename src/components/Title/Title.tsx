@@ -13,19 +13,26 @@ type Props = Pick<React.HTMLAttributes<HTMLElement>, 'dangerouslySetInnerHTML' |
     tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'span';
     size?: TitleSizesUnion;
     weight?: FontWeightEnum;
+    textAlign?: Extract<React.CSSProperties['textAlign'], 'center' | 'start' | 'end'>;
   };
 
 const Title: React.FC<Props> = ({
   tag: Tag = 'div',
   size = SizeEnum.xl,
   weight = FontWeightEnum.medium,
+  textAlign,
   className,
   children,
   ...props
 }) => {
   return (
     <Tag
-      styleName={cn('title', `title_size-${size}`, `title_weight-${weight}`)}
+      styleName={cn(
+        'title',
+        `title_size-${size}`,
+        `title_weight-${weight}`,
+        textAlign && `title_text-align-${textAlign}`
+      )}
       className={className}
       {...props}
     >

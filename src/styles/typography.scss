@@ -38,7 +38,7 @@
   line-height: $line-height;
 
   @include base-text;
-  @include adaptiveRule("font-size", 15px, 15px, 15px, 15px, 15px);
+  @include adaptiveRule("font-size", 15px, 15px, 15px, 15px, 16px);
 }
 
 @mixin text-m-medium($line-height: 1.3) {

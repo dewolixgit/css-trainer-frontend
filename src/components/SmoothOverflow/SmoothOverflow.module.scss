@@ -1,0 +1,65 @@
+.container {
+  // Делает маску на основе градиента:
+  // Прозрачный - чёрный - прозрачный
+  &--mode-horizontal {
+    mask-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 0, 1) var(--smooth-overflow-gradient-size),
+        rgba(0, 0, 0, 1) calc(100% - #{var(--smooth-overflow-gradient-size)}),
+        rgba(255, 255, 255, 0) 100%
+    )
+  }
+
+  // Делает маску на основе градиента:
+  // Прозрачный - чёрный - прозрачный
+  &--mode-vertical {
+    mask-image: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 0, 1) var(--smooth-overflow-gradient-size),
+        rgba(0, 0, 0, 1) calc(100% - #{var(--smooth-overflow-gradient-size)}),
+        rgba(255, 255, 255, 0) 100%
+    )
+  }
+
+  // Делает маску на основе градиента:
+  // Прозрачный (сверху) - чёрный (снизу)
+  &--mode-top {
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 0, 1) var(--smooth-overflow-gradient-size)
+    )
+  }
+
+  // Делает маску на основе градиента:
+  // Прозрачный (справа) - чёрный (слева)
+  &--mode-right {
+    mask-image: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 0, 1) var(--smooth-overflow-gradient-size)
+    )
+  }
+
+  // Делает маску на основе градиента:
+  // Прозрачный (снизу) - чёрный (сверху)
+  &--mode-bottom {
+    mask-image: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 0, 1) var(--smooth-overflow-gradient-size)
+    )
+  }
+
+  // Делает маску на основе градиента:
+  // Прозрачный (слева) - чёрный (справа)
+  &--mode-left {
+    mask-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0),
+        rgba(0, 0, 0, 1) var(--smooth-overflow-gradient-size)
+    )
+  }
+}

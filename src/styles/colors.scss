@@ -14,11 +14,23 @@
 
   // Цвета для подчёркивания внешнего вида
   --color-highlight-active-1: #a7de81;
+  --color-highlight-active-2: #496d30;
   --color-highlight-inactive-1: #cbcbcb;
   --color-hightlight-inactive-2: #8b8b8b;
   --shadow-highlight-1: 0 0 4px 4px #{rgba(#496d30, 0.25)};
 
   // Цвета для тултипов
   --color-text-tooltip-1: #f9fff3;
-  ---background-tooltip-1: #{rgba(#15250a, 0.9)};
+  --background-tooltip-1: #{rgba(#15250a, 0.9)};
+
+  // Цвета скелетонов
+  --color-skeleton-base-1: #ebebeb;
+  --color-skeleton-highlight-1: #a7de81;
+
+  // Цвета на странице достижений
+  --color-skill-empty: #d2d2d2;
+
+  // Цвета скроллбара
+  --color-scrollbar-track: #a7de81;
+  --color-scrollbar-thumb: #496d30;
 }

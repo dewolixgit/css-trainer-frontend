@@ -1,0 +1,23 @@
+@import "~styles/mixins";
+
+.achievement {
+  border-radius: $borderRadiusXL;
+  color: var(--color-hightlight-inactive-2);
+  background-color: var(--color-highlight-inactive-1);
+  box-shadow: var(--shadow-highlight-1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include square(60px);
+
+  &_completed {
+    background-color: var(--color-highlight-active-1);
+    color: var(--color-highlight-active-2);
+  }
+
+  &__icon {
+    @include square(36px);
+  }
+}
