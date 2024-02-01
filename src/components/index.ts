@@ -21,3 +21,5 @@ export * from './Spacing';
 export * from './Grid';
 
 export * from './SmoothOverflow';
+
+export * from './Tooltip';

@@ -1,0 +1,16 @@
+@import "~styles/mixins";
+
+.content {
+  background-color: var(--background-tooltip-1);
+  color: var(--color-text-tooltip-1);
+  padding: 16px;
+  border-radius: 16px;
+
+  max-width: 300px;
+
+  user-select: none;
+
+  .arrow {
+    fill: var(--background-tooltip-1);
+  }
+}

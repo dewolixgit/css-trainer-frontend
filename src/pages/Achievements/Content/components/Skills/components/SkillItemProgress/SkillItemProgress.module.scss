@@ -33,8 +33,7 @@
 
     @if var(--skill-color) == "none" {
       background-color: var(--color-skill-empty);
-    }
-    @else {
+    } @else {
       background-color: var(--skill-color);
       animation: fill 1s ease-in-out forwards;
     }

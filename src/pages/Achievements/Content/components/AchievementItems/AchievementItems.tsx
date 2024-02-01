@@ -22,7 +22,7 @@ const AchievementItems: React.FC = () => {
         <Spacing size={16} />
         {store.meta.isLoading || !store.achievements.value?.length ? (
           <div styleName="grid">
-            {range(24).map((i) => (
+            {range(22).map((i) => (
               <SkeletonLoader key={`${i}_loader`} styleName="loader" />
             ))}
           </div>

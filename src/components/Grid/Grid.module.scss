@@ -6,15 +6,13 @@
 
     @if --grid-component-cols == "none" {
         grid-template-columns: none;
-    }
-    @else {
+    } @else {
         grid-template-columns: repeat(var(--grid-component-cols), minmax(0, 1fr));
     }
 
     @if --grid-component-rows == "none" {
         grid-template-rows: none;
-    }
-    @else {
+    } @else {
         grid-template-rows: repeat(var(--grid-component-rows), minmax(0, 1fr));
     }
 }

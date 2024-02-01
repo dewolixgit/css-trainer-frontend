@@ -43,5 +43,6 @@
 
 .loader {
   border-radius: $borderRadiusXL;
+  box-shadow: var(--shadow-highlight-1);
   @include square(60px);
 }
