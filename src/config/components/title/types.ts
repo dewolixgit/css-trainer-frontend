@@ -1,5 +1,5 @@
-import { FontWeightEnum } from 'entities/fonts';
-import { SizeEnum } from 'entities/size';
+import { FontWeightEnum } from 'config/fonts';
+import { SizeEnum } from 'config/size';
 
 export type TitleWeightsUnion = FontWeightEnum.medium | FontWeightEnum.regular;
 

@@ -1,4 +1,4 @@
-import { createContextLocalStore } from 'entities/localStore';
+import { createContextLocalStore } from 'config/localStore';
 
 import { AchievementsPageStore } from './AchievementsPageStore';
 

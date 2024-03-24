@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Title } from 'components';
+import { Title } from 'components/ui';
 import PennantTailSvg from 'img/svgComponents/pennant-tail.c.svg';
 import { CommonProps } from 'types/props';
 

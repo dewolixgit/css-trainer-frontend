@@ -1,7 +1,7 @@
 import { useMergeRefs } from '@floating-ui/react';
 import * as React from 'react';
 
-import { useTooltipContext } from 'entities/components/tooltip';
+import { useTooltipContext } from 'config/components/tooltip';
 
 const TooltipTrigger = React.forwardRef<
   HTMLElement,

@@ -1,4 +1,4 @@
-import { t } from 'entities/translation';
+import { t } from 'config/translation';
 import PaletteSvg from 'img/svgComponents/palette.c.svg';
 import { SvgrComponent } from 'types/props';
 

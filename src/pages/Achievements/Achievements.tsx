@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useLocalStore } from 'entities/localStore';
+import { useLocalStore } from 'config/localStore';
 import { AchievementsPageStore, AchievementsPageStoreProvider } from 'stores/locals';
 
 import { Content } from './Content';

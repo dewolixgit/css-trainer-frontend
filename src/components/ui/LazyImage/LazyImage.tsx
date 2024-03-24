@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { MetaRendererType } from 'entities/components/lazyImage';
+import { MetaRendererType } from 'config/components/lazyImage';
 import { MetaModel } from 'models/MetaModel';
 import { sleep } from 'utils/async';
 

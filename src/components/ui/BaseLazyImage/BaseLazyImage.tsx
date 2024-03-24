@@ -1,10 +1,9 @@
 import cn from 'classnames';
 import * as React from 'react';
 
-import { LazyImageProps, LazyImage } from 'components/LazyImage';
-import { SkeletonLoader } from 'components/SkeletonLoader';
-
-import { Transition } from '../Transition';
+import { Transition } from 'components';
+import { LazyImageProps, LazyImage } from 'components/ui/LazyImage';
+import { SkeletonLoader } from 'components/ui/SkeletonLoader';
 
 import './BaseLazyImage.module.scss';
 

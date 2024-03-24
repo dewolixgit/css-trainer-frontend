@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import * as React from 'react';
 
-import { TextSizesUnion, TextWeightsUnion } from 'entities/components/text';
-import { FontWeightEnum } from 'entities/fonts';
-import { SizeEnum } from 'entities/size';
+import { TextSizesUnion, TextWeightsUnion } from 'config/components/text';
+import { FontWeightEnum } from 'config/fonts';
+import { SizeEnum } from 'config/size';
 import { CommonProps } from 'types/props';
 
 import './Text.module.scss';

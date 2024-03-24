@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import * as React from 'react';
 
-import { SmoothOverflowModeEnum } from 'entities/components/smoothOverflow';
+import { SmoothOverflowModeEnum } from 'config/components/smoothOverflow';
 import { CommonProps } from 'types/props';
 
 import './SmoothOverflow.module.scss';

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { Flex, Pennant, SkeletonLoader, BaseLazyImage } from 'components';
+import { Flex, Pennant, SkeletonLoader, BaseLazyImage } from 'components/ui';
 import { useAchievementsPageStore } from 'stores/locals';
 
 import { AchievementItems, Skills } from './components';

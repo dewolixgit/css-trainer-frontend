@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { Flex, Spacing, Text } from 'components';
+import { Flex, Spacing, Text } from 'components/ui';
 import { SkillProgressModel } from 'models/achievements';
 
 import './SkillItemProgress.module.scss';

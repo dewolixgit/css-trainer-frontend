@@ -1,6 +1,7 @@
 import { computed, makeObservable } from 'mobx';
 
-import { ILocalStore } from 'entities/localStore';
+import { ILocalStore } from 'config/localStore';
+import { t } from 'config/translation';
 import {
   ApiSkillType,
   ISkillProgressModel,
@@ -8,7 +9,6 @@ import {
   SkillEnum,
   SkillProgressModelParams,
 } from 'entities/skill';
-import { t } from 'entities/translation';
 
 export class SkillProgressModel implements ILocalStore, ISkillProgressModel {
   readonly percent: number;

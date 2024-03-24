@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import * as React from 'react';
 
-import { TitleSizesUnion } from 'entities/components/title';
-import { FontWeightEnum } from 'entities/fonts';
-import { SizeEnum } from 'entities/size';
+import { TitleSizesUnion } from 'config/components/title';
+import { FontWeightEnum } from 'config/fonts';
+import { SizeEnum } from 'config/size';
 import { CommonProps } from 'types/props';
 
 import './Title.module.scss';

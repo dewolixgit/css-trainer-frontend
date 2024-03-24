@@ -1,5 +1,5 @@
+import { ILocalStore } from 'config/localStore';
 import { ACHIEVEMENTS_ORDER } from 'entities/achievement';
-import { ILocalStore } from 'entities/localStore';
 import { SKILLS_ORDER } from 'entities/skill';
 import { FieldModel, MetaModel } from 'models';
 import { AchievementModel, SkillProgressModel } from 'models/achievements';

@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { Text } from 'components/Text';
-import { FontWeightEnum } from 'entities/fonts';
-import { SizeEnum } from 'entities/size';
+import { Text } from 'components/ui';
+import { FontWeightEnum } from 'config/fonts';
+import { SizeEnum } from 'config/size';
 
 const Auth: React.FC = () => {
   return (

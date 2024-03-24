@@ -1,3 +1,4 @@
+import { ILocalStore } from 'config/localStore';
 import {
   AchievementId,
   AchievementModelParams,
@@ -5,7 +6,6 @@ import {
   ApiAchievementType,
   IAchievement,
 } from 'entities/achievement';
-import { ILocalStore } from 'entities/localStore';
 import { SvgrComponent } from 'types/props';
 
 export class AchievementModel implements ILocalStore, IAchievement {

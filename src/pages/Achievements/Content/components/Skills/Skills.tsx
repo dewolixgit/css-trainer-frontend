@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { Spacing, SkeletonLoader, Title, SmoothOverflow } from 'components';
+import { Spacing, SkeletonLoader, Title, SmoothOverflow } from 'components/ui';
 import { SKILLS_ORDER } from 'entities/skill';
 import { useAchievementsPageStore } from 'stores/locals';
 
