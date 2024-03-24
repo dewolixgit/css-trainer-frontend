@@ -3,6 +3,7 @@ const path = require('path');
 const { getLocalIdent } = require('@dr.pogodin/babel-plugin-react-css-modules/utils');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
@@ -16,7 +17,6 @@ const SRC_PATH = path.resolve(__dirname, 'src');
 const PUBLIC_PATH = path.resolve(__dirname, 'public');
 
 const IS_PROD = process.env.NODE_ENV === 'production';
-
 
 /* RULES ANS LOADERS SECTION START */
 
@@ -33,14 +33,14 @@ const RULES_REGEXP = {
 const getCSSLoader = (withModules = false) => [
   IS_PROD
     ? {
-      loader: MiniCssExtractPlugin.loader,
-      options: {
-        publicPath: '../../',
-      },
-    }
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          publicPath: '../../',
+        },
+      }
     : {
-      loader: 'style-loader',
-    },
+        loader: 'style-loader',
+      },
   {
     loader: 'css-loader',
     options: {
@@ -217,14 +217,24 @@ const getDevServer = () => ({
 
 /* ALIASES SECTION START */
 
-const ALIASES = ['components', 'config', 'entities', 'img', 'models', 'pages', 'stores', 'styles', 'types', 'utils'];
+const ALIASES = [
+  'components',
+  'config',
+  'entities',
+  'img',
+  'models',
+  'pages',
+  'stores',
+  'styles',
+  'types',
+  'utils',
+];
 
 const ALIASES_EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.scss', '.css'];
 
 const getAliases = () => ({
   extensions: ALIASES_EXTENSIONS,
-  alias: ALIASES.reduce((prev, alias) => ({ ...prev,
-[alias]: path.join(SRC_PATH, alias) }), {}),
+  alias: ALIASES.reduce((prev, alias) => ({ ...prev, [alias]: path.join(SRC_PATH, alias) }), {}),
 });
 
 /* ALIASES SECTION END */
