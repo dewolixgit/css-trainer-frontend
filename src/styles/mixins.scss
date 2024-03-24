@@ -1,6 +1,67 @@
 @import "./constants";
 @import "./typography";
 
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin centerPos {
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@mixin centerPosX {
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+@mixin centerPosY {
+  top: 50%;
+  transform: translate3d(0, -50%, 0) join($restProperties, (), space);
+}
+
+@mixin hover {
+  :global(.desktop) & {
+    &:hover {
+      cursor: pointer;
+      @content;
+    }
+  }
+
+  :global(.mobile) & {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin animate($properties, $transitionTime: 0.2) {
+  $resultElements: ();
+
+  @each $property in $properties {
+    $resultElements: append(
+        $resultElements,
+        $property #{$transitionTime}s ease
+    );
+  }
+
+  transition: join($resultElements, (), comma);
+}
+
+@mixin maxWidth($width) {
+  @media screen and (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin minWidth($width) {
+  @media screen and (min-width: $width) {
+    @content;
+  }
+}
+
 @mixin forMaxWidthPhoneS {
   @media screen and (max-width: #{$maxWidthPhoneS}) {
     @content;
@@ -31,6 +92,22 @@
   }
 }
 
+// В текущей реализации (22.12.23) можно использовать только forMaxWidthTabletM,
+// но для декларативности и точности имеется отдельный миксин
+@mixin forTabletAndPhones {
+  @include forMaxWidthTabletM {
+    @content;
+  }
+
+  @include forMaxWidthPhoneL {
+    @content;
+  }
+
+  @include forMaxWidthPhoneS {
+    @content;
+  }
+}
+
 @mixin adaptiveRule(
   $rule,
   $maxWidthPhoneS,
@@ -39,23 +116,85 @@
   $maxWidthDesktopS,
   $minWidthDesktopM
 ) {
-  @include forMaxWidthPhoneS {
-    #{$rule}: $maxWidthPhoneS;
-  }
-
-  @include forMaxWidthPhoneL {
-    #{$rule}: $maxWidthPhoneL;
-  }
-
-  @include forMaxWidthTabletM {
-    #{$rule}: $maxWidthTabletM;
+  @include forMinWidthDesktopM {
+    #{$rule}: $minWidthDesktopM;
   }
 
   @include forMaxWidthDesktopS {
     #{$rule}: $maxWidthDesktopS;
   }
 
-  @include forMinWidthDesktopM {
-    #{$rule}: $minWidthDesktopM;
+  @include forMaxWidthTabletM {
+    #{$rule}: $maxWidthTabletM;
   }
+
+  @include forMaxWidthPhoneL {
+    #{$rule}: $maxWidthPhoneL;
+  }
+
+  @include forMaxWidthPhoneS {
+    #{$rule}: $maxWidthPhoneS;
+  }
+}
+
+@mixin customScrollbar(
+  $orientation: all,
+  $active-color: var(--color-scrollbar-thumb),
+  $bg-color: var(--color-scrollbar-track)
+) {
+  $local-size: 5px;
+  $local-radius: 6px;
+
+  @if $orientation == all {
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: $local-size;
+      height: $local-size;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  @if $orientation == y {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: $local-size;
+      height: 0;
+    }
+  }
+
+  @if $orientation == x {
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      width: 0;
+      height: $local-size;
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: 5px -5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: $bg-color;
+    border-radius: $local-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $local-radius;
+    box-shadow: 0 0 20px 20px $active-color inset;
+  }
+
+  /* стилизация элементов прокрутки для Firefox */
+  scrollbar-color: $active-color $bg-color;
+  scrollbar-width: $local-size;
+
+  /* стилизация элементов прокрутки для IE и Edge */
+  -ms-overflow-style: none;
+  scrollbar-base-color: $bg-color;
+  scrollbar-face-color: $active-color;
+  scrollbar-arrow-color: $bg-color;
 }

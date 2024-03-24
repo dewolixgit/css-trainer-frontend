@@ -1,0 +1,41 @@
+@import "~styles/mixins";
+
+@keyframes fill {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: var(--skill-percent);
+  }
+}
+
+.item {
+  width: 100%;
+}
+
+.percent {
+  opacity: 0.8;
+}
+
+.progress-bar-track {
+  height: 32px;
+  width: 100%;
+  padding: $indentXXXS;
+
+  border-radius: $borderRadiusXS;
+  background-color: var(--color-background-void-1);
+  box-shadow: var(--shadow-highlight-1);
+
+  .progress-bar {
+    height: 100%;
+    border-radius: inherit;
+
+    @if var(--skill-color) == "none" {
+      background-color: var(--color-skill-empty);
+    } @else {
+      background-color: var(--skill-color);
+      animation: fill 1s ease-in-out forwards;
+    }
+  }
+}

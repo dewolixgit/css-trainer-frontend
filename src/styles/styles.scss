@@ -1,5 +1,6 @@
 @import "./fonts/fonts";
 @import "./colors";
+@import "./mixins";
 
 $colorPureBlack: #000;
 
@@ -31,4 +32,17 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+// Todo: Подумать над структурой файлов стилей
+:root {
+  --adaptive-page-side-indent: 0;
+  --adaptive-page-vertical-indent: 0;
+  --adaptive-pennant-header-height: 0;
+  --adaptive-tabbar-height: 0;
+
+  @include adaptiveRule("--adaptive-page-side-indent", 12px, 12px, 32px, 64px, 64px);
+  @include adaptiveRule("--adaptive-page-vertical-indent", 32px, 32px, 32px, 32px, 32px);
+  @include adaptiveRule("--adaptive-pennant-header-height", 130px, 130px, 134px, 134px, 134px);
+  @include adaptiveRule("--adaptive-tabbar-height", 78px, 78px, 92px, 92px, 92px);
 }

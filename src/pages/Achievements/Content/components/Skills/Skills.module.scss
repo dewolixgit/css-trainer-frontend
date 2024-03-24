@@ -1,0 +1,35 @@
+@import "~styles/mixins";
+
+.scroll {
+  overflow: auto;
+  flex: 1 0 0;
+
+  padding-right: $indentS;
+  padding-bottom: $indentXXXXL;
+  margin-right: -#{$indentS};
+
+  @include customScrollbar;
+
+  @include forTabletAndPhones {
+    overflow: visible;
+    padding-bottom: 0;
+    padding-right: 0;
+    margin-right: 0;
+  }
+}
+
+.loader {
+  height: 56px;
+  width: 100%;
+  border-radius: $borderRadiusXS;
+
+  &:not(:last-child) {
+    margin-bottom: $indentM;
+  }
+}
+
+.item {
+  &:not(:last-child) {
+    margin-bottom: $indentM;
+  }
+}

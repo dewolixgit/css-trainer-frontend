@@ -19,7 +19,7 @@ export type Props = Pick<React.HTMLAttributes<HTMLElement>, 'dangerouslySetInner
 
 const Text: React.FC<Props> = ({
   tag: Tag = 'div',
-  size = SizeEnum.xl,
+  size = SizeEnum.m,
   weight = FontWeightEnum.regular,
   nobr,
   className,

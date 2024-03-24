@@ -1,0 +1,37 @@
+@import "~styles/mixins";
+
+.title {
+  &_size {
+    &-xl {
+      @include heading-xl;
+    }
+
+    &-m {
+      @include heading-m;
+    }
+  }
+
+  &_weight {
+    &-regular {
+      font-weight: 400;
+    }
+
+    &-medium {
+      font-weight: 500;
+    }
+  }
+
+  &_text-align {
+    &-start {
+      text-align: start;
+    }
+
+    &-center {
+      text-align: center;
+    }
+
+    &-end {
+      text-align: end;
+    }
+  }
+}

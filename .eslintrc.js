@@ -41,7 +41,7 @@ module.exports = {
     'block-spacing': 'error',
     'brace-style': ['warn', '1tbs', { allowSingleLine: false }],
     'comma-dangle': ['error', 'only-multiline'],
-    'comma-spacing': ['error', { before: false, after: true }],
+    'comma-spacing': ['warn', { before: false, after: true }],
     'comma-style': ['error', 'last'],
     'computed-property-spacing': ['error', 'never'],
     'dot-location': ['error', 'property'],
