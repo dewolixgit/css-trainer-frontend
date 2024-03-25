@@ -59,3 +59,14 @@
 
   @include text-xs($line-height);
 }
+
+@mixin base-code {
+  font-family: "JetBrains Mono", monospace;
+}
+
+@mixin code-m($line-height: 1.5) {
+  line-height: $line-height;
+
+  @include base-code;
+  @include adaptiveRule("font-size", 11px, 14px, 15px, 15px, 15px);
+}

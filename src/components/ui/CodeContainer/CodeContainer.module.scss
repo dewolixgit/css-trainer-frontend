@@ -1,0 +1,73 @@
+@import "~styles/mixins";
+
+.root {
+  width: 100%;
+
+  display: flex;
+
+  @include code-m(1.5);
+}
+
+.line-counter {
+  flex-shrink: 0;
+
+  border-radius:
+    var(--code-container-border-radius)
+    0
+    0
+    var(--code-container-border-radius);
+
+  padding:
+    var(--code-container-vertical-indent)
+    8px
+    var(--code-container-vertical-indent)
+    16px;
+
+  text-align: right;
+
+  &_theme {
+    &-primary {
+      background-color: var(--color-code-container-line-counter-background-primary-1);
+      color: var(--color-code-container-line-counter-text-primary-1);
+    }
+
+    &-secondary {
+      background-color: var(--color-code-container-line-counter-background-secondary-1);
+      color: var(--color-code-container-line-counter-text-secondary-1);
+    }
+  }
+}
+
+.main {
+  flex-grow: 1;
+
+  border-radius:
+    0
+    var(--code-container-border-radius)
+    var(--code-container-border-radius)
+    0;
+
+  &_theme {
+    &-primary {
+      background-color: var(--color-code-container-main-background-primary-1);
+      color: var(--color-code-container-main-text-primary-1);
+
+      input,
+      textarea {
+        background-color: var(--color-code-container-input-background-primary-1);
+        color: var(--color-code-container-input-text-primary-1);
+      }
+    }
+
+    &-secondary {
+      background-color: var(--color-code-container-main-background-secondary-1);
+      color: var(--color-code-container-main-text-secondary-1);
+
+      input,
+      textarea {
+        background-color: var(--color-code-container-input-background-secondary-1);
+        color: var(--color-code-container-input-text-secondary-1);
+      }
+    }
+  }
+}
