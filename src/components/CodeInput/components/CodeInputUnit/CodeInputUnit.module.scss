@@ -1,0 +1,20 @@
+@import "~styles/mixins";
+
+.input {
+  display: inline;
+
+  padding: 0 2px;
+  background-color: var(--color-code-container-input-background-secondary-1);
+  color: var(--color-code-container-input-text-secondary-1);
+
+  @include inputStyles;
+  @include code-m(inherit);
+
+  &_stretch {
+    width: 100%;
+  }
+
+  &_textarea {
+    resize: none;
+  }
+}

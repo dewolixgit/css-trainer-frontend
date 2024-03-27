@@ -9,13 +9,13 @@ import { BaseResponse } from 'types/props';
 import { sleep } from 'utils/async';
 
 export class AchievementsPageService {
-  static getAchievementsData = async (): Promise<
+  static async getAchievementsData(): Promise<
     BaseResponse<{
       skills: Record<SkillEnum, ApiSkillType>;
       achievements: Record<AchievementId, ApiAchievementType>;
       characterImage: string;
     }>
-  > => {
+  > {
     await sleep(2000);
 
     return {
@@ -26,5 +26,5 @@ export class AchievementsPageService {
         characterImage: mockMainCharacterImage,
       },
     };
-  };
+  }
 }

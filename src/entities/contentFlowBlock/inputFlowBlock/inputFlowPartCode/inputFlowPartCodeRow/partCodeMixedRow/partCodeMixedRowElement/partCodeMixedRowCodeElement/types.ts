@@ -1,7 +1,7 @@
 import {
   IPartCodeMixedRowElement,
   PartCodeMixedRowElementType,
-} from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/types';
+} from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement';
 import { IField } from 'entities/fieldModel';
 
 export interface IPartCodeMixedRowCodeElement extends IPartCodeMixedRowElement, IField {
