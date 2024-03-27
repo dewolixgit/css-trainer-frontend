@@ -1,14 +1,14 @@
 import { FloatingArrow } from '@floating-ui/react';
 import * as React from 'react';
 
-import { Text } from 'components';
 import { TooltipContent } from 'components/Tooltip';
+import { Text } from 'components/ui';
 import {
   TOOLTIP_ARROW_HEIGHT,
   TOOLTIP_ARROW_WIDTH,
   useTooltipContext,
-} from 'entities/components/tooltip';
-import { SizeEnum } from 'entities/size';
+} from 'config/components/tooltip';
+import { SizeEnum } from 'config/size';
 
 import './ThemedTooltipContent.module.scss';
 

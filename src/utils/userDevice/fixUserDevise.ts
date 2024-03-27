@@ -1,4 +1,4 @@
-import { isMobileAndTablet } from 'entities/userDevice';
+import { isMobileAndTablet } from 'config/userDevice';
 
 export const fixUserDevise = () => {
   const isMobile = isMobileAndTablet();

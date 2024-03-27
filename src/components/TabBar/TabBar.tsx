@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Flex } from 'components/Flex';
-import { getTabBarItems, TAB_BAR_ITEMS_ORDER } from 'entities/components/tabBar';
+import { Flex } from 'components/ui/Flex';
+import { getTabBarItems, TAB_BAR_ITEMS_ORDER } from 'config/components/tabBar';
 
 import { TabBarItem } from './components';
 import './TabBar.module.scss';

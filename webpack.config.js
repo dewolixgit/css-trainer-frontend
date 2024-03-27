@@ -201,6 +201,7 @@ const getPlugins = () => [
 
 const getDevServer = () => ({
   host: '0.0.0.0',
+  port: 3020,
   historyApiFallback: true,
   hot: true,
   https: true,

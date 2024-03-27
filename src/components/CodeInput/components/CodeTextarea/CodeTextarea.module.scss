@@ -1,0 +1,17 @@
+@import "~styles/mixins";
+
+.root {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 0 var(--code-container-border-radius) var(--code-container-border-radius) 0;
+  padding: var(--code-container-vertical-indent) var(--code-container-main-side-indent);
+  background-color: var(--color-code-container-input-background-secondary-1);
+  color: var(--color-code-container-input-text-secondary-1);
+
+  resize: none;
+
+  @include inputStyles;
+  @include code-m(inherit);
+}

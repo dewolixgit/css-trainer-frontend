@@ -45,4 +45,8 @@ a {
   @include adaptiveRule("--adaptive-page-vertical-indent", 32px, 32px, 32px, 32px, 32px);
   @include adaptiveRule("--adaptive-pennant-header-height", 130px, 130px, 134px, 134px, 134px);
   @include adaptiveRule("--adaptive-tabbar-height", 78px, 78px, 92px, 92px, 92px);
+
+  --code-container-vertical-indent: #{$indentXXS};
+  --code-container-border-radius: #{$borderRadiusXL};
+  --code-container-main-side-indent: #{$indentXSS};
 }

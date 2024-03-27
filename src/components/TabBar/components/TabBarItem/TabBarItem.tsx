@@ -2,7 +2,7 @@ import cn from 'classnames';
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-import { TabBarItemType } from 'entities/components/tabBar';
+import { TabBarItemType } from 'config/components/tabBar';
 
 import './TabBarItem.module.scss';
 

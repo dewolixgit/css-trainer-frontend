@@ -1,4 +1,8 @@
 /**
- * Создаёт массив длинной n
+ * Creates an array of length n
  */
-export const range = (n: number) => Array.from(Array(n).keys());
+export const range = (n: number, { from = 0 }: { from?: number } = {}) => {
+  const originLength = n + from;
+
+  return Array.from(Array(originLength).keys()).slice(from, originLength);
+};

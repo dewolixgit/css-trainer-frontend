@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { TooltipContext, useTooltip, UseTooltipArgs } from 'entities/components/tooltip';
+import { TooltipContext, useTooltip, UseTooltipArgs } from 'config/components/tooltip';
 
 type Props = UseTooltipArgs & {
   children?: React.ReactNode;

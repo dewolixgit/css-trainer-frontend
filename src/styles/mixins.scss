@@ -22,6 +22,12 @@
   transform: translate3d(0, -50%, 0) join($restProperties, (), space);
 }
 
+@mixin inputStyles {
+  appearance: none;
+  line-height: initial;
+  user-select: auto;
+}
+
 @mixin hover {
   :global(.desktop) & {
     &:hover {
