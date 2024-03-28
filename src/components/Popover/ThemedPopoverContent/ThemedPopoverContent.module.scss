@@ -1,0 +1,15 @@
+@import "~styles/mixins";
+
+.content {
+  background-color: var(--background-popover-1);
+  padding: $indentXS;
+  border-radius: $borderRadiusXL;
+
+  filter: var(--drop-shadow-highlight-1);
+
+  max-width: calc(100vw - var(--popover-view-offset) * 2);
+
+  .arrow {
+    fill: var(--background-popover-1);
+  }
+}

@@ -3,7 +3,9 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 
 import { CodeInput, CodePlacer } from 'components';
-import { CodeContainer } from 'components/ui';
+import { Popover, PopoverTrigger } from 'components/Popover';
+import { ThemedPopoverContent } from 'components/Popover/ThemedPopoverContent';
+import { CodeContainer, Spacing } from 'components/ui';
 import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
 import { IInputFlowDnd } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowDnd';
 import { IInputFlowDndOption } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowDnd/inputFlowDndOption';
@@ -197,6 +199,25 @@ const ExerciseSet: React.FC = () => {
       <CodeInput input={input} />
       <CodeInput input={input2} />
       <CodePlacer input={placer} />
+      <Spacing size={48} />
+      <Popover>
+        <PopoverTrigger asChild>
+          <div
+            style={{
+              width: 100,
+              background: 'blue',
+              margin: 'auto',
+            }}
+          >
+            trigger
+          </div>
+        </PopoverTrigger>
+        <ThemedPopoverContent>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad dolor dolores doloribus
+          iure quae quas qui saepe sit veniam!
+        </ThemedPopoverContent>
+      </Popover>
+      <Spacing size={1000} />
     </div>
   );
 };

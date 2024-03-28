@@ -36,6 +36,7 @@ a {
 
 // Todo: Подумать над структурой файлов стилей
 :root {
+  // Common page indents
   --adaptive-page-side-indent: 0;
   --adaptive-page-vertical-indent: 0;
   --adaptive-pennant-header-height: 0;
@@ -46,7 +47,11 @@ a {
   @include adaptiveRule("--adaptive-pennant-header-height", 130px, 130px, 134px, 134px, 134px);
   @include adaptiveRule("--adaptive-tabbar-height", 78px, 78px, 92px, 92px, 92px);
 
+  // Code container
   --code-container-vertical-indent: #{$indentXXS};
   --code-container-border-radius: #{$borderRadiusXL};
   --code-container-main-side-indent: #{$indentXSS};
+
+  // Popover
+  --popover-view-offset: 12px;
 }
