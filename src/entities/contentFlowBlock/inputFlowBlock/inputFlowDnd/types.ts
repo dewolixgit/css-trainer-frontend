@@ -3,7 +3,7 @@ import { IInputFlowBlock, InputFlowType } from 'entities/contentFlowBlock/inputF
 import { IInputFlowDndOption } from './inputFlowDndOption';
 
 export interface IInputFlowDnd extends IInputFlowBlock {
-  type: InputFlowType.dragAndDrop;
+  inputType: InputFlowType.dragAndDrop;
   options: IInputFlowDndOption[];
   setOrder(order: IInputFlowDndOption['id'][]): void;
 }

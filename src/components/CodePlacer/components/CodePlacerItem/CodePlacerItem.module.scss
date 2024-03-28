@@ -1,0 +1,17 @@
+@import "~styles/mixins";
+
+.item {
+  margin-bottom: $indentS;
+  box-shadow: var(--shadow-highlight-inactive-1);
+  border-radius: var(--code-container-border-radius);
+
+  @include animate(box-shadow);
+
+  @include hover {
+    cursor: grab;
+  }
+
+  &_dragging {
+    box-shadow: var(--shadow-highlight-1);
+  }
+}

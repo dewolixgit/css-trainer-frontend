@@ -2,19 +2,17 @@ import * as React from 'react';
 
 import { CodeContainer, CodeContainerMain } from 'components/ui';
 import { CODE_LINES_DIVIDER } from 'config/code';
-import splitIntoLines from 'utils/markup/splitIntoLines';
+import { countOccurrences } from 'utils/string/countOccurrences';
+
+import './CodeBlock.module.scss';
 
 type Props = {
   className?: string;
   code: string;
-  divider?: string;
 };
 
-const CodeBlock: React.FC<Props> = ({ code, divider = CODE_LINES_DIVIDER, className }) => {
-  const { markup, linesCount } = React.useMemo(
-    () => splitIntoLines(code, divider),
-    [code, divider]
-  );
+const CodeBlock: React.FC<Props> = ({ code, className }) => {
+  const linesCount = React.useMemo(() => countOccurrences(code, CODE_LINES_DIVIDER) + 1, [code]);
 
   return (
     <CodeContainer
@@ -23,7 +21,11 @@ const CodeBlock: React.FC<Props> = ({ code, divider = CODE_LINES_DIVIDER, classN
       lineCounterTheme="primary"
       mainTheme="primary"
     >
-      <CodeContainerMain>{markup}</CodeContainerMain>
+      <CodeContainerMain>
+        <pre styleName="pre">
+          <code styleName="code">{code}</code>
+        </pre>
+      </CodeContainerMain>
     </CodeContainer>
   );
 };
