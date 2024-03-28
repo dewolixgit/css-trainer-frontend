@@ -4,4 +4,7 @@
   height: 100%;
   padding: var(--code-container-vertical-indent) var(--code-container-main-side-indent);
   border-radius: 0 var(--code-container-border-radius) var(--code-container-border-radius) 0;
+
+  font-size: inherit;
+  line-height: inherit;
 }
