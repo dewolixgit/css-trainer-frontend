@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.5",
+    "@testing-library/react": "^14.2.2",
     "axios": "^0.24.0",
     "classnames": "^2.3.1",
     "core-js": "^3.20.2",
@@ -68,6 +69,7 @@
     "@dr.pogodin/babel-plugin-react-css-modules": "6.9.3",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
     "@svgr/webpack": "^6.2.0",
+    "@testing-library/jest-dom": "^6.4.2",
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.43",
     "@types/react-css-modules": "^4.6.4",

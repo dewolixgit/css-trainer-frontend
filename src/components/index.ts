@@ -5,3 +5,7 @@ export * from './Transition';
 export * from './Tooltip';
 
 export * from './CodeInput';
+
+export * from './CodeBlock';
+
+export * from './CodePlacer';

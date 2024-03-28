@@ -17,7 +17,8 @@
   --color-highlight-active-2: #496d30;
   --color-highlight-inactive-1: #cbcbcb;
   --color-hightlight-inactive-2: #8b8b8b;
-  --shadow-highlight-1: 0 0 4px 4px #{rgba(#496d30, 0.25)};
+  --shadow-highlight-1: 0 0 4px 4px #{rgba(#496d30, 0.20)};
+  --shadow-highlight-inactive-1: 0 0 4px 4px #{rgba(#496d30, 0)};
 
   // Цвета для тултипов
   --color-text-tooltip-1: #f9fff3;

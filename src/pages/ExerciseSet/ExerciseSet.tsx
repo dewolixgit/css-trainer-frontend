@@ -2,17 +2,19 @@ import { action, computed, makeAutoObservable, makeObservable, observable } from
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
-import { CodeInput } from 'components/CodeInput';
+import { CodeInput, CodePlacer } from 'components';
 import { CodeContainer } from 'components/ui';
+import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
+import { IInputFlowDnd } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowDnd';
+import { IInputFlowDndOption } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowDnd/inputFlowDndOption';
 import { IInputFlowOnlyCode } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowOnlyCode';
-import { IPartCodeMixedRowCodeElement } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/partCodeMixedRowCodeElement/types';
-import { IPartCodeMixedRowTextElement } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/partCodeMixedRowTextElement/types';
-import { PartCodeMixedRowElementType } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/types';
-import { IPartCodeMixedRow } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/types';
-import { IPartCodeOnlyRow } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeOnlyRow/types';
-import { PartCodeRowType } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/types';
-import { IInputFlowPartCode } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/types';
-import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock/types';
+import { IInputFlowPartCode } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode';
+import { PartCodeRowType } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow';
+import { IPartCodeMixedRow } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow';
+import { PartCodeMixedRowElementType } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement';
+import { IPartCodeMixedRowCodeElement } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/partCodeMixedRowCodeElement';
+import { IPartCodeMixedRowTextElement } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/partCodeMixedRowTextElement';
+import { IPartCodeOnlyRow } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeOnlyRow';
 
 const input = makeObservable<IInputFlowPartCode>({
   id: 1,
@@ -151,6 +153,42 @@ const input2 = makeObservable<IInputFlowOnlyCode & { _v: string }>(
   }
 );
 
+const map: Record<number, IInputFlowDndOption> = {
+  [1]: {
+    id: 1,
+    code: '.class {\n  padding-top: 40px;\n}',
+  },
+  [2]: {
+    id: 2,
+    code: '.class {\n  padding: 10px 20px;\n}',
+  },
+  [3]: {
+    id: 3,
+    code: '.class {\n  padding-bottom: 10px;\n}',
+  },
+};
+
+const placer = makeObservable<IInputFlowDnd & { _o: number[] }>(
+  {
+    id: 1,
+    inputType: InputFlowType.dragAndDrop,
+    _o: [1, 2, 3],
+    setOrder(order: IInputFlowDndOption['id'][]) {
+      this._o = order;
+
+      console.log('options', this.options);
+    },
+    get options(): IInputFlowDndOption[] {
+      return this._o.map((id) => map[id]);
+    },
+  },
+  {
+    options: computed,
+    setOrder: action.bound,
+    _o: observable.ref,
+  }
+);
+
 const ExerciseSet: React.FC = () => {
   return (
     <div>
@@ -158,6 +196,7 @@ const ExerciseSet: React.FC = () => {
       <CodeContainer linesCount={10} lineCounterTheme="secondary" mainTheme={null} />
       <CodeInput input={input} />
       <CodeInput input={input2} />
+      <CodePlacer input={placer} />
     </div>
   );
 };
