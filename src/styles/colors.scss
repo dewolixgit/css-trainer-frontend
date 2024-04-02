@@ -1,37 +1,41 @@
 :root {
-  // Цвета для блоков с контентом
+  // Colors for content blocks
   --color-background-content-1: #5f8e3e;
   --color-text-content-1: #f9fff3;
   --shadow-content-1: 0 0 8px 4px #{rgba(#496d30, 0.15)};
   --drop-shadow-content-1: 0 0 8px #{rgba(#496d30, 0.15)};
 
-  // Цвета для пустых фоновых зон
+  // Colors for void background areas
   --color-background-void-1: #f9fff3;
 
-  // Цвета для кнопок
+  // Button colors
   --color-text-button-1: #496d30;
   --color-background-button-1: f9fff3;
 
-  // Цвета для подчёркивания внешнего вида
+  // Colors to highlight some appearance
   --color-highlight-active-1: #a7de81;
   --color-highlight-active-2: #496d30;
   --color-highlight-inactive-1: #cbcbcb;
   --color-hightlight-inactive-2: #8b8b8b;
   --shadow-highlight-1: 0 0 4px 4px #{rgba(#496d30, 0.20)};
+  --drop-shadow-highlight-1: drop-shadow(0 0 4px #{rgba(#496d30, 0.20)});
   --shadow-highlight-inactive-1: 0 0 4px 4px #{rgba(#496d30, 0)};
 
-  // Цвета для тултипов
+  // Tooltip colors
   --color-text-tooltip-1: #f9fff3;
   --background-tooltip-1: #{rgba(#15250a, 0.9)};
 
-  // Цвета скелетонов
+  // Popover colors
+  --background-popover-1: #f9fff3;
+
+  // Skeleton colors
   --color-skeleton-base-1: #ebebeb;
   --color-skeleton-highlight-1: #a7de81;
 
-  // Цвета на странице достижений
+  // Achievements page colors
   --color-skill-empty: #d2d2d2;
 
-  // Цвета скроллбара
+  // Scrollbar colors
   --color-scrollbar-track: #a7de81;
   --color-scrollbar-thumb: #496d30;
 

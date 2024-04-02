@@ -4,6 +4,8 @@ export * from './Transition';
 
 export * from './Tooltip';
 
+export * from './Popover';
+
 export * from './CodeInput';
 
 export * from './CodeBlock';
