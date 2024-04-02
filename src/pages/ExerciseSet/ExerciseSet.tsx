@@ -131,6 +131,18 @@ const input = makeObservable<IInputFlowPartCode>({
         changeValue: action.bound,
       }
     ),
+    makeAutoObservable<IPartCodeMixedRow>({
+      id: 5,
+      type: PartCodeRowType.mixed,
+      tabs: 0,
+      elements: [
+        makeAutoObservable<IPartCodeMixedRowTextElement>({
+          id: 1,
+          type: PartCodeMixedRowElementType.text,
+          text: '}',
+        }),
+      ],
+    }),
   ],
 });
 
