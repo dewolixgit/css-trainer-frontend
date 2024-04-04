@@ -47,6 +47,13 @@
   @include text-m($line-height);
 }
 
+@mixin text-m-medium-static($line-height: 1.3) {
+  font-weight: 500;
+  font-size: 15px;
+
+  @include base-text;
+}
+
 @mixin text-xs($line-height: 1.3) {
   line-height: $line-height;
 

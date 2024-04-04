@@ -1,0 +1,71 @@
+@import "~styles/mixins";
+
+.root {
+  flex-grow: 1;
+
+  overflow: hidden;
+  height: 100vh;
+
+  display: flex;
+
+  @include forTabletAndPhones {
+    overflow: auto;
+    height: auto;
+    flex-direction: column-reverse;
+  }
+}
+
+.content {
+  flex-shrink: 0;
+
+  overflow: hidden;
+  background-color: var(--color-background-content-1);
+  color: var(--color-text-content-1);
+  border-radius: 0 $borderRadiusXL $borderRadiusXL 0;
+  box-shadow: var(--shadow-content-1);
+
+  width: 504px;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  @include forTabletAndPhones {
+    width: 100%;
+    max-width: 492px;
+    margin: 0 auto;
+
+    border-radius: $borderRadiusXL;
+    height: auto;
+  }
+}
+
+.game-field {
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-width: 400px;
+
+  padding: 0 $indentXXXXXL;
+
+  @include forTabletAndPhones {
+    position: fixed;
+    top: 32px;
+
+    min-width: auto;
+    width: 100%;
+    max-width: 492px;
+    margin: 0 auto;
+  }
+
+  @include forMaxWidthPhoneL {
+    padding: 0 $indentXS;
+  }
+
+  @include forMaxWidthTabletM {
+    padding: 0 $indentXXXL;
+  }
+
+  @include forMaxWidthDesktopS {
+    padding: 0 $indentXXXXXL 0 $indentXXXL;
+  }
+}

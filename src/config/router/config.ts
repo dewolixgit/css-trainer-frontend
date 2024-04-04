@@ -30,3 +30,5 @@ export const ROUTES = {
     create: (): string => '/achievements',
   },
 };
+
+export const ROUTES_WITHOUT_TABBAR = ['/set/'];

@@ -11,11 +11,12 @@ import {
 import './ThemedPopoverContent.module.scss';
 
 const ThemedPopoverContent = React.forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
-  ({ children, ...props }, ref) => {
+  // eslint-disable-next-line react/prop-types
+  ({ children, className, ...props }, ref) => {
     const { context, arrowRef } = usePopoverContext();
 
     return (
-      <PopoverContent styleName="content" {...props} ref={ref}>
+      <PopoverContent styleName="content" className={className} {...props} ref={ref}>
         {children}
         <FloatingArrow
           ref={arrowRef}
