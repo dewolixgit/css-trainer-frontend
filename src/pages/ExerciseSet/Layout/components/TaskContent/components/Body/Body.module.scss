@@ -1,0 +1,28 @@
+@import "~styles/mixins";
+
+.scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: auto;
+  padding: $indentXSS $indentXXXL $indentXXXL $indentXXXXXL;
+
+  @include text-m;
+  @include square(100%);
+  @include customScrollbar(y, var(--color-highlight-active-1), var(--color-background-content-1));
+
+  @include forTabletAndPhones {
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  @include forMaxWidthTabletM {
+    padding: $indentXSS $indentXL $indentXL;
+  }
+
+  @include forMaxWidthPhoneL {
+    padding: $indentXSS $indentXS $indentXL;
+  }
+}

@@ -2,10 +2,12 @@
   // Colors for content blocks
   --color-background-content-1: #5f8e3e;
   --color-text-content-1: #f9fff3;
+  --color-text-content-1-alpha-10: #{rgba(#f9fff3, 0.10)};
   --shadow-content-1: 0 0 8px 4px #{rgba(#496d30, 0.15)};
+  --shadow-content-1-darker-m: 0 0 12px 6px #{rgba(#496d30, 0.3)};
   --drop-shadow-content-1: 0 0 8px #{rgba(#496d30, 0.15)};
 
-  // Colors for void background areas
+  // Colors for void areas
   --color-background-void-1: #f9fff3;
 
   // Button colors
@@ -17,6 +19,10 @@
   --color-highlight-active-2: #496d30;
   --color-highlight-inactive-1: #cbcbcb;
   --color-hightlight-inactive-2: #8b8b8b;
+  --color-hightlight-active-text-1: #496d30;
+  --color-hightlight-active-background-1: #a7de81;
+  --color-hightlight-inactive-text-1: #4e4e4e;
+  --color-hightlight-inactive-background-1: #cbcbcb;
   --shadow-highlight-1: 0 0 4px 4px #{rgba(#496d30, 0.20)};
   --drop-shadow-highlight-1: drop-shadow(0 0 4px #{rgba(#496d30, 0.20)});
   --shadow-highlight-inactive-1: 0 0 4px 4px #{rgba(#496d30, 0)};
@@ -27,6 +33,7 @@
 
   // Popover colors
   --background-popover-1: #f9fff3;
+  --color-text-popover-1: #496d30;
 
   // Skeleton colors
   --color-skeleton-base-1: #ebebeb;
