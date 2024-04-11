@@ -5,14 +5,14 @@ import { IList } from 'entities/listModel';
 type ListModelPrivateFields = '_keys' | '_entities';
 
 /**
- * Модель для работы со списками однотипных данных
+ * Model for lists of similar data
  *
  * @implements {IList<T, K>}
- * T - тип данных элемента исходного списка.
- * K - типа данных идентификатора (ключа) каждого элемента.
+ * T — type of the source list element.
+ * K — type of id (key) of each element.
  *
- * @param {T[]} items Исходный список элементов типа T
- * @param {(item: T) => K} getKeyForItem Функция, принимающая элемент списка, и возвращающая его идентификатор
+ * @param {T[]} items Source list of elements of type T
+ * @param {(item: T) => K} getKeyForItem Function that receives an element and returns the key of this element
  */
 export class ListModel<T, K extends string | number = string> implements IList<T, K> {
   private _keys: K[] = [];
@@ -51,20 +51,20 @@ export class ListModel<T, K extends string | number = string> implements IList<T
     });
   }
 
-  /** Возвращает список ключей (идентификаторов) */
+  /** List of the keys */
   get keys(): K[] {
     return this._keys;
   }
 
   /**
-   * Возвращает объект, в котором ключ типа К является идентификатором
-   * и значение типа Т является элементом исходного списка
+   * Map in which the key of type K is the identifier
+   * and the value of type T is the element of the source list
    */
   get entities(): Record<K, T> {
     return this._entities;
   }
 
-  /** Возвращает список элементов типа T */
+  /** List of elements of type T */
   get items(): T[] {
     return this._keys.reduce((acc: T[], id: K) => {
       const item = this._entities[id];
@@ -73,14 +73,21 @@ export class ListModel<T, K extends string | number = string> implements IList<T
     }, []);
   }
 
-  /** Возвращает количество элементов */
+  /** Amount of the elements */
   get length(): number {
     return this.items.length;
   }
 
+  get firstEntity(): T | null {
+    return this.items[0] ?? null;
+  }
+
+  get lastEntity(): T | null {
+    return this.items[this.length - 1] ?? null;
+  }
+
   /**
-   * Получает элемент типа T по его идентификатору (ключу) типа K.
-   * Если элемент не найден, возвращает null.
+   * Returns an element by its id. If the element is not found, returns null.
    */
   getEntityByKey(key: K): T | null {
     if (!this._entities[key]) {
@@ -91,8 +98,7 @@ export class ListModel<T, K extends string | number = string> implements IList<T
   }
 
   /**
-   * Получает элемент типа T по его индексу.
-   * Если элемент не найден, возвращает null.
+   * Return an element by its index in the list. If the element is not found, returns null.
    */
   getEntityByIndex(index: number): T | null {
     const id = this.keys[index];
@@ -101,8 +107,8 @@ export class ListModel<T, K extends string | number = string> implements IList<T
   }
 
   /**
-   * По ключу типа K получает объект, содержащий элемент типа T и его индекс.
-   * Если такого ключа нет, возвращает null.
+   * Returns an object containing an element and its index by the id of this element.
+   * If the element is not found, returns null.
    */
   getEntityAndIndex(key: K): { item: T; index: number } | null {
     const index = this.keys.indexOf(key);
@@ -117,9 +123,9 @@ export class ListModel<T, K extends string | number = string> implements IList<T
   }
 
   /**
-   * Добавляет новую запись.
-   * Если идентификатор новой записи уже существует, то запись с этим ключом перезаписывается.
-   * @param {boolean} isToStart Помещать новую запись в начало списка?
+   * Adds a new record to the list. If the id of the new record already exists,
+   * the record with this key is overwritten.
+   * @param {boolean} isToStart Must the new record be placed at the beginning?
    */
   addEntity({ entity, isToStart }: { entity: T; isToStart?: boolean }): void {
     const key = this._getKeyForItem(entity);
@@ -138,10 +144,10 @@ export class ListModel<T, K extends string | number = string> implements IList<T
   }
 
   /**
-   * Добавляет несколько новых записей
+   * Adds multiple new records
    * @param {Object} param
-   * @param {boolean} param.isInitial Затереть текущие записи новыми?
-   * @param {boolean} param.isToStart Поместить новые записи в начало?
+   * @param {boolean} param.isInitial Must remove extisting records and add new ones?
+   * @param {boolean} param.isToStart Must the new records be placed at the beginning?
    */
   addEntities({
     entities,
@@ -166,18 +172,18 @@ export class ListModel<T, K extends string | number = string> implements IList<T
     });
   }
 
-  /** Удаляет запись с ключом keyParam */
+  /** Removes the item with the concrete id */
   removeEntity(keyParam: K): void {
     this._keys = this._keys.filter((key) => key !== keyParam);
     delete this._entities[keyParam];
   }
 
-  /** Удаляет несколько записей, которые имеют ключи keys */
+  /** Removes multiple items with concrete ids */
   removeEntities(keys: K[]): void {
     keys.forEach(this.removeEntity);
   }
 
-  /** Перемещает запись с ключом key в начало списка */
+  /** Replace an item with concrete id to the beginning of the list */
   toStart(key: K): void {
     const foundIndex = this.keys.indexOf(key);
 
@@ -189,7 +195,7 @@ export class ListModel<T, K extends string | number = string> implements IList<T
     this.keys.splice(0, 0, key);
   }
 
-  /** Очищает модель */
+  /** Clear the list */
   reset(): void {
     this._keys = [];
     this._entities = {} as Record<K, T>;

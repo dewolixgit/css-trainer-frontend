@@ -1,0 +1,25 @@
+@import "~styles/mixins";
+
+.root {
+  height: var(--task-content-navigation-height);
+  padding: 0 $indentXXS;
+
+  border-radius: $borderRadiusXXXL;
+  border: 2px solid var(--color-text-content-1);
+  background-color: transparent;
+  color: var(--color-text-content-1);
+
+  display: flex;
+  align-items: center;
+
+  @include text-m-medium-static(1);
+  @include animate(background-color);
+
+  @include hover {
+    background-color: var(--color-text-content-1-alpha-10);
+  }
+
+  &_loading {
+    pointer-events: none;
+  }
+}

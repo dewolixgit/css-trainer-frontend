@@ -19,3 +19,5 @@ export * from './Title';
 export * from './Pennant';
 
 export * from './CodeContainer';
+
+export * from './SkeletonContent';

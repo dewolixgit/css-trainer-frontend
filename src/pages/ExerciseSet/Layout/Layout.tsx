@@ -1,9 +1,8 @@
 import * as React from 'react';
 
 import './Layout.module.scss';
-import { useScrollAnimation } from 'pages/ExerciseSet/Layout/useScrollAnimation';
-
 import { TaskContent } from './components';
+import { useScrollAnimation } from './useScrollAnimation';
 
 const Layout = () => {
   const { scrollFactor, scaleScrollFactor } = useScrollAnimation();

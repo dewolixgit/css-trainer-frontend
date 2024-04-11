@@ -24,6 +24,10 @@ export class FieldModel<T = string> implements IField<T> {
     return this._value;
   }
 
+  get empty(): boolean {
+    return !this._value;
+  }
+
   changeValue<I extends T>(value: I): I {
     this._value = value;
 

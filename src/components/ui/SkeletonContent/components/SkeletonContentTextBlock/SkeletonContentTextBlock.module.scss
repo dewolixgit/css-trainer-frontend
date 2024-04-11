@@ -1,0 +1,11 @@
+@import "~styles/mixins";
+
+.line {
+  width: var(--text-block-line-width);
+  height: 14px;
+  border-radius: $skeletonContentTextLineBorderRadius;
+
+  &:not(:last-child) {
+    margin-bottom: $indentXXS;
+  }
+}

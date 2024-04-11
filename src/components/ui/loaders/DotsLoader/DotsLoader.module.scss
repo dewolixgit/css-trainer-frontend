@@ -1,0 +1,32 @@
+@import "~styles/mixins";
+
+@keyframes fade {
+  93.75%,
+  100% {
+    opacity: .2
+  }
+}
+
+.root_color-primary .dot {
+  color: var(--color-dots-loader-primary-1);
+}
+
+.root_color-secondary .dot {
+  color: var(--color-dots-loader-secondary-1);
+}
+
+.dot {
+  animation: fade 0.8s linear infinite;
+
+  &:nth-child(1) {
+    animation-delay: -0.8s
+  }
+
+  &:nth-child(2) {
+    animation-delay: -0.65s
+  }
+
+  &:nth-child(3) {
+    animation-delay: -0.5s
+  }
+}

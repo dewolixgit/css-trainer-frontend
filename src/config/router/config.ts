@@ -12,7 +12,7 @@ export const ROUTES = {
     topic: {
       mask: '/topics/:topicId',
       // Todo: Типизация id темы
-      create: (topicId: string): string => `/topic/${topicId}`,
+      create: (topicId: number): string => `/topics/${topicId}`,
     },
   },
   exerciseSet: {

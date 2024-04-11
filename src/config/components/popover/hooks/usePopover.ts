@@ -27,6 +27,7 @@ export const usePopover = ({
   open: controlledOpen,
   onOpenChange: setControlledOpen,
   closeOnScroll = true,
+  disabled,
 }: PopoverOptions = {}) => {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
 
@@ -44,18 +45,23 @@ export const usePopover = ({
       offset(POPOVER_OFFSET),
       flip(),
       shift({ padding: POPOVER_VIEW_INDENT }),
-      arrow({ element: arrowRef, padding: POPOVER_ARROW_BOUNDARY_INDENT }),
+      arrow({
+        element: arrowRef,
+        padding: POPOVER_ARROW_BOUNDARY_INDENT,
+      }),
     ],
   });
 
   const context = data.context;
 
   const click = useClick(context, {
-    enabled: !controlledOpen,
+    enabled: controlledOpen === undefined && !disabled,
   });
+
   const dismiss = useDismiss(context, {
-    ancestorScroll: !controlledOpen && closeOnScroll,
+    ancestorScroll: closeOnScroll,
   });
+
   const role = useRole(context);
 
   const interactions = useInteractions([click, dismiss, role]);

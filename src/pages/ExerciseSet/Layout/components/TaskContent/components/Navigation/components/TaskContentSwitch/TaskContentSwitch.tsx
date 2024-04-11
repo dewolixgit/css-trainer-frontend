@@ -1,19 +1,29 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { observer } from 'mobx-react';
 import * as React from 'react';
 
 import './TaskContentSwitch.module.scss';
+import { TasksSetSectionEnum } from 'entities/tasksSet';
+import { useExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore';
+
 import { getTextVariants } from './config';
 
 type Props = {
   className?: string;
-  isTheory?: boolean;
-  onChange?: (isOn: boolean) => void;
 };
 
-const TaskContentSwitch: React.FC<Props> = ({ className, onChange, isTheory }) => {
+const TaskContentSwitch: React.FC<Props> = ({ className }) => {
+  const store = useExerciseSetPageStore();
+
+  const isTheory = store.section.value === TasksSetSectionEnum.theory;
+
   const handleOnClick = React.useCallback(() => {
-    onChange?.(!isTheory);
-  }, [isTheory, onChange]);
+    store.section.changeValue(
+      store.section.value === TasksSetSectionEnum.practice
+        ? TasksSetSectionEnum.theory
+        : TasksSetSectionEnum.practice
+    );
+  }, [store.section]);
 
   return (
     <div styleName="root" className={className} onClick={handleOnClick}>
@@ -43,4 +53,4 @@ const TaskContentSwitch: React.FC<Props> = ({ className, onChange, isTheory }) =
   );
 };
 
-export default TaskContentSwitch;
+export default observer(TaskContentSwitch);
