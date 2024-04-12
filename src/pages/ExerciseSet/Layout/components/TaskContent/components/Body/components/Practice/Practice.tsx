@@ -15,10 +15,12 @@ import { PartCodeMixedRowElementType } from 'entities/contentFlowBlock/inputFlow
 import { IPartCodeMixedRowCodeElement } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/partCodeMixedRowCodeElement';
 import { IPartCodeMixedRowTextElement } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/partCodeMixedRowTextElement';
 import { IPartCodeOnlyRow } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeOnlyRow';
+import { ContentFlowBlockType } from 'entities/contentFlowBlock/types';
 
 const input = makeObservable<IInputFlowPartCode>({
   id: 1,
   inputType: InputFlowType.partText,
+  contentType: ContentFlowBlockType.input,
   get linesCount(): number {
     return this.rows.reduce(
       (acc, r) => (r.type === PartCodeRowType.code ? acc + r.linesCount : acc + 1),
@@ -157,6 +159,7 @@ const input2 = makeObservable<IInputFlowOnlyCode & { _v: string }>(
   {
     id: 1,
     inputType: InputFlowType.textArea,
+    contentType: ContentFlowBlockType.input,
     _v: '',
     get empty(): boolean {
       return !this._v;
@@ -196,6 +199,7 @@ const placer = makeObservable<IInputFlowDnd & { _o: number[] }>(
   {
     id: 1,
     inputType: InputFlowType.dragAndDrop,
+    contentType: ContentFlowBlockType.input,
     _o: [1, 2, 3],
     setOrder(order: IInputFlowDndOption['id'][]) {
       this._o = order;

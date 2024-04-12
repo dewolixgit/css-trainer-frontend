@@ -22,6 +22,26 @@
   transform: translate3d(0, -50%, 0) join($restProperties, (), space);
 }
 
+@mixin backgroundImageCover($image: false) {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @if $image {
+    background-image: url(#{$image});
+  }
+}
+
+@mixin backgroundImageContain($image: false) {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  @if $image {
+    background-image: url(#{$image});
+  }
+}
+
 @mixin inputStyles {
   appearance: none;
   line-height: initial;

@@ -1,114 +1,36 @@
+import { observer } from 'mobx-react';
 import * as React from 'react';
 
-const Theory: React.FC = () => {
+import './Theory.module.scss';
+import { ITaskProgressModel, ITaskTheoryModel } from 'config/store/exerciseSetPageStore';
+import { InfoFlowBlockType } from 'entities/contentFlowBlock/infoFlowBlock';
+import {
+  ImageBlock,
+  TextBlock,
+} from 'pages/ExerciseSet/Layout/components/TaskContent/components/Body/components';
+
+type Props = {
+  className?: string;
+  taskTheory: ITaskTheoryModel;
+  taskProgress: ITaskProgressModel;
+};
+
+const Theory: React.FC<Props> = ({ taskTheory, taskProgress, className }) => {
   return (
-    <div>
-      Теория Теория Теория Теория Теория Теория Теория Теория Теория Теория Теория Теория Lorem
-      ipsum dolor sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem
-      dolores ea eius, fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi
-      quos repellat repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque
-      iure labore magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus
-      aliquam doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe? Lorem ipsum dolor
-      sit amet, consectetur adipisicing elit. A, amet animi corporis cumque dolorem dolores ea eius,
-      fugit hic ipsum itaque molestias natus nesciunt nisi quae quaerat quas quasi quos repellat
-      repellendus suscipit tempore ut veniam. A, aut distinctio harum id iste itaque iure labore
-      magni minima obcaecati perspiciatis sapiente sint sunt ut voluptatibus. Accusamus aliquam
-      doloribus inventore iste maiores maxime non numquam odit perspiciatis quas recusandae
-      reprehenderit sequi, vel! Beatae cumque dolorem, ipsa neque quae recusandae unde! Dolor
-      dolores ipsum molestias quo totam veniam voluptatum. Assumenda dicta dolor harum, incidunt
-      inventore ipsum libero magnam minima nesciunt nobis officia provident repellat repellendus
-      reprehenderit repudiandae sunt tempora veniam veritatis vero voluptatem. Adipisci aut
-      cupiditate delectus, doloremque maiores quia? Doloremque, nesciunt, saepe?
+    <div styleName="root" className={className}>
+      <h1 styleName="title">{taskProgress.task.name}</h1>
+      {taskTheory.content.map((block) => {
+        switch (block.infoType) {
+          case InfoFlowBlockType.image:
+            return <ImageBlock flowBlock={block} styleName="block" />;
+          case InfoFlowBlockType.text:
+            return <TextBlock flowBlock={block} styleName="block" />;
+          default:
+            return null;
+        }
+      })}
     </div>
   );
 };
 
-export default Theory;
+export default observer(Theory);

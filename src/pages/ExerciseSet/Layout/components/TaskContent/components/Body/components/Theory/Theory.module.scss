@@ -1,0 +1,16 @@
+@import "~styles/mixins";
+
+.root {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  @include heading-m-medium;
+}
+
+.block {
+  margin-top: $indentM;
+}
