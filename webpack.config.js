@@ -264,7 +264,7 @@ module.exports = {
   devtool: IS_PROD ? 'hidden-source-map' : 'eval-source-map',
   output: {
     path: PUBLIC_PATH,
-    publicPath: IS_PROD ? './' : '/',
+    publicPath: '/',
     filename: 'static/js/bundle.[contenthash].js',
   },
   resolve: getAliases(),

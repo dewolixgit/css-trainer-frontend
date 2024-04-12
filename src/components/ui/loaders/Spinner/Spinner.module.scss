@@ -1,0 +1,21 @@
+@import "~styles/mixins";
+
+.circle {
+  &_color-primary {
+    color: var(--color-spinner-circle-primary-1);
+  }
+
+  &_color-secondary {
+    color: var(--color-spinner-circle-secondary-1);
+  }
+}
+
+.thumb {
+  &_color-primary {
+    color: var(--color-spinner-thumb-primary-1);
+  }
+
+  &_color-secondary {
+    color: var(--color-spinner-thumb-secondary-1);
+  }
+}

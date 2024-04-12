@@ -19,15 +19,24 @@
     opacity: 0.7;
   }
 
+  &_loading {
+    pointer-events: none;
+  }
+
   &_completed {
     background-color: var(--color-hightlight-active-background-1);
     color: var(--color-hightlight-active-text-1);
     border: $borderSize solid var(--color-hightlight-active-background-1);
   }
 
-  &_active {
+  &_next-to-solve {
+    background-color: transparent;
     color: var(--color-hightlight-active-text-1);
     border: $borderSize solid var(--color-hightlight-active-text-1);
+  }
+
+  &_active {
+    opacity: 0.7;
     pointer-events: none;
   }
 

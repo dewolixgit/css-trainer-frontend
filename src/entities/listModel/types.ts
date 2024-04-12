@@ -3,6 +3,8 @@ export interface IList<T, K extends string | number = string> {
   get entities(): Record<K, T>;
   get items(): Array<T>;
   get length(): number;
+  get firstEntity(): T | null;
+  get lastEntity(): T | null;
 
   getEntityByKey(key: K): T | null;
   getEntityByIndex(index: number): T | null;

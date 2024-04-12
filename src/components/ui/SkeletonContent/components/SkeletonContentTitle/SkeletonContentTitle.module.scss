@@ -1,0 +1,15 @@
+@import "~styles/mixins";
+
+.line {
+  height: 17px;
+  border-radius: $skeletonContentTextLineBorderRadius;
+
+  &:first-child {
+    width: 100%;
+    margin-bottom: $indentXSS;
+  }
+
+  &:last-child {
+    width: 80%;
+  }
+}

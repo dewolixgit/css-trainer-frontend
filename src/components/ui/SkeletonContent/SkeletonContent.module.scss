@@ -1,0 +1,7 @@
+@import "~styles/mixins";
+
+.item {
+  &:not(:last-child) {
+    margin-bottom: $indentS;
+  }
+}

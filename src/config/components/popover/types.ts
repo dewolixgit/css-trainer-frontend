@@ -7,4 +7,5 @@ export type PopoverOptions = {
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
   closeOnScroll?: boolean;
+  disabled?: boolean;
 };
