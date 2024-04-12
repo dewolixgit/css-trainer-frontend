@@ -1,4 +1,4 @@
-export * from './TaskStatusModel';
+export * from './TaskProgressModel';
 
 export * from './ExerciseSetPageStore';
 

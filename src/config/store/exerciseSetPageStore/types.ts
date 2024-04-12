@@ -20,7 +20,7 @@ export type TasksSetStatusModelParams = {
   tasksStatus: ITaskStatus[];
 };
 
-export interface ITaskStatusModel extends ILocalStore {
+export interface ITaskProgressModel extends ILocalStore {
   readonly task: ITask;
 }
 
@@ -31,7 +31,7 @@ export type TaskStatusModelParams = {
 export interface IExerciseSetPageStore extends ILocalStore {
   readonly section: FieldModel<TasksSetSectionEnum>;
   readonly tasksSetStatus: FieldModel<ITasksSetStatusModel | null>;
-  readonly taskStatus: FieldModel<ITaskStatusModel | null>;
+  readonly taskProgress: FieldModel<ITaskProgressModel | null>;
   readonly meta: MetaModel;
 
   readonly currentTaskInSet: ITaskStatus | null;

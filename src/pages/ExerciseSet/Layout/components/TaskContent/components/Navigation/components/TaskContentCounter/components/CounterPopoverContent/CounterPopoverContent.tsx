@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 
 import './CounterPopoverContent.module.scss';
-import { ITasksSetStatusModel, ITaskStatusModel } from 'config/store/exerciseSetPageStore/types';
+import { ITasksSetStatusModel, ITaskProgressModel } from 'config/store/exerciseSetPageStore/types';
 import ArrowLeftSvg from 'img/svgComponents/arrow-left.c.svg';
 import { useTaskContentCounterContext } from 'pages/ExerciseSet/Layout/components/TaskContent/components/Navigation/components/TaskContentCounter/context';
 import { useExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore';
@@ -12,7 +12,7 @@ import { CounterPopoverTask } from './components';
 
 type Props = {
   className?: string;
-  currentTaskStatus: ITaskStatusModel;
+  currentTaskStatus: ITaskProgressModel;
   tasksSetStatus: ITasksSetStatusModel;
 };
 

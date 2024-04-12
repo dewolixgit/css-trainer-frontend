@@ -39,10 +39,10 @@ const TaskContentCounter: React.FC = () => {
     >
       <Popover disabled={loading} open={popoverOpen} onOpenChange={setPopoverOpen}>
         <CounterButton />
-        {store.taskStatus.value && store.tasksSetStatus.value && (
+        {store.taskProgress.value && store.tasksSetStatus.value && (
           <ThemedPopoverContent styleName="popover">
             <CounterPopoverContent
-              currentTaskStatus={store.taskStatus.value}
+              currentTaskStatus={store.taskProgress.value}
               tasksSetStatus={store.tasksSetStatus.value}
             />
           </ThemedPopoverContent>

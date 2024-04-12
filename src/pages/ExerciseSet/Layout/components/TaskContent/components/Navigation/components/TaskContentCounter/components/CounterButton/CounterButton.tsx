@@ -22,9 +22,15 @@ const CounterButton: React.FC = () => {
 
   const tasksAmount = store.tasksSetStatus.value?.tasksStatus.length ?? 0;
 
+  const taskCompletedView = store.currentTaskInSet?.completed && !loading;
+
   return (
     <PopoverTrigger asChild onClick={toggleOpenPopover}>
-      <button styleName={cn('root', loading && 'root_loading')} disabled={loading} ref={innerRef}>
+      <button
+        styleName={cn('root', loading && 'root_loading', taskCompletedView && 'root_completed')}
+        disabled={loading}
+        ref={innerRef}
+      >
         {loading ? (
           <DotsLoader color={DotsLoaderColor.secondary} size={LoaderSizeEnum.m} />
         ) : (

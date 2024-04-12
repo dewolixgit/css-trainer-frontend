@@ -18,11 +18,23 @@ export class TasksSetStatusModel implements ITasksSetStatusModel {
   }
 
   getPreviousTask(id: number): ITaskStatus | null {
-    return this.tasksStatus.getEntityByKey(id - 1) ?? null;
+    const currentTaskIndex = this.tasksStatus.getEntityAndIndex(id)?.index;
+
+    if (currentTaskIndex === undefined) {
+      return null;
+    }
+
+    return this.tasksStatus.getEntityByIndex(currentTaskIndex - 1) ?? null;
   }
 
   getNextTask(id: number): ITaskStatus | null {
-    return this.tasksStatus.getEntityByKey(id + 1) ?? null;
+    const currentTaskIndex = this.tasksStatus.getEntityAndIndex(id)?.index;
+
+    if (currentTaskIndex === undefined) {
+      return null;
+    }
+
+    return this.tasksStatus.getEntityByIndex(currentTaskIndex + 1) ?? null;
   }
 
   destroy() {}

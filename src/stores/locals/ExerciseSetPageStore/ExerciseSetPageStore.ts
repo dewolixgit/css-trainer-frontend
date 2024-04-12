@@ -3,19 +3,19 @@ import { computed, makeObservable } from 'mobx';
 import {
   IExerciseSetPageStore,
   ITasksSetStatusModel,
-  ITaskStatusModel,
+  ITaskProgressModel,
 } from 'config/store/exerciseSetPageStore/types';
 import { SkillEnum } from 'entities/skill';
-import { ITaskStatus } from 'entities/task';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
-import { ListModel } from 'models/ListModel';
 import { MetaModel } from 'models/MetaModel';
+import { TaskProgressModel } from 'stores/locals/ExerciseSetPageStore/TaskProgressModel';
+import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore/TasksSetStatusModel';
 import { sleep } from 'utils/async';
 
 export class ExerciseSetPageStore implements IExerciseSetPageStore {
   readonly section = new FieldModel(TasksSetSectionEnum.theory);
-  readonly taskStatus = new FieldModel<ITaskStatusModel | null>(null);
+  readonly taskProgress = new FieldModel<ITaskProgressModel | null>(null);
   readonly tasksSetStatus = new FieldModel<ITasksSetStatusModel | null>(null);
   readonly meta = new MetaModel();
 
@@ -28,15 +28,17 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
   get currentTaskInSet() {
     return (
-      this.tasksSetStatus.value?.tasksStatus.getEntityByKey(this.taskStatus.value?.task.id ?? -1) ??
-      null
+      this.tasksSetStatus.value?.tasksStatus.getEntityByKey(
+        this.taskProgress.value?.task.id ?? -1
+      ) ?? null
     );
   }
 
   get currentTaskIndexInSet() {
     return (
-      this.tasksSetStatus.value?.tasksStatus.getEntityAndIndex(this.taskStatus.value?.task.id ?? -1)
-        ?.index ?? null
+      this.tasksSetStatus.value?.tasksStatus.getEntityAndIndex(
+        this.taskProgress.value?.task.id ?? -1
+      )?.index ?? null
     );
   }
 
@@ -55,18 +57,11 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     await sleep(1000);
 
-    // Todo: Make model
-    this.tasksSetStatus.changeValue({
-      id: 1,
-      parentTopicId: 1,
-      getPreviousTask(id): ITaskStatus | null {
-        return this.tasksStatus.getEntityByKey(id - 1) ?? null;
-      },
-      getNextTask(id): ITaskStatus | null {
-        return this.tasksStatus.getEntityByKey(id + 1) ?? null;
-      },
-      tasksStatus: new ListModel<ITaskStatus, number>(
-        [
+    this.tasksSetStatus.changeValue(
+      new TasksSetStatusModel({
+        id: 1,
+        parentTopicId: 1,
+        tasksStatus: [
           {
             data: {
               id: 1,
@@ -98,16 +93,14 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
             order: 3,
           },
         ],
-        (item) => item.data.id
-      ),
-      destroy() {},
-    });
+      })
+    );
 
-    // Todo: Make model
-    this.taskStatus.changeValue({
-      task: this.tasksSetStatus.value!.tasksStatus.items[1].data,
-      destroy() {},
-    });
+    this.taskProgress.changeValue(
+      new TaskProgressModel({
+        task: this.tasksSetStatus.value!.tasksStatus.items[1].data,
+      })
+    );
 
     this.meta.setLoadedSuccessMeta();
   }
@@ -123,17 +116,11 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     await sleep(1000);
 
-    this.tasksSetStatus.changeValue({
-      id: 1,
-      parentTopicId: 1,
-      getPreviousTask(id): ITaskStatus | null {
-        return this.tasksStatus.getEntityByKey(id - 1) ?? null;
-      },
-      getNextTask(id): ITaskStatus | null {
-        return this.tasksStatus.getEntityByKey(id + 1) ?? null;
-      },
-      tasksStatus: new ListModel<ITaskStatus, number>(
-        [
+    this.tasksSetStatus.changeValue(
+      new TasksSetStatusModel({
+        id: 1,
+        parentTopicId: 1,
+        tasksStatus: [
           {
             data: {
               id: 1,
@@ -165,21 +152,20 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
             order: 3,
           },
         ],
-        (item) => item.data.id
-      ),
-      destroy() {},
-    });
+      })
+    );
 
-    this.taskStatus.changeValue({
-      task: this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data,
-      destroy() {},
-    });
+    this.taskProgress.changeValue(
+      new TaskProgressModel({
+        task: this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data,
+      })
+    );
 
     this.meta.setLoadedSuccessMeta();
   }
 
   destroy() {
     this.tasksSetStatus.value?.destroy();
-    this.taskStatus.value?.destroy();
+    this.taskProgress.value?.destroy();
   }
 }
