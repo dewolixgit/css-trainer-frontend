@@ -114,6 +114,8 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     this.meta.setLoadedStartMeta();
 
+    this.section.reset();
+
     await sleep(1000);
 
     this.tasksSetStatus.changeValue(
