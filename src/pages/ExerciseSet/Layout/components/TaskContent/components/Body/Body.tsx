@@ -8,7 +8,6 @@ import { useExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore';
 
 import { Practice, Theory } from './components';
 import { BODY_TRANSITION, getBodyVariants } from './config';
-import './Body.scss';
 import './Body.module.scss';
 
 const Body: React.FC = () => {
@@ -37,7 +36,7 @@ const Body: React.FC = () => {
           transition={BODY_TRANSITION}
           {...getBodyVariants({ fromLeft: false })}
         >
-          <Practice />
+          <Practice taskProgress={store.taskProgress.value} />
         </motion.div>
       )}
     </AnimatePresence>

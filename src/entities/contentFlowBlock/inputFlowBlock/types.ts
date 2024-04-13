@@ -1,4 +1,9 @@
-import { ContentFlowBlockType, IContentFlowBlock } from 'entities/contentFlowBlock/types';
+import {
+  ContentFlowBlockApi,
+  ContentFlowBlockParams,
+  ContentFlowBlockType,
+  IContentFlowBlock,
+} from 'entities/contentFlowBlock/types';
 
 export enum InputFlowType {
   dragAndDrop = 'drag-and-drop',
@@ -17,3 +22,9 @@ export interface IInputFlowBlock extends IContentFlowBlock {
   // Todo: Reconsider. Maybe it's better to transform to object model
   toString(): string;
 }
+
+export type InputFlowBlockParams = ContentFlowBlockParams;
+
+export type InputFlowBlockApi = ContentFlowBlockApi & {
+  contentType: ContentFlowBlockType.input;
+};

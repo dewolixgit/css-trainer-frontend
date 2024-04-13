@@ -1,7 +1,7 @@
 @import "~styles/mixins";
 
 .image-wrapper {
-  height: calc(var(--lines-height) * var(--task-content-body-line-height));
+  height: calc(var(--lines-height) * 1.3);
   border-radius: $borderRadiusXL;
 
   @include backgroundImageCover;

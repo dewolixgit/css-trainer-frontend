@@ -9,24 +9,35 @@ import { IInputFlowPartCode } from 'entities/contentFlowBlock/inputFlowBlock/inp
 import { CodeInputRow, CodeTextarea } from './components';
 
 type Props = {
+  className?: string;
   input: IInputFlowPartCode | IInputFlowOnlyCode;
 };
 
-const UnwrappedCodeInput: React.FC<Props> = ({ input }) => {
+const UnwrappedCodeInput: React.FC<Props> = ({ input, className }) => {
   if (input.inputType === InputFlowType.textArea) {
     return (
       <CodeContainer
         linesCount={input.linesCount}
         lineCounterTheme="secondary"
         mainTheme="secondary"
+        className={className}
       >
-        <CodeTextarea value={input.value} onChange={input.changeValue} rows={input.linesCount} />
+        <CodeTextarea
+          value={input.value.value}
+          onChange={input.value.changeValue}
+          rows={input.linesCount}
+        />
       </CodeContainer>
     );
   }
 
   return (
-    <CodeContainer linesCount={input.linesCount} lineCounterTheme="secondary" mainTheme="secondary">
+    <CodeContainer
+      linesCount={input.linesCount}
+      lineCounterTheme="secondary"
+      mainTheme="secondary"
+      className={className}
+    >
       <CodeContainerMain>
         {input.rows.map((row) => (
           <CodeInputRow key={row.id} row={row} />

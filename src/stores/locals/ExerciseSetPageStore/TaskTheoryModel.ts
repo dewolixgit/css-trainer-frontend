@@ -1,10 +1,10 @@
 import {
-  InfoFlowBlockInterfaceUnion,
   ITaskTheoryModel,
   TaskTheoryApi,
   TaskTheoryModelParams,
 } from 'config/store/exerciseSetPageStore';
 import { InfoFlowBlockType } from 'entities/contentFlowBlock/infoFlowBlock';
+import { InfoFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
 import { InfoFlowImageBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowImageBlock';
 import { InfoFlowTextBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowTextBlock';
 

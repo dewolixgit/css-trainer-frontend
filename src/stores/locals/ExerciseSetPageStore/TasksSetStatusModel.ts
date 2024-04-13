@@ -1,9 +1,11 @@
 import {
   ITasksSetStatusModel,
+  TasksSetStatusApi,
   TasksSetStatusModelParams,
 } from 'config/store/exerciseSetPageStore/types';
 import { IList } from 'entities/listModel';
 import { ITaskStatus } from 'entities/task';
+import { transformTaskStatus } from 'entities/task/utils';
 import { ListModel } from 'models/ListModel';
 
 export class TasksSetStatusModel implements ITasksSetStatusModel {
@@ -38,4 +40,12 @@ export class TasksSetStatusModel implements ITasksSetStatusModel {
   }
 
   destroy() {}
+
+  static fromApi(api: TasksSetStatusApi): TasksSetStatusModel {
+    return new TasksSetStatusModel({
+      id: api.id,
+      parentTopicId: api.parentTopicId,
+      tasksStatus: api.tasksStatus.map(transformTaskStatus),
+    });
+  }
 }

@@ -1,9 +1,23 @@
-import { IInputFlowBlock, InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
+import {
+  IInputFlowBlock,
+  InputFlowBlockApi,
+  InputFlowBlockParams,
+  InputFlowType,
+} from 'entities/contentFlowBlock/inputFlowBlock';
 
-import { IInputFlowDndOption } from './inputFlowDndOption';
+import { IInputFlowDndOption, InputFlowDndOptionApi } from './inputFlowDndOption';
 
 export interface IInputFlowDnd extends IInputFlowBlock {
-  inputType: InputFlowType.dragAndDrop;
-  options: IInputFlowDndOption[];
+  readonly inputType: InputFlowType.dragAndDrop;
+  readonly options: IInputFlowDndOption[];
   setOrder(order: IInputFlowDndOption['id'][]): void;
 }
+
+export type InputFlowDndParams = InputFlowBlockParams & {
+  options: IInputFlowDndOption[];
+};
+
+export type InputFlowDndApi = InputFlowBlockApi & {
+  inputType: InputFlowType.dragAndDrop;
+  options: InputFlowDndOptionApi[];
+};

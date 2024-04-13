@@ -15,3 +15,13 @@ export interface IInputFlowPartCodeRow {
    */
   readonly tabs: number;
 }
+
+export type InputFlowPartCodeRowParams = {
+  id: number;
+  tabs: number;
+};
+
+export type InputFlowPartCodeRowApi = {
+  id: number;
+  tabs: number;
+};

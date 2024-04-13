@@ -6,14 +6,15 @@ import {
   ITaskProgressModel,
   ITaskTheoryModel,
 } from 'config/store/exerciseSetPageStore/types';
-import { SkillEnum } from 'entities/skill';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
 import { TaskProgressModel } from 'stores/locals/ExerciseSetPageStore/TaskProgressModel';
 import { TaskTheoryModel } from 'stores/locals/ExerciseSetPageStore/TaskTheoryModel';
 import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore/TasksSetStatusModel';
+import { CONTENT_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/contentFlowBlocks';
 import { INFO_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/infoFlowBlocks';
+import { TASKS_SET_STATUS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/tasksSetStatus';
 import { sleep } from 'utils/async';
 
 export class ExerciseSetPageStore implements IExerciseSetPageStore {
@@ -67,47 +68,11 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
       })
     );
 
-    this.tasksSetStatus.changeValue(
-      new TasksSetStatusModel({
-        id: 1,
-        parentTopicId: 1,
-        tasksStatus: [
-          {
-            data: {
-              id: 1,
-              skillTag: SkillEnum.flex,
-              topicId: 1,
-              name: 'name 1',
-            },
-            completed: true,
-            order: 1,
-          },
-          {
-            data: {
-              id: 2,
-              skillTag: SkillEnum.flex,
-              topicId: 1,
-              name: 'name 2',
-            },
-            completed: false,
-            order: 2,
-          },
-          {
-            data: {
-              id: 3,
-              skillTag: SkillEnum.flex,
-              topicId: 1,
-              name: 'name 3',
-            },
-            completed: false,
-            order: 3,
-          },
-        ],
-      })
-    );
+    this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
 
     this.taskProgress.changeValue(
-      new TaskProgressModel({
+      TaskProgressModel.fromApi({
+        content: CONTENT_FLOW_BLOCKS_MOCK,
         task: this.tasksSetStatus.value!.tasksStatus.items[1].data,
       })
     );
@@ -134,47 +99,11 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
       })
     );
 
-    this.tasksSetStatus.changeValue(
-      new TasksSetStatusModel({
-        id: 1,
-        parentTopicId: 1,
-        tasksStatus: [
-          {
-            data: {
-              id: 1,
-              skillTag: SkillEnum.flex,
-              topicId: 1,
-              name: 'name 1',
-            },
-            completed: true,
-            order: 1,
-          },
-          {
-            data: {
-              id: 2,
-              skillTag: SkillEnum.flex,
-              topicId: 1,
-              name: 'name 2',
-            },
-            completed: false,
-            order: 2,
-          },
-          {
-            data: {
-              id: 3,
-              skillTag: SkillEnum.flex,
-              topicId: 1,
-              name: 'name 3',
-            },
-            completed: false,
-            order: 3,
-          },
-        ],
-      })
-    );
+    this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
 
     this.taskProgress.changeValue(
-      new TaskProgressModel({
+      TaskProgressModel.fromApi({
+        content: CONTENT_FLOW_BLOCKS_MOCK,
         task: this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data,
       })
     );

@@ -32,8 +32,8 @@ const UnwrappedCodeInputRow: React.FC<Props> = ({ row }) => {
         {tabs}
         <Flex flexGrow={1}>
           <CodeInputUnit
-            value={row.value}
-            onChangeValue={row.changeValue}
+            value={row.value.value}
+            onChangeValue={row.value.changeValue}
             linesCount={row.linesCount}
             stretch
           />

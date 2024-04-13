@@ -1,14 +1,12 @@
 import { ILocalStore } from 'config/localStore';
 import {
-  IInfoFlowImageBlock,
-  InfoFlowImageBlockApi,
-} from 'entities/contentFlowBlock/infoFlowBlock/infoFlowImageBlock';
-import {
-  IInfoFlowTextBlock,
-  InfoFlowTextBlockApi,
-} from 'entities/contentFlowBlock/infoFlowBlock/infoFlowTextBlock';
+  FlowBlockApiUnion,
+  FlowBlockInterfaceUnion,
+  InfoFlowBlockApiUnion,
+  InfoFlowBlockInterfaceUnion,
+} from 'entities/contentFlowBlock/types';
 import { IList } from 'entities/listModel';
-import { ITask, ITaskStatus } from 'entities/task';
+import { ITask, ITaskStatus, TaskApi, TaskStatusApi } from 'entities/task';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
@@ -28,15 +26,26 @@ export type TasksSetStatusModelParams = {
   tasksStatus: ITaskStatus[];
 };
 
+export type TasksSetStatusApi = {
+  id: number;
+  parentTopicId: number | null;
+  tasksStatus: TaskStatusApi[];
+};
+
 export interface ITaskProgressModel extends ILocalStore {
   readonly task: ITask;
+  readonly content: FlowBlockInterfaceUnion[];
 }
 
 export type TaskProgressModelParams = {
   task: ITask;
+  content: FlowBlockInterfaceUnion[];
 };
 
-export type InfoFlowBlockInterfaceUnion = IInfoFlowTextBlock | IInfoFlowImageBlock;
+export type TaskProgressApi = {
+  task: TaskApi;
+  content: FlowBlockApiUnion[];
+};
 
 export interface ITaskTheoryModel extends ILocalStore {
   readonly content: InfoFlowBlockInterfaceUnion[];
@@ -47,7 +56,7 @@ export type TaskTheoryModelParams = {
 };
 
 export type TaskTheoryApi = {
-  content: (InfoFlowTextBlockApi | InfoFlowImageBlockApi)[];
+  content: InfoFlowBlockApiUnion[];
 };
 
 export interface IExerciseSetPageStore extends ILocalStore {
