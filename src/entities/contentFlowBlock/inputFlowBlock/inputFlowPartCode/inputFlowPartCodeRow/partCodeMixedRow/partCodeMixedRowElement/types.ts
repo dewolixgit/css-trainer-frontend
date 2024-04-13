@@ -11,3 +11,11 @@ export interface IPartCodeMixedRowElement {
   readonly id: number;
   readonly type: PartCodeMixedRowElementType;
 }
+
+export type PartCodeMixedRowElementParams = {
+  id: number;
+};
+
+export type PartCodeMixedRowElementApi = {
+  id: number;
+};

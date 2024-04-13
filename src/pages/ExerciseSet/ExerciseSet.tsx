@@ -11,6 +11,7 @@ import {
 
 import { Layout } from './Layout';
 
+// Todo: Adapt for very wide screens (wider than 1920px)
 const ExerciseSet: React.FC = () => {
   const { setId } = useParams();
 

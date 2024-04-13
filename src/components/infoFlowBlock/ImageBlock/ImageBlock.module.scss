@@ -1,0 +1,18 @@
+@import "~styles/mixins";
+
+.image-wrapper {
+  height: calc(var(--lines-height) * 1.3);
+  border-radius: $borderRadiusXL;
+
+  @include backgroundImageCover;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  backdrop-filter: blur(10px);
+
+  border-radius: $borderRadiusXL;
+}

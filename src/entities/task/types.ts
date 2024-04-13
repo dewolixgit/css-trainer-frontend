@@ -6,9 +6,22 @@ export interface ITaskStatus {
   readonly completed: boolean;
 }
 
+export type TaskStatusApi = {
+  data: TaskApi;
+  order: number;
+  completed: boolean;
+};
+
 export interface ITask {
   readonly id: number;
   readonly topicId: number;
   readonly name: string;
   readonly skillTag: SkillEnum;
 }
+
+export type TaskApi = {
+  id: number;
+  topicId: number;
+  name: string;
+  skillTag: SkillEnum;
+};

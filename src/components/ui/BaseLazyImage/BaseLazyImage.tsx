@@ -11,13 +11,18 @@ type Props = Omit<LazyImageProps, 'container' | 'loader' | 'error'> & {
   objectFit?: 'cover' | 'contain' | 'fill';
 };
 
-const BaseLazyImage: React.FC<Props> = ({ className, objectFit = 'contain', ...props }) => {
+const BaseLazyImage: React.FC<Props> = ({ className, objectFit = 'contain', style, ...props }) => {
   return (
     <LazyImage
       {...props}
       styleName={cn('image', `image_object-fit-${objectFit}`)}
       container={(children, isLoading, isError) => (
-        <div styleName="image-wrapper" className={className} aria-hidden={isLoading || isError}>
+        <div
+          styleName="image-wrapper"
+          className={className}
+          aria-hidden={isLoading || isError}
+          style={style}
+        >
           {children}
         </div>
       )}

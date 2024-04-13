@@ -18,8 +18,8 @@ const UnwrappedCodeInputRowElement: React.FC<Props> = ({ element }) => {
 
   return (
     <CodeInputUnit
-      value={element.value}
-      onChangeValue={element.changeValue}
+      value={element.value.value}
+      onChangeValue={element.value.changeValue}
       size={element.symbolsLength}
     />
   );
