@@ -9,6 +9,10 @@
     &-m {
       @include heading-m;
     }
+
+    &-xxxs {
+      @include heading-xxxs;
+    }
   }
 
   &_weight {

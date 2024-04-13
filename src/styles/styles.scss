@@ -54,4 +54,13 @@ a {
 
   // Popover
   --popover-view-offset: 12px;
+
+  // Toast
+  --base-toast-width: 292px;
+  --base-toast-indents: 0;
+  @include adaptiveRule("--base-toast-indents", 8px, 8px, 8px, 12px, 12px);
+
+  // Achievements toast
+  --achievement-toast-max-height: 0;
+  @include adaptiveRule("--achievement-toast-max-height", 67px, 67px, 67px, 75px, 83px);
 }

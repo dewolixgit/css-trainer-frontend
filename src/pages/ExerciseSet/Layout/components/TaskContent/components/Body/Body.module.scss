@@ -19,10 +19,10 @@
   }
 
   @include forMaxWidthTabletM {
-    padding: $indentXSS $indentXL $indentXL;
+    padding: $indentXSS $indentXL calc(var(--achievement-toast-max-height) + var(--adaptive-page-vertical-indent) + $indentXSS);
   }
 
   @include forMaxWidthPhoneL {
-    padding: $indentXSS $indentXS $indentXL;
+    padding: $indentXSS $indentXS calc(var(--achievement-toast-max-height) + var(--adaptive-page-vertical-indent) + $indentXSS);
   }
 }

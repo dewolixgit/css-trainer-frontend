@@ -30,6 +30,19 @@
   @include heading-m($line-height);
 }
 
+@mixin heading-xxxs($line-height: 1.3) {
+  line-height: $line-height;
+
+  @include base-heading;
+  @include adaptiveRule("font-size", 12px, 12px, 12px, 12px, 14px);
+}
+
+@mixin heading-xxxs-medium($line-height: 1.3) {
+  font-weight: 500;
+
+  @include heading-xxxs($line-height);
+}
+
 @mixin base-text {
   font-family: "Roboto", sans-serif;
 }

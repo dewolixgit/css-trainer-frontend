@@ -4,4 +4,5 @@ export enum SizeEnum {
   m = 'm',
   s = 's',
   xs = 'xs',
+  xxxs = 'xxxs',
 }

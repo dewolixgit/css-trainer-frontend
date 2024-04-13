@@ -1,11 +1,6 @@
 import { ILocalStore } from 'config/localStore';
-import {
-  AchievementId,
-  AchievementModelParams,
-  ACHIEVEMENTS_DATA,
-  ApiAchievementType,
-  IAchievement,
-} from 'entities/achievement';
+import { AchievementModelParams, ApiAchievementType, IAchievement } from 'entities/achievement';
+import { transformAchievementDataFromApi } from 'entities/achievement/utils';
 import { SvgrComponent } from 'types/props';
 
 export class AchievementModel implements ILocalStore, IAchievement {
@@ -35,14 +30,9 @@ export class AchievementModel implements ILocalStore, IAchievement {
   destroy = () => {};
 
   static fromApi(params: ApiAchievementType): AchievementModel {
-    const id = params.id as AchievementId;
-
     return new AchievementModel({
-      id,
+      ...transformAchievementDataFromApi(params),
       completed: params.completed,
-      icon: ACHIEVEMENTS_DATA[id]?.icon ?? (() => null),
-      description: ACHIEVEMENTS_DATA[id]?.description ?? (() => ''),
-      name: ACHIEVEMENTS_DATA[id]?.name ?? (() => ''),
     });
   }
 }
