@@ -1,5 +1,6 @@
 import { ACHIEVEMENT_TOAST_TEXTS_RU } from 'config/translation/components/achievementToast';
 import { BASE_TOAST_TEXTS_RU } from 'config/translation/components/baseToast';
+import { EXERCISE_SET_PAGE_TEXTS_RU } from 'config/translation/pages/exerciseSet';
 
 import { ACHIEVEMENT_TEXTS_RU } from './entities/achievement';
 import { SKILL_TEXTS_RU } from './entities/skill';
@@ -12,6 +13,7 @@ const T = {
   },
   pages: {
     achievements: ACHIEVEMENTS_PAGE_TEXTS_RU,
+    exerciseSet: EXERCISE_SET_PAGE_TEXTS_RU,
   },
   entities: {
     skill: SKILL_TEXTS_RU,
@@ -21,5 +23,5 @@ const T = {
 
 export type Translations = typeof T;
 
-// Todo: В будущем можно подумать над интернационализацией
+// Todo: Think about i18n
 export const t = () => T;

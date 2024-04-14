@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 
 import './TaskContentSwitch.module.scss';
+import { t } from 'config/translation';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { useExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore';
 
@@ -39,12 +40,12 @@ const TaskContentSwitch: React.FC<Props> = ({ className }) => {
         <AnimatePresence mode="popLayout" initial={false}>
           {isTheory && (
             <motion.div key="1" {...getTextVariants({ fromLeft: false })}>
-              Теория
+              {t().pages.exerciseSet.theory}
             </motion.div>
           )}
           {!isTheory && (
             <motion.div key="2" {...getTextVariants({ fromLeft: true })}>
-              Практика
+              {t().pages.exerciseSet.practice}
             </motion.div>
           )}
         </AnimatePresence>

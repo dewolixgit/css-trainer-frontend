@@ -6,7 +6,7 @@
   left: 0;
 
   overflow: auto;
-  padding: $indentXSS $indentXXXL $indentXXXL $indentXXXXXL;
+  padding: $indentXSS $indentXXXL calc(var(--task-complete-state-height) + $indentXS) $indentXXXXXL;
 
   @include text-m;
   @include square(100%);

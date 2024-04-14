@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './Layout.module.scss';
+import './Layout.scss';
 import { TaskContent } from './components';
 import { useScrollAnimation } from './useScrollAnimation';
 
