@@ -13,8 +13,11 @@ import { InfoFlowTextBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlo
 import { InputFlowBlockDnd } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowBlockDnd';
 import { InputFlowOnlyCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowOnlyCode';
 import { InputFlowPartCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowPartCode';
+import { AchievementsController } from 'stores/locals/ExerciseSetPageStore/AchievementsController';
 
 export class TaskProgressModel implements ITaskProgressModel {
+  readonly achievementsController = new AchievementsController();
+
   readonly task: ITask;
   readonly content: FlowBlockInterfaceUnion[];
 

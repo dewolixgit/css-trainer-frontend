@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import * as React from 'react';
 
-import { TitleSizesUnion } from 'config/components/title';
+import { TitleSizesUnion, TitleWeightsUnion } from 'config/components/title';
 import { FontWeightEnum } from 'config/fonts';
 import { SizeEnum } from 'config/size';
 import { CommonProps } from 'types/props';
@@ -12,7 +12,7 @@ type Props = Pick<React.HTMLAttributes<HTMLElement>, 'dangerouslySetInnerHTML' |
   CommonProps & {
     tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'div' | 'span';
     size?: TitleSizesUnion;
-    weight?: FontWeightEnum;
+    weight?: TitleWeightsUnion;
     textAlign?: Extract<React.CSSProperties['textAlign'], 'center' | 'start' | 'end'>;
   };
 

@@ -3,4 +3,4 @@ import { SizeEnum } from 'config/size';
 
 export type TitleWeightsUnion = FontWeightEnum.medium | FontWeightEnum.regular;
 
-export type TitleSizesUnion = SizeEnum.xl | SizeEnum.m;
+export type TitleSizesUnion = SizeEnum.xl | SizeEnum.m | SizeEnum.xxxs;

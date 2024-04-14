@@ -1,48 +1,36 @@
 import { ILocalStore } from 'config/localStore';
 import {
-  AchievementId,
   AchievementModelParams,
-  ACHIEVEMENTS_DATA,
-  ApiAchievementType,
-  IAchievement,
+  ACHIEVEMENTS_CLIENT_DATA,
+  ApiAchievementStatusType,
+  IAchievementModel,
 } from 'entities/achievement';
 import { SvgrComponent } from 'types/props';
 
-export class AchievementModel implements ILocalStore, IAchievement {
+export class AchievementModel implements ILocalStore, IAchievementModel {
   readonly id: number;
+  readonly name: string;
+  readonly description: string;
   readonly completed: boolean;
   readonly icon: SvgrComponent;
 
-  private readonly _getName: () => string;
-  private readonly _getDescription: () => string;
-
   constructor(params: AchievementModelParams) {
     this.id = params.id;
+    this.name = params.name;
+    this.description = params.description;
     this.completed = params.completed;
     this.icon = params.icon;
-    this._getName = params.name;
-    this._getDescription = params.description;
-  }
-
-  get name(): string {
-    return this._getName();
-  }
-
-  get description(): string {
-    return this._getDescription();
   }
 
   destroy = () => {};
 
-  static fromApi(params: ApiAchievementType): AchievementModel {
-    const id = params.id as AchievementId;
-
+  static fromApi(params: ApiAchievementStatusType): AchievementModel {
     return new AchievementModel({
-      id,
+      id: params.data.id,
+      name: params.data.name,
+      description: params.data.description,
+      icon: ACHIEVEMENTS_CLIENT_DATA[params.data.id]?.icon ?? null,
       completed: params.completed,
-      icon: ACHIEVEMENTS_DATA[id]?.icon ?? (() => null),
-      description: ACHIEVEMENTS_DATA[id]?.description ?? (() => ''),
-      name: ACHIEVEMENTS_DATA[id]?.name ?? (() => ''),
     });
   }
 }

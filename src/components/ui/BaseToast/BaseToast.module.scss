@@ -1,0 +1,101 @@
+@import "~styles/mixins";
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-right-in {
+  from {
+    transform: translateX(calc(100% + var(--adaptive-page-side-indent)));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-bottom-in {
+  from {
+    transform: translateY(calc(100% + var(--adaptive-page-vertical-indent)));
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-right-out {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x));
+  }
+  to {
+    transform: translateX(calc(100% + var(--adaptive-page-side-indent) + 16px));
+  }
+}
+
+@keyframes slide-bottom-out {
+  from {
+    opacity: 1;
+    transform: translateY(var(--radix-toast-swipe-end-y));
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(100% + var(--adaptive-page-vertical-indent) + 16px));
+  }
+}
+
+
+.toast-root {
+  background-color: var(--color-base-toast-background-1);
+  color: var(--color-base-toast-text-primary-1);
+  border-radius: $borderRadiusM;
+
+  box-shadow: var(--shadow-highlight-1);
+
+  &[data-state="open"] {
+    animation: slide-right-in 150ms ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: hide 100ms ease-in;
+  }
+
+  &[data-swipe="move"] {
+    transform: translateX(var(--radix-toast-swipe-move-x));
+  }
+
+  &[data-swipe="cancel"] {
+    transform: translateX(0);
+    transition: transform 200ms ease-out;
+  }
+
+  &[data-swipe="end"] {
+    animation: slide-right-out 100ms ease-out;
+  }
+
+  @include forMaxWidthPhoneL {
+    &[data-state="open"] {
+      animation: slide-bottom-in 150ms ease-out;
+    }
+
+    &[data-state="closed"] {
+      animation: hide 100ms ease-in;
+    }
+
+    &[data-swipe="move"] {
+      transform: translateY(var(--radix-toast-swipe-move-y));
+    }
+
+    &[data-swipe="cancel"] {
+      transform: translateY(0);
+      transition: transform 200ms ease-out;
+    }
+
+    &[data-swipe="end"] {
+      animation: slide-bottom-out 100ms ease-out;
+    }
+  }
+}

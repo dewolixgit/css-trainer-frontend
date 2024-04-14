@@ -1,0 +1,47 @@
+@import "~styles/mixins";
+
+.fixed {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
+  height: var(--task-complete-state-height);
+
+  display: flex;
+  justify-content: center;
+
+  @include forTabletAndPhones {
+    position: fixed;
+    z-index: 1;
+  }
+}
+
+.root {
+  width: 228px;
+
+  box-shadow: var(--shadow-highlight-1);
+  background-color: var(--color-hightlight-active-background-1);
+  color: var(--color-hightlight-active-text-1);
+  border-radius: $borderRadiusXL $borderRadiusXL 0 0;
+  padding: 0 $indentM var(--adaptive-page-vertical-indent);
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  animation: slide-in 300ms ease-out;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translate(0, calc(100% + $indentXS));
+  }
+
+  to {
+    transform: translate(0, 0);
+  }
+}

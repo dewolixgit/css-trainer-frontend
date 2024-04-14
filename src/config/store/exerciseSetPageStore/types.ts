@@ -1,4 +1,5 @@
 import { ILocalStore } from 'config/localStore';
+import { IAchievementsController } from 'config/store/exerciseSetPageStore/achievementsController';
 import {
   FlowBlockApiUnion,
   FlowBlockInterfaceUnion,
@@ -35,6 +36,7 @@ export type TasksSetStatusApi = {
 export interface ITaskProgressModel extends ILocalStore {
   readonly task: ITask;
   readonly content: FlowBlockInterfaceUnion[];
+  readonly achievementsController: IAchievementsController;
 }
 
 export type TaskProgressModelParams = {

@@ -1,0 +1,34 @@
+@import "~styles/mixins";
+
+.achievement {
+  color: var(--color-hightlight-inactive-2);
+  background-color: var(--color-highlight-inactive-1);
+  box-shadow: var(--shadow-highlight-1);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &_completed {
+    background-color: var(--color-highlight-active-1);
+    color: var(--color-highlight-active-2);
+  }
+
+  &_no-shadow {
+    box-shadow: none;
+  }
+
+  &_size-m {
+    border-radius: $borderRadiusM;
+    @include square(46px);
+  }
+
+  &_size-xl {
+    border-radius: $borderRadiusXL;
+    @include square(60px);
+  }
+
+  &__icon {
+    @include square(60%);
+  }
+}

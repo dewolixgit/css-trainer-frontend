@@ -1,0 +1,44 @@
+@import "~styles/mixins";
+
+.root {
+  width: 100%;
+  padding: var(--base-toast-indents);
+
+  display: flex;
+  align-items: flex-start;
+
+  @include hover {
+    .link__icon {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-right: $indentXXS;
+}
+
+.title {
+  color: var(--color-base-toast-text-primary-1);
+
+  @include linesClamp(2);
+}
+
+.link {
+  color: var(--color-base-toast-text-secondary-1);
+
+  @include animate(opacity);
+
+  @include hover {
+    opacity: 0.7;
+  }
+
+  &__icon {
+    height: 10px;
+    width: 14px;
+    margin-left: $indentXXXS;
+
+    @include animate(transform);
+  }
+}

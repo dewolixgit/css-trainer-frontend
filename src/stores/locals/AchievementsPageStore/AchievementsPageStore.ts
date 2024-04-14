@@ -1,11 +1,11 @@
 import { ILocalStore } from 'config/localStore';
-import { ACHIEVEMENTS_ORDER } from 'entities/achievement';
+import { MOCK_ACHIEVEMENTS_API_DATA_LIST } from 'entities/achievement';
 import { SKILLS_ORDER } from 'entities/skill';
 import { FieldModel, MetaModel } from 'models';
 import { AchievementModel, SkillProgressModel } from 'models/achievements';
 import { BaseResponse } from 'types/props';
 
-import { AchievementsPageService } from './AchievementsPageService';
+import { AchievementsPageApiAdapter } from './AchievementsPageApiAdapter';
 
 export class AchievementsPageStore implements ILocalStore {
   readonly skills: FieldModel<SkillProgressModel[] | null> = new FieldModel(null);
@@ -27,7 +27,7 @@ export class AchievementsPageStore implements ILocalStore {
 
     this.meta.setLoadedStartMeta();
 
-    const response = await AchievementsPageService.getAchievementsData();
+    const response = await AchievementsPageApiAdapter.getAchievementsData();
 
     if (response.isError || !response.data) {
       this.meta.setLoadedErrorMeta();
@@ -41,11 +41,7 @@ export class AchievementsPageStore implements ILocalStore {
       SKILLS_ORDER.map((skill) => SkillProgressModel.fromApi(response.data.skills[skill]))
     );
 
-    this.achievements.changeValue(
-      ACHIEVEMENTS_ORDER.map((achievement) =>
-        AchievementModel.fromApi(response.data.achievements[achievement])
-      )
-    );
+    this.achievements.changeValue(MOCK_ACHIEVEMENTS_API_DATA_LIST.map(AchievementModel.fromApi));
 
     this.characterImage.changeValue(response.data.characterImage);
 
