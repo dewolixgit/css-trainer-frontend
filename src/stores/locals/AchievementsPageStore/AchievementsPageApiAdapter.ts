@@ -1,18 +1,14 @@
-import {
-  AchievementId,
-  MOCK_ACHIEVEMENTS_API_DATA,
-  ApiAchievementType,
-} from 'entities/achievement';
+import { MOCK_ACHIEVEMENTS_API_DATA_LIST, ApiAchievementStatusType } from 'entities/achievement';
 import { ApiSkillType, MOCK_API_SKILL_DATA, SkillEnum } from 'entities/skill';
 import mockMainCharacterImage from 'img/mock/main-character.png';
 import { BaseResponse } from 'types/props';
 import { sleep } from 'utils/async';
 
-export class AchievementsPageService {
+export class AchievementsPageApiAdapter {
   static async getAchievementsData(): Promise<
     BaseResponse<{
       skills: Record<SkillEnum, ApiSkillType>;
-      achievements: Record<AchievementId, ApiAchievementType>;
+      achievements: ApiAchievementStatusType[];
       characterImage: string;
     }>
   > {
@@ -21,7 +17,7 @@ export class AchievementsPageService {
     return {
       isError: false,
       data: {
-        achievements: MOCK_ACHIEVEMENTS_API_DATA,
+        achievements: MOCK_ACHIEVEMENTS_API_DATA_LIST,
         skills: MOCK_API_SKILL_DATA,
         characterImage: mockMainCharacterImage,
       },

@@ -9,13 +9,13 @@ import { FontWeightEnum } from 'config/fonts';
 import { ROUTES } from 'config/router';
 import { SizeEnum } from 'config/size';
 import { t } from 'config/translation';
-import { AchievementDataType } from 'entities/achievement';
-import ArrowVectoreRightSvg from 'img/svgComponents/arrow-vector-right.c.svg';
+import { IAchievement } from 'entities/achievement';
+import ArrowVectorRightSvg from 'img/svgComponents/arrow-vector-right.c.svg';
 
 import './AchievementToast.module.scss';
 
 type Props = BaseToastProps & {
-  achievement: AchievementDataType;
+  achievement: IAchievement;
 };
 
 const AchievementToast: React.FC<Props> = ({ achievement, className, ...props }) => {
@@ -31,14 +31,14 @@ const AchievementToast: React.FC<Props> = ({ achievement, className, ...props })
         />
         <Flex flexGrow={1} direction="column" alignItems="flex-start">
           <Title tag="h5" size={SizeEnum.xxxs} weight={FontWeightEnum.medium} styleName="title">
-            {t().components.achievementToast.youHaveGot(achievement.name())}
+            {t().components.achievementToast.youHaveGot(achievement.name)}
           </Title>
           <Spacing size={4} />
           <Flex styleName="link" alignItems="center">
             <Text weight={FontWeightEnum.regular} size={SizeEnum.xs} tag="div">
               {t().components.achievementToast.toMyAchievements}
             </Text>
-            <ArrowVectoreRightSvg styleName="link__icon" />
+            <ArrowVectorRightSvg styleName="link__icon" />
           </Flex>
         </Flex>
       </Link>

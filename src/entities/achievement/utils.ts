@@ -1,9 +1,9 @@
-import { AchievementDataType, ACHIEVEMENTS_DATA } from 'entities/achievement/client';
-import { ApiAchievementType } from 'entities/achievement/server';
+import { ACHIEVEMENTS_CLIENT_DATA, IAchievement } from './client';
+import { ApiAchievementType } from './server';
 
-export const transformAchievementDataFromApi = (api: ApiAchievementType): AchievementDataType => ({
+export const transformAchievementFromApi = (api: ApiAchievementType): IAchievement => ({
   id: api.id,
-  icon: ACHIEVEMENTS_DATA[api.id]?.icon ?? (() => null),
-  description: ACHIEVEMENTS_DATA[api.id]?.description ?? (() => ''),
-  name: ACHIEVEMENTS_DATA[api.id]?.name ?? (() => ''),
+  name: api.name,
+  description: api.description,
+  icon: ACHIEVEMENTS_CLIENT_DATA[api.id]?.icon ?? null,
 });

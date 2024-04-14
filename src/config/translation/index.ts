@@ -2,7 +2,6 @@ import { ACHIEVEMENT_TOAST_TEXTS_RU } from 'config/translation/components/achiev
 import { BASE_TOAST_TEXTS_RU } from 'config/translation/components/baseToast';
 import { EXERCISE_SET_PAGE_TEXTS_RU } from 'config/translation/pages/exerciseSet';
 
-import { ACHIEVEMENT_TEXTS_RU } from './entities/achievement';
 import { SKILL_TEXTS_RU } from './entities/skill';
 import { ACHIEVEMENTS_PAGE_TEXTS_RU } from './pages/achievements';
 
@@ -17,7 +16,6 @@ const T = {
   },
   entities: {
     skill: SKILL_TEXTS_RU,
-    achievement: ACHIEVEMENT_TEXTS_RU,
   },
 };
 

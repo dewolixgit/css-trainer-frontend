@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 
 import { BaseToastProvider } from 'components/ui/BaseToast/components';
 import { useLocalStore } from 'config/localStore';
+import { MOCK_ACHIEVEMENTS_API_DATA_MAP } from 'entities/achievement';
 import { ExerciseSetNavigationProvider } from 'pages/ExerciseSet/navigation';
 import {
   ExerciseSetPageStore,
@@ -33,10 +34,10 @@ const ExerciseSet: React.FC = () => {
           <button
             onClick={() =>
               store.taskProgress.value?.achievementsController.showAchievements([
-                { id: 1 },
-                { id: 2 },
-                { id: 3 },
-                { id: 4 },
+                MOCK_ACHIEVEMENTS_API_DATA_MAP[1].data,
+                MOCK_ACHIEVEMENTS_API_DATA_MAP[2].data,
+                MOCK_ACHIEVEMENTS_API_DATA_MAP[3].data,
+                MOCK_ACHIEVEMENTS_API_DATA_MAP[4].data,
               ])
             }
             style={{

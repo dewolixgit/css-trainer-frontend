@@ -1,19 +1,17 @@
 import { ILocalStore } from 'config/localStore';
-import { AchievementDataType, AchievementId } from 'entities/achievement';
+import { ApiAchievementType, IAchievement } from 'entities/achievement';
 import { IField } from 'entities/fieldModel';
 
 export interface IAchievementToastModel {
-  readonly data: AchievementDataType;
+  readonly data: IAchievement;
   readonly open: IField<boolean>;
 }
 
 export type AchievementToastModelParams = {
-  data: AchievementDataType;
+  data: IAchievement;
 };
 
-export type AchievementToastApi = {
-  id: AchievementId;
-};
+export type AchievementToastApi = ApiAchievementType;
 
 export interface IAchievementsController extends ILocalStore {
   readonly achievements: IField<IAchievementToastModel[]>;

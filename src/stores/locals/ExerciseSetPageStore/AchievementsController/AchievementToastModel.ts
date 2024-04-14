@@ -3,13 +3,13 @@ import {
   AchievementToastModelParams,
   IAchievementToastModel,
 } from 'config/store/exerciseSetPageStore/achievementsController';
-import { AchievementDataType } from 'entities/achievement';
-import { transformAchievementDataFromApi } from 'entities/achievement/utils';
+import { IAchievement } from 'entities/achievement';
+import { transformAchievementFromApi } from 'entities/achievement/utils';
 import { IField } from 'entities/fieldModel';
 import { FieldModel } from 'models/FieldModel';
 
 export class AchievementToastModel implements IAchievementToastModel {
-  readonly data: AchievementDataType;
+  readonly data: IAchievement;
   readonly open: IField<boolean>;
 
   constructor(params: AchievementToastModelParams) {
@@ -19,10 +19,7 @@ export class AchievementToastModel implements IAchievementToastModel {
 
   static fromApi(api: AchievementToastApi): AchievementToastModel {
     return new AchievementToastModel({
-      data: transformAchievementDataFromApi({
-        id: api.id,
-        completed: true,
-      }),
+      data: transformAchievementFromApi(api),
     });
   }
 }
