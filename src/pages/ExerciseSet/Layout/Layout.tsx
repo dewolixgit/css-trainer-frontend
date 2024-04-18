@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import './Layout.module.scss';
 import './Layout.scss';
-import { TaskContent } from './components';
+import { GameFieldFrame, TaskContent } from './components';
 import { useScrollAnimation } from './useScrollAnimation';
 
 const Layout = () => {
@@ -32,7 +32,9 @@ const Layout = () => {
                 ['--scale-scroll-factor']: scaleScrollFactor,
               } as React.CSSProperties
             }
-          />
+          >
+            <GameFieldFrame />
+          </div>
         </div>
       </div>
     </div>

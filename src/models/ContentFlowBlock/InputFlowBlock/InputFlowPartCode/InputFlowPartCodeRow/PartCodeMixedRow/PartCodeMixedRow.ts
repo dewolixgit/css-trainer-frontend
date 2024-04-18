@@ -18,6 +18,12 @@ export class PartCodeMixedRow extends InputFlowPartCodeRow implements IPartCodeM
   constructor(params: PartCodeMixedRowParams) {
     super({ id: params.id, tabs: params.tabs });
     this.elements = params.elements;
+
+    this.elements.forEach((element) => {
+      if (element.type === PartCodeMixedRowElementType.code) {
+        element.subscribe(this._subscriptions.emit);
+      }
+    });
   }
 
   static fromApi(api: PartCodeMixedRowApi): PartCodeMixedRow {

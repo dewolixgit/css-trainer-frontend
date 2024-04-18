@@ -1,0 +1,65 @@
+@import "~styles/mixins";
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+    animation-timing-function: cubic-bezier(.6,-0.3,.5,1.3);
+  }
+  50% {
+    transform: rotate(720deg);
+    animation-timing-function: cubic-bezier(.6,-0.3,.5,1.3);
+  }
+  100% {
+    transform: rotate(1440deg);
+  }
+}
+
+@keyframes pendulum {
+  0%,
+  100% {
+    transform: rotate(45deg);
+    animation-timing-function: ease;
+  }
+  50% {
+    transform: rotate(-45deg);
+    animation-timing-function: ease;
+  }
+}
+
+.container {
+  @include square(var(--size));
+
+  &_animation-spin {
+    svg {
+      animation: spin 4s infinite linear;
+    }
+  }
+
+  &_animation-pendulum {
+    svg {
+      transform-origin: top;
+      transform: rotate(45deg);
+      animation: pendulum 1.5s infinite linear;
+    }
+  }
+
+  &_animation-pendulum-bottom-center {
+    svg {
+      transform-origin: bottom center;
+      transform: rotate(45deg);
+      animation: pendulum 1.5s infinite linear;
+    }
+  }
+
+  &_color-primary {
+    color: var(--color-thematic-loader-primary-1);
+  }
+
+  &_color-secondary {
+    color: var(--color-thematic-loader-secondary-1);
+  }
+}
+
+.icon {
+  @include square(100%);
+}

@@ -7,4 +7,5 @@ export const LOADER_SIZES: Record<LoaderSizeEnum, number> = {
   [LoaderSizeEnum.m]: 24,
   [LoaderSizeEnum.l]: 32,
   [LoaderSizeEnum.xxl]: 40,
+  [LoaderSizeEnum.xxxxl]: 148,
 };

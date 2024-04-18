@@ -1,3 +1,5 @@
+import { ILocalStore } from 'config/localStore';
+
 export enum PartCodeRowType {
   mixed = 'mixed',
   code = 'code',
@@ -6,7 +8,7 @@ export enum PartCodeRowType {
 /**
  * Interface of a single row of a code input block
  */
-export interface IInputFlowPartCodeRow {
+export interface IInputFlowPartCodeRow extends ILocalStore {
   readonly id: number;
   readonly type: PartCodeRowType;
 
@@ -14,6 +16,12 @@ export interface IInputFlowPartCodeRow {
    * Amount of tabs from the beginning of a line
    */
   readonly tabs: number;
+
+  /**
+   * Allow to subscribe to changes of the value of the input row or inner inputs.
+   * Returns a function to unsubscribe
+   */
+  subscribe(callback: VoidFunction): VoidFunction;
 }
 
 export type InputFlowPartCodeRowParams = {

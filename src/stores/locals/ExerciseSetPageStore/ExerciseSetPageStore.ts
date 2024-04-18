@@ -12,7 +12,7 @@ import { MetaModel } from 'models/MetaModel';
 import { TaskProgressModel } from 'stores/locals/ExerciseSetPageStore/TaskProgressModel';
 import { TaskTheoryModel } from 'stores/locals/ExerciseSetPageStore/TaskTheoryModel';
 import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore/TasksSetStatusModel';
-import { CONTENT_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/contentFlowBlocks';
+import { TASKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/contentFlowBlocks';
 import { INFO_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/infoFlowBlocks';
 import { TASKS_SET_STATUS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/tasksSetStatus';
 import { sleep } from 'utils/async';
@@ -62,17 +62,18 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     await sleep(1000);
 
+    this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
+
     this.taskTheory.changeValue(
       TaskTheoryModel.fromApi({
         content: INFO_FLOW_BLOCKS_MOCK,
       })
     );
 
-    this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
-
     this.taskProgress.changeValue(
       TaskProgressModel.fromApi({
-        content: CONTENT_FLOW_BLOCKS_MOCK,
+        // @ts-ignore
+        content: TASKS_MOCK[this.tasksSetStatus.value!.tasksStatus.items[1].data.id],
         task: this.tasksSetStatus.value!.tasksStatus.items[1].data,
       })
     );
@@ -103,7 +104,9 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     this.taskProgress.changeValue(
       TaskProgressModel.fromApi({
-        content: CONTENT_FLOW_BLOCKS_MOCK,
+        content:
+          // @ts-ignore
+          TASKS_MOCK[this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data.id],
         task: this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data,
       })
     );
