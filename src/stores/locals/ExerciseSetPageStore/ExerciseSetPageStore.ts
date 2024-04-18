@@ -57,6 +57,20 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
     );
   }
 
+  get isCurrentTaskFirst(): boolean {
+    return (
+      this.taskProgress.value?.task.id ===
+      this.tasksSetStatus.value?.tasksStatus.firstEntity?.data.id
+    );
+  }
+
+  get isCurrentTaskLast(): boolean {
+    return (
+      this.taskProgress.value?.task.id ===
+      this.tasksSetStatus.value?.tasksStatus.lastEntity?.data.id
+    );
+  }
+
   async init(params: { tasksSetId: number }): Promise<void> {
     if (this.meta.isLoading) {
       return;
@@ -167,6 +181,40 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
     TASKS_SET_STATUS_MOCK.tasksStatus = updatedMockStatuses;
 
     this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
+  }
+
+  async goToNextTask(): Promise<void> {
+    const tasksSetStatus = this.tasksSetStatus.value;
+    const taskProgress = this.taskProgress.value;
+
+    if (!tasksSetStatus || !taskProgress || this.isCurrentTaskLast) {
+      return;
+    }
+
+    const nextTask = tasksSetStatus?.getNextTask(taskProgress?.task.id);
+
+    if (!nextTask) {
+      return;
+    }
+
+    await this.reload({ taskId: nextTask.data.id });
+  }
+
+  async goToPreviousTask(): Promise<void> {
+    const tasksSetStatus = this.tasksSetStatus.value;
+    const taskProgress = this.taskProgress.value;
+
+    if (!tasksSetStatus || !taskProgress || this.isCurrentTaskFirst) {
+      return;
+    }
+
+    const previousTask = tasksSetStatus?.getPreviousTask(taskProgress?.task.id);
+
+    if (!previousTask) {
+      return;
+    }
+
+    await this.reload({ taskId: previousTask.data.id });
   }
 
   destroy() {

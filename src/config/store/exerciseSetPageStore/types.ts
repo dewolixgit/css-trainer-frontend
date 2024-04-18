@@ -40,6 +40,7 @@ export interface ITaskProgressModel extends ILocalStore {
   readonly achievementsController: IAchievementsController;
   readonly stylist: ITaskStylist;
   readonly completed: boolean;
+  readonly wasCompletedInCurrentSession: boolean;
 }
 
 export type TaskProgressModelParams = {
@@ -74,7 +75,12 @@ export interface IExerciseSetPageStore extends ILocalStore {
 
   readonly currentTaskInSet: ITaskStatus | null;
   readonly currentTaskIndexInSet: number | null;
+  readonly isCurrentTaskFirst: boolean;
+  readonly isCurrentTaskLast: boolean;
 
   init(params: { tasksSetId: number }): Promise<void>;
   reload(params: { taskId: number }): Promise<void>;
+
+  goToPreviousTask(): Promise<void>;
+  goToNextTask(): Promise<void>;
 }

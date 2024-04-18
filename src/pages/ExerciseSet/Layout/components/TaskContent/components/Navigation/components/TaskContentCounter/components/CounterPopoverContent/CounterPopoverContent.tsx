@@ -37,26 +37,26 @@ const CounterPopoverContent: React.FC<Props> = ({
   );
 
   const prevButtonDisabled = React.useMemo(() => {
-    if (loading || store.currentTaskIndexInSet === null) {
+    if (
+      loading ||
+      store.currentTaskIndexInSet === null ||
+      store.isCurrentTaskFirst ||
+      !previousTask
+    ) {
       return true;
     }
 
-    // If the current task is the first
-    if (store.currentTaskIndexInSet === 0 || !previousTask) {
-      return true;
-    }
-
-    // If the previous task is not completed
     return !previousTask.completed;
-  }, [loading, previousTask, store.currentTaskIndexInSet]);
+  }, [loading, previousTask, store.currentTaskIndexInSet, store.isCurrentTaskFirst]);
 
   const nextButtonDisabled = React.useMemo(() => {
-    if (loading || store.currentTaskIndexInSet === null || !store.currentTaskInSet) {
-      return true;
-    }
-
-    // If the current task is the last
-    if (store.currentTaskIndexInSet === tasksSetStatus.tasksStatus.length - 1 || !nextTask) {
+    if (
+      loading ||
+      store.currentTaskIndexInSet === null ||
+      !store.currentTaskInSet ||
+      store.isCurrentTaskLast ||
+      !nextTask
+    ) {
       return true;
     }
 
@@ -67,26 +67,26 @@ const CounterPopoverContent: React.FC<Props> = ({
     nextTask,
     store.currentTaskInSet,
     store.currentTaskIndexInSet,
-    tasksSetStatus.tasksStatus.length,
+    store.isCurrentTaskLast,
   ]);
 
   const onClickPrev = React.useCallback(() => {
-    if (prevButtonDisabled || !previousTask || loading) {
+    if (prevButtonDisabled || loading) {
       return;
     }
 
-    store.reload({ taskId: previousTask.data.id });
+    store.goToPreviousTask();
     closePopover();
-  }, [closePopover, loading, prevButtonDisabled, previousTask, store]);
+  }, [closePopover, loading, prevButtonDisabled, store]);
 
   const onClickNext = React.useCallback(() => {
-    if (nextButtonDisabled || !nextTask || loading) {
+    if (nextButtonDisabled || loading) {
       return;
     }
 
-    store.reload({ taskId: nextTask?.data.id });
+    store.goToNextTask();
     closePopover();
-  }, [closePopover, loading, nextButtonDisabled, nextTask, store]);
+  }, [closePopover, loading, nextButtonDisabled, store]);
 
   return (
     <div styleName="root" className={className}>

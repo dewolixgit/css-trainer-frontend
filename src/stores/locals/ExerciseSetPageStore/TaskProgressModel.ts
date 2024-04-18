@@ -32,11 +32,14 @@ export class TaskProgressModel implements ITaskProgressModel {
   readonly content: FlowBlockInterfaceUnion[];
 
   private readonly _completed: IField<boolean>;
+  private readonly _wasCompletedEarlier: boolean;
+  private readonly _wasCompletedInCurrentSession = new FieldModel<boolean>(false);
 
   constructor(props: TaskProgressModelParams) {
     this.task = props.task;
     this.content = props.content;
     this._completed = new FieldModel(props.completedEarlier);
+    this._wasCompletedEarlier = props.completedEarlier;
     this.stylist = TaskStylist.byTask({
       taskId: props.task.id,
       inputs: filterInputFlowBlockInterfaceUnion(this.content),
@@ -57,10 +60,18 @@ export class TaskProgressModel implements ITaskProgressModel {
     return this._completed.value;
   }
 
+  get wasCompletedInCurrentSession(): boolean {
+    return this._wasCompletedInCurrentSession.value;
+  }
+
   private _onInputChange(): void {
     this.stylist.stylize();
 
     const result = this.stylist.check();
+
+    if (!this._wasCompletedEarlier && result && !this._wasCompletedInCurrentSession.value) {
+      this._wasCompletedInCurrentSession.changeValue(true);
+    }
 
     this._completed.changeValue(result);
   }

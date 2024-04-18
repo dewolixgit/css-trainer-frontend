@@ -26,8 +26,8 @@ const ExerciseSet: React.FC = () => {
 
   return (
     <BaseToastProvider>
-      <ExerciseSetNavigationProvider>
-        <ExerciseSetPageStoreProvider store={store}>
+      <ExerciseSetPageStoreProvider store={store}>
+        <ExerciseSetNavigationProvider>
           <Layout />
           <AchievementToasts />
           {/* Todo: Show on task solving if must be */}
@@ -48,8 +48,8 @@ const ExerciseSet: React.FC = () => {
           >
             Open achievements
           </button>
-        </ExerciseSetPageStoreProvider>
-      </ExerciseSetNavigationProvider>
+        </ExerciseSetNavigationProvider>
+      </ExerciseSetPageStoreProvider>
     </BaseToastProvider>
   );
 };
