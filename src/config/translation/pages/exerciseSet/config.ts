@@ -4,4 +4,5 @@ export const EXERCISE_SET_PAGE_TEXTS_RU = {
   practice: 'Практика',
   next: 'Далее',
   exit: 'Выйти',
+  saving: 'Сохраняем ваш прогресс...',
 };

@@ -1,0 +1,53 @@
+@import "~styles/mixins";
+
+.root {
+  flex-shrink: 0;
+
+  opacity: 0;
+  visibility: hidden;
+
+  @include animate([visibility, opacity]);
+
+  @include forMinWidthDesktopM {
+    @include square(36px);
+  }
+
+  @include forMaxWidthDesktopS {
+    @include square(32px);
+  }
+
+  @include forMaxWidthTabletM {
+    @include square(36px);
+  }
+
+  &_visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: radial-gradient(
+        circle,
+        var(--color-background-content-1-alpha-50) 30%,
+        var(--color-background-content-1-alpha-0) 70%
+    );
+    border-radius: $borderRadiusCircle;
+
+    @include centerPos;
+    @include square(150%);
+  }
+}
+
+.loader {
+  position: relative;
+  bottom: 2px;
+
+  @include square(100%);
+}

@@ -28,6 +28,7 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
   readonly achievementsController = new AchievementsController();
 
   readonly meta = new MetaModel();
+  readonly inputSavingMeta = new MetaModel();
 
   private readonly _disposers: IReactionDisposer[] = [];
 
@@ -167,9 +168,9 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
       return;
     }
 
-    console.log('send to api a success status');
+    this.inputSavingMeta.setLoadedStartMeta();
+
     await sleep(2000);
-    console.log('success status was sent');
 
     const updatedMockStatuses = TASKS_SET_STATUS_MOCK.tasksStatus.map<TaskStatusApi>((item) => {
       if (item.data.id === taskProgress.task.id) {
@@ -189,6 +190,8 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
     if (Math.random() > 0.5) {
       this.achievementsController.showAchievements([MOCK_ACHIEVEMENTS_API_DATA_MAP[1].data]);
     }
+
+    this.inputSavingMeta.setLoadedSuccessMeta();
   }
 
   async goToNextTask(): Promise<void> {

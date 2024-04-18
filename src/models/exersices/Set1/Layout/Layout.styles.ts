@@ -107,5 +107,5 @@ export const Lamp = styled(Img)<{ visible?: boolean }>`
   animation: ${bellKeyframes} 0.8s infinite linear;
   transform-origin: bottom center;
 
-  transition: opacity 300ms linear;
+  transition: opacity 100ms linear;
 `;

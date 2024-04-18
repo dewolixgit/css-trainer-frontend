@@ -1,0 +1,24 @@
+@import "~styles/mixins";
+
+.root {
+  &_color {
+    &-primary {
+      color: var(--color-dots-loader-primary-1);
+    }
+
+    &-secondary {
+      color: var(--color-dots-loader-secondary-1);
+    }
+  }
+}
+
+.path {
+  stroke-dashoffset: 0;
+  animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 14;
+  }
+}

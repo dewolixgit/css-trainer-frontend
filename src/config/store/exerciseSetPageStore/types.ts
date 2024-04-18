@@ -70,6 +70,7 @@ export interface IExerciseSetPageStore extends ILocalStore {
   readonly taskProgress: FieldModel<ITaskProgressModel | null>;
   readonly taskTheory: FieldModel<ITaskTheoryModel | null>;
   readonly meta: MetaModel;
+  readonly inputSavingMeta: MetaModel;
 
   readonly currentTaskInSet: ITaskStatus | null;
   readonly currentTaskIndexInSet: number | null;

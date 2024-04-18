@@ -1,3 +1,5 @@
+import { sanitize } from 'dompurify';
+
 import {
   ITaskCheckerPlugin,
   ITaskStylistPlugin,
@@ -32,7 +34,7 @@ export class Task4StylistPlugin extends BaseTaskStylistPlugin implements ITaskSt
     }
 
     return `
-      ${prepared} {
+      ${sanitize(prepared)} {
         opacity: 1;
       }
     `;

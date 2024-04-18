@@ -1,3 +1,5 @@
+import { sanitize } from 'dompurify';
+
 import {
   ITaskCheckerPlugin,
   ITaskStylistPlugin,
@@ -18,12 +20,12 @@ export class Task3StylistPlugin extends BaseTaskStylistPlugin implements ITaskSt
     const field2 = row2.elements[0] as IPartCodeMixedRowCodeElement;
 
     return `
-      ${field1.value.value} {
+      ${sanitize(field1.value.value)} {
         top: 700px;
         left: 20px;
       }
 
-      ${field2.value.value} {
+      ${sanitize(field2.value.value)} {
         top: 620px;
         left: 220px;
       }

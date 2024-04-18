@@ -1,3 +1,5 @@
+import { sanitize } from 'dompurify';
+
 import {
   ITaskCheckerPlugin,
   ITaskStylistPlugin,
@@ -13,7 +15,7 @@ export class Task2StylistPlugin extends BaseTaskStylistPlugin implements ITaskSt
     const input = this._inputs[0] as IInputFlowPartCode;
     const row = input.rows[1] as IPartCodeOnlyRow;
 
-    return `.background { ${row.value.value} }`;
+    return `.background { ${sanitize(row.value.value)} }`;
   }
 }
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import './Layout.module.scss';
 import './Layout.scss';
+
 import { GameFieldFrame, TaskContent } from './components';
 import { useScrollAnimation } from './useScrollAnimation';
 

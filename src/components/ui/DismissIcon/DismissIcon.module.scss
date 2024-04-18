@@ -1,0 +1,15 @@
+@import "~styles/mixins";
+
+.root {
+  &_color {
+    &-primary {
+      .circle {
+        color: var(--color-dismiss-button-background-primary-1);
+      }
+
+      .cross {
+        color: var(--color-dismiss-button-body-primary-1);
+      }
+    }
+  }
+}
