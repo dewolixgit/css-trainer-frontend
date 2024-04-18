@@ -1,3 +1,5 @@
+import { IReactionDisposer, reaction } from 'mobx';
+
 import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
 import {
   IInputFlowOnlyCode,
@@ -13,10 +15,20 @@ export class InputFlowOnlyCode extends InputFlowBlock implements IInputFlowOnlyC
   readonly linesCount: number;
   readonly value: IField;
 
+  private readonly _disposer: IReactionDisposer;
+
   constructor(params: InputFlowOnlyCodeParams) {
     super({ id: params.id });
     this.linesCount = params.linesCount;
     this.value = new FieldModel(params.value);
+
+    this._disposer = reaction(() => this.value.value, this._subscriptions.emit);
+  }
+
+  destroy() {
+    super.destroy();
+
+    this._disposer();
   }
 
   static fromApi(api: InputFlowOnlyCodeApi): InputFlowOnlyCode {

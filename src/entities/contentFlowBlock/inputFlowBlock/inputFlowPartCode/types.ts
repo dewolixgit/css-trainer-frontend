@@ -18,11 +18,9 @@ export interface IInputFlowPartCode extends IInputFlowBlock {
 
 export type InputFlowPartCodeParams = InputFlowBlockParams & {
   rows: (IPartCodeMixedRow | IPartCodeOnlyRow)[];
-  linesCount: number;
 };
 
 export type InputFlowPartCodeApi = InputFlowBlockApi & {
   inputType: InputFlowType.partText;
   rows: (PartCodeMixedRowApi | PartCodeOnlyRowApi)[];
-  linesCount: number;
 };

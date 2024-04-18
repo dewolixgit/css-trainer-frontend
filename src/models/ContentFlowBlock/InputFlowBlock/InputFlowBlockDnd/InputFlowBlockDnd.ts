@@ -44,6 +44,12 @@ export class InputFlowBlockDnd extends InputFlowBlock implements IInputFlowDnd {
 
   setOrder(order: IInputFlowDndOption['id'][]): void {
     this._order = order;
+
+    this._subscriptions.emit();
+  }
+
+  destroy() {
+    super.destroy();
   }
 
   static fromApi(api: InputFlowDndApi): InputFlowBlockDnd {

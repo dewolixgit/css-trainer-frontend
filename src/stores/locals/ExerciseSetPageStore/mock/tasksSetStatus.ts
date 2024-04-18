@@ -35,5 +35,15 @@ export const TASKS_SET_STATUS_MOCK: TasksSetStatusApi = {
       completed: false,
       order: 3,
     },
+    {
+      data: {
+        id: 4,
+        skillTag: SkillEnum.flex,
+        topicId: 1,
+        name: 'name 3',
+      },
+      completed: false,
+      order: 4,
+    },
   ],
 };

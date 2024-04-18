@@ -1,3 +1,6 @@
+import { action, makeObservable } from 'mobx';
+
+import { ITaskStylist } from 'config/store/exerciseSetPageStore/taskStylist';
 import {
   ITaskProgressModel,
   TaskProgressApi,
@@ -6,6 +9,7 @@ import {
 import { InfoFlowBlockType } from 'entities/contentFlowBlock/infoFlowBlock';
 import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
 import { ContentFlowBlockType, FlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
+import { filterInputFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/utils';
 import { ITask } from 'entities/task';
 import { transformTask } from 'entities/task/utils';
 import { InfoFlowImageBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowImageBlock';
@@ -14,19 +18,49 @@ import { InputFlowBlockDnd } from 'models/ContentFlowBlock/InputFlowBlock/InputF
 import { InputFlowOnlyCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowOnlyCode';
 import { InputFlowPartCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowPartCode';
 import { AchievementsController } from 'stores/locals/ExerciseSetPageStore/AchievementsController';
+import { TaskStylist } from 'stores/locals/ExerciseSetPageStore/TaskStylist/TaskStylist';
+
+type PrivateFields = '_onInputChange';
 
 export class TaskProgressModel implements ITaskProgressModel {
   readonly achievementsController = new AchievementsController();
 
+  readonly stylist: ITaskStylist;
   readonly task: ITask;
   readonly content: FlowBlockInterfaceUnion[];
 
   constructor(props: TaskProgressModelParams) {
     this.task = props.task;
     this.content = props.content;
+    this.stylist = TaskStylist.byTask({
+      taskId: props.task.id,
+      inputs: filterInputFlowBlockInterfaceUnion(this.content),
+    });
+
+    makeObservable<this, PrivateFields>(this, {
+      _onInputChange: action.bound,
+    });
+
+    this.content.forEach((item) => {
+      if (item.contentType === ContentFlowBlockType.input) {
+        item.subscribe(this._onInputChange);
+      }
+    });
   }
 
-  destroy() {}
+  private _onInputChange(): void {
+    this.stylist.stylize();
+  }
+
+  destroy() {
+    this.achievementsController.destroy();
+    this.stylist.destroy();
+    this.content.forEach((item) => {
+      if (item.contentType === ContentFlowBlockType.input) {
+        item.destroy();
+      }
+    });
+  }
 
   static fromApi(api: TaskProgressApi): TaskProgressModel {
     return new TaskProgressModel({

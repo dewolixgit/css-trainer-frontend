@@ -1,3 +1,5 @@
+import { IReactionDisposer, reaction } from 'mobx';
+
 import { PartCodeRowType } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow';
 import {
   IPartCodeOnlyRow,
@@ -13,10 +15,20 @@ export class PartCodeOnlyRow extends InputFlowPartCodeRow implements IPartCodeOn
   readonly linesCount: number;
   readonly value: IField;
 
+  private readonly _disposer: IReactionDisposer;
+
   constructor(params: PartCodeOnlyRowParams) {
     super({ id: params.id, tabs: params.tabs });
     this.linesCount = params.linesCount;
     this.value = new FieldModel(params.value);
+
+    this._disposer = reaction(() => this.value.value, this._subscriptions.emit);
+  }
+
+  destroy() {
+    super.destroy();
+
+    this._disposer();
   }
 
   static fromApi(api: PartCodeOnlyRowApi): PartCodeOnlyRow {

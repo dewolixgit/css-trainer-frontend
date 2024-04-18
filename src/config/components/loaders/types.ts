@@ -5,4 +5,5 @@ export enum LoaderSizeEnum {
   m = 'm',
   l = 'l',
   xxl = 'xxl',
+  xxxxl = 'xxxxl',
 }

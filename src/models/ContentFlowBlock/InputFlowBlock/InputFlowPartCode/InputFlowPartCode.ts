@@ -1,3 +1,5 @@
+import { computed, makeObservable } from 'mobx';
+
 import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
 import {
   IInputFlowPartCode,
@@ -13,19 +15,35 @@ import { PartCodeOnlyRow } from 'models/ContentFlowBlock/InputFlowBlock/InputFlo
 
 export class InputFlowPartCode extends InputFlowBlock implements IInputFlowPartCode {
   readonly inputType = InputFlowType.partText;
-  readonly linesCount: number;
   readonly rows: (IPartCodeMixedRow | IPartCodeOnlyRow)[];
 
   constructor(params: InputFlowPartCodeParams) {
     super({ id: params.id });
-    this.linesCount = params.linesCount;
     this.rows = params.rows;
+
+    makeObservable(this, {
+      linesCount: computed,
+    });
+
+    this.rows.forEach((row) => {
+      row.subscribe(this._subscriptions.emit);
+    });
+  }
+
+  get linesCount(): number {
+    return this.rows.reduce(
+      (acc, r) => (r.type === PartCodeRowType.code ? acc + r.linesCount : acc + 1),
+      0
+    );
+  }
+
+  destroy() {
+    super.destroy();
   }
 
   static fromApi(api: InputFlowPartCodeApi): InputFlowPartCode {
     return new InputFlowPartCode({
       ...InputFlowBlock.transformApiFields(api),
-      linesCount: api.linesCount,
       rows: api.rows.map((row) => {
         switch (row.type) {
           case PartCodeRowType.mixed:
