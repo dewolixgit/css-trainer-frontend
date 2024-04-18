@@ -30,7 +30,7 @@ const Layout: React.FC<Props> = ({ taskId }) => {
       />
       <s.CrowdsImg
         moved={isTask4}
-        className={SET_1_CLASSNAMES.crowds}
+        className={SET_1_CLASSNAMES.crowd}
         src={crowds}
         alt="Толпа людей"
       />

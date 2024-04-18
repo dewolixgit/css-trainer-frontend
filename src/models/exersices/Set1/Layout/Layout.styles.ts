@@ -96,14 +96,13 @@ export const WarriorImg = styled(Img)<{ moved?: boolean }>`
 
 export const Lamp = styled(Img)<{ visible?: boolean }>`
   position: absolute;
-  display: block;
-  top: 580px;
-  left: 480px;
-  width: 110px;
-  height: 110px;
+  top: 560px;
+  left: 460px;
+  width: 140px;
+  height: 140px;
 
   display: ${({ visible }) => (visible ? 'block' : 'none')};
-  opacity: 0.8;
+  opacity: 0.6;
 
   animation: ${bellKeyframes} 0.8s infinite linear;
   transform-origin: bottom center;

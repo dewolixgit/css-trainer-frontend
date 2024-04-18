@@ -39,11 +39,13 @@ export interface ITaskProgressModel extends ILocalStore {
   readonly content: FlowBlockInterfaceUnion[];
   readonly achievementsController: IAchievementsController;
   readonly stylist: ITaskStylist;
+  readonly completed: boolean;
 }
 
 export type TaskProgressModelParams = {
   task: ITask;
   content: FlowBlockInterfaceUnion[];
+  completedEarlier: boolean;
 };
 
 export type TaskProgressApi = {

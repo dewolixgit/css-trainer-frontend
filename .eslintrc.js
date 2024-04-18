@@ -121,7 +121,6 @@ module.exports = {
     curly: ['error', 'all'],
     'dot-notation': 'error',
     eqeqeq: ['error', 'always'],
-    'max-classes-per-file': 'error',
     'new-cap': ['error', { newIsCap: true }],
     'no-alert': 'error',
     'no-bitwise': 'error',

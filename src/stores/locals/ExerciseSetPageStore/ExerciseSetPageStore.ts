@@ -1,4 +1,4 @@
-import { computed, makeObservable } from 'mobx';
+import { computed, IReactionDisposer, makeObservable, reaction } from 'mobx';
 
 import {
   IExerciseSetPageStore,
@@ -6,6 +6,7 @@ import {
   ITaskProgressModel,
   ITaskTheoryModel,
 } from 'config/store/exerciseSetPageStore/types';
+import { TaskStatusApi } from 'entities/task';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
@@ -24,11 +25,20 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
   readonly tasksSetStatus = new FieldModel<ITasksSetStatusModel | null>(null);
   readonly meta = new MetaModel();
 
+  private readonly _disposers: IReactionDisposer[] = [];
+
   constructor() {
     makeObservable(this, {
       currentTaskInSet: computed,
       currentTaskIndexInSet: computed,
     });
+
+    this._disposers.push(
+      reaction(
+        () => this.taskProgress.value?.completed,
+        () => this._onTaskComplete()
+      )
+    );
   }
 
   get currentTaskInSet() {
@@ -72,9 +82,12 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     this.taskProgress.changeValue(
       TaskProgressModel.fromApi({
-        // @ts-ignore
-        content: TASKS_MOCK[this.tasksSetStatus.value!.tasksStatus.items[1].data.id],
-        task: this.tasksSetStatus.value!.tasksStatus.items[1].data,
+        api: {
+          // @ts-ignore
+          content: TASKS_MOCK[this.tasksSetStatus.value!.tasksStatus.items[1].data.id],
+          task: this.tasksSetStatus.value!.tasksStatus.items[1].data,
+        },
+        completedEarlier: this.tasksSetStatus.value!.tasksStatus.items[1].completed,
       })
     );
 
@@ -94,6 +107,11 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     await sleep(1000);
 
+    // Todo: Need api would send:
+    // 1. task theory (see INFO_FLOW_BLOCKS_MOCK)
+    // 2. tasks statuses (see TASKS_SET_STATUS_MOCK)
+    // 3. current task progress, i.e. current task status and content
+
     this.taskTheory.changeValue(
       TaskTheoryModel.fromApi({
         content: INFO_FLOW_BLOCKS_MOCK,
@@ -104,19 +122,57 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
 
     this.taskProgress.changeValue(
       TaskProgressModel.fromApi({
-        content:
-          // @ts-ignore
-          TASKS_MOCK[this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data.id],
-        task: this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data,
+        api: {
+          content:
+            // @ts-ignore
+            TASKS_MOCK[
+              this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data.id
+            ],
+          task: this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data,
+        },
+        completedEarlier:
+          this.tasksSetStatus.value?.tasksStatus.getEntityByKey(params.taskId)?.completed ?? false,
       })
     );
 
     this.meta.setLoadedSuccessMeta();
   }
 
+  private async _onTaskComplete(): Promise<void> {
+    const taskProgress = this.taskProgress.value;
+
+    if (this.currentTaskInSet?.completed || !taskProgress) {
+      return;
+    }
+
+    if (!taskProgress.completed) {
+      return;
+    }
+
+    console.log('send to api a success status');
+    await sleep(2000);
+    console.log('success status was sent');
+
+    const updatedMockStatuses = TASKS_SET_STATUS_MOCK.tasksStatus.map<TaskStatusApi>((item) => {
+      if (item.data.id === taskProgress.task.id) {
+        return {
+          ...item,
+          completed: true,
+        };
+      }
+
+      return item;
+    });
+
+    TASKS_SET_STATUS_MOCK.tasksStatus = updatedMockStatuses;
+
+    this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
+  }
+
   destroy() {
     this.tasksSetStatus.value?.destroy();
     this.taskProgress.value?.destroy();
     this.taskTheory.value?.destroy();
+    this._disposers.forEach((disposer) => disposer());
   }
 }

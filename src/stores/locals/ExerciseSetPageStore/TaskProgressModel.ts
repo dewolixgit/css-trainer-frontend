@@ -10,6 +10,7 @@ import { InfoFlowBlockType } from 'entities/contentFlowBlock/infoFlowBlock';
 import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
 import { ContentFlowBlockType, FlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
 import { filterInputFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/utils';
+import { IField } from 'entities/fieldModel';
 import { ITask } from 'entities/task';
 import { transformTask } from 'entities/task/utils';
 import { InfoFlowImageBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowImageBlock';
@@ -17,6 +18,7 @@ import { InfoFlowTextBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlo
 import { InputFlowBlockDnd } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowBlockDnd';
 import { InputFlowOnlyCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowOnlyCode';
 import { InputFlowPartCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowPartCode';
+import { FieldModel } from 'models/FieldModel';
 import { AchievementsController } from 'stores/locals/ExerciseSetPageStore/AchievementsController';
 import { TaskStylist } from 'stores/locals/ExerciseSetPageStore/TaskStylist/TaskStylist';
 
@@ -29,9 +31,12 @@ export class TaskProgressModel implements ITaskProgressModel {
   readonly task: ITask;
   readonly content: FlowBlockInterfaceUnion[];
 
+  private readonly _completed: IField<boolean>;
+
   constructor(props: TaskProgressModelParams) {
     this.task = props.task;
     this.content = props.content;
+    this._completed = new FieldModel(props.completedEarlier);
     this.stylist = TaskStylist.byTask({
       taskId: props.task.id,
       inputs: filterInputFlowBlockInterfaceUnion(this.content),
@@ -48,8 +53,16 @@ export class TaskProgressModel implements ITaskProgressModel {
     });
   }
 
+  get completed(): boolean {
+    return this._completed.value;
+  }
+
   private _onInputChange(): void {
     this.stylist.stylize();
+
+    const result = this.stylist.check();
+
+    this._completed.changeValue(result);
   }
 
   destroy() {
@@ -62,10 +75,11 @@ export class TaskProgressModel implements ITaskProgressModel {
     });
   }
 
-  static fromApi(api: TaskProgressApi): TaskProgressModel {
+  static fromApi(params: { api: TaskProgressApi; completedEarlier: boolean }): TaskProgressModel {
     return new TaskProgressModel({
-      task: transformTask(api.task),
-      content: api.content.map((item) => {
+      task: transformTask(params.api.task),
+      completedEarlier: params.completedEarlier,
+      content: params.api.content.map((item) => {
         if (item.contentType === ContentFlowBlockType.info) {
           switch (item.infoType) {
             case InfoFlowBlockType.text:
