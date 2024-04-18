@@ -6,10 +6,12 @@ import {
   ITaskProgressModel,
   ITaskTheoryModel,
 } from 'config/store/exerciseSetPageStore/types';
+import { MOCK_ACHIEVEMENTS_API_DATA_MAP } from 'entities/achievement';
 import { TaskStatusApi } from 'entities/task';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
+import { AchievementsController } from 'stores/locals/ExerciseSetPageStore/AchievementsController';
 import { TaskProgressModel } from 'stores/locals/ExerciseSetPageStore/TaskProgressModel';
 import { TaskTheoryModel } from 'stores/locals/ExerciseSetPageStore/TaskTheoryModel';
 import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore/TasksSetStatusModel';
@@ -23,6 +25,8 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
   readonly taskProgress = new FieldModel<ITaskProgressModel | null>(null);
   readonly taskTheory = new FieldModel<ITaskTheoryModel | null>(null);
   readonly tasksSetStatus = new FieldModel<ITasksSetStatusModel | null>(null);
+  readonly achievementsController = new AchievementsController();
+
   readonly meta = new MetaModel();
 
   private readonly _disposers: IReactionDisposer[] = [];
@@ -181,6 +185,10 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
     TASKS_SET_STATUS_MOCK.tasksStatus = updatedMockStatuses;
 
     this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
+
+    if (Math.random() > 0.5) {
+      this.achievementsController.showAchievements([MOCK_ACHIEVEMENTS_API_DATA_MAP[1].data]);
+    }
   }
 
   async goToNextTask(): Promise<void> {
@@ -221,6 +229,7 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
     this.tasksSetStatus.value?.destroy();
     this.taskProgress.value?.destroy();
     this.taskTheory.value?.destroy();
+    this.achievementsController.destroy();
     this._disposers.forEach((disposer) => disposer());
   }
 }

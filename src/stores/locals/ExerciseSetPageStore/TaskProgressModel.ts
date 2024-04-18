@@ -19,14 +19,11 @@ import { InputFlowBlockDnd } from 'models/ContentFlowBlock/InputFlowBlock/InputF
 import { InputFlowOnlyCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowOnlyCode';
 import { InputFlowPartCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowPartCode';
 import { FieldModel } from 'models/FieldModel';
-import { AchievementsController } from 'stores/locals/ExerciseSetPageStore/AchievementsController';
 import { TaskStylist } from 'stores/locals/ExerciseSetPageStore/TaskStylist/TaskStylist';
 
 type PrivateFields = '_onInputChange';
 
 export class TaskProgressModel implements ITaskProgressModel {
-  readonly achievementsController = new AchievementsController();
-
   readonly stylist: ITaskStylist;
   readonly task: ITask;
   readonly content: FlowBlockInterfaceUnion[];
@@ -77,7 +74,6 @@ export class TaskProgressModel implements ITaskProgressModel {
   }
 
   destroy() {
-    this.achievementsController.destroy();
     this.stylist.destroy();
     this.content.forEach((item) => {
       if (item.contentType === ContentFlowBlockType.input) {
