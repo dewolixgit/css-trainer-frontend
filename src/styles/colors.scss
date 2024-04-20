@@ -13,8 +13,8 @@
   --color-background-void-1: #f9fff3;
 
   // Button colors
-  --color-text-button-1: #496d30;
-  --color-background-button-1: f9fff3;
+  --color-text-button-primary-1: #496d30;
+  --color-background-button-primary-1: #f9fff3;
 
   // Colors to highlight some appearance
   --color-highlight-active-1: #a7de81;
@@ -78,4 +78,9 @@
   // Colors of dismiss button
   --color-dismiss-button-background-primary-1: #{rgba(#a7de81, 0.2)};
   --color-dismiss-button-body-primary-1: #a7de81;
+  --color-topic-card-background-1: #f9fff3;
+  --color-topic-card-text-1: #f9fff3;
+  --color-topic-card-check-1: #a7de81;
+  --color-black-alpha-60: #{rgba(#000, 0.6)};
+  --color-black-alpha-80: #{rgba(#000, 0.8)};
 }
