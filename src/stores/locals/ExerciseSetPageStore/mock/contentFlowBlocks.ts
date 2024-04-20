@@ -43,7 +43,7 @@ export const CONTENT_FLOW_BLOCKS_MOCK_1: FlowBlockApiUnion[] = [
           {
             id: 2,
             type: PartCodeMixedRowElementType.code,
-            value: '',
+            value: 'red',
             symbolsLength: 10,
           },
           {

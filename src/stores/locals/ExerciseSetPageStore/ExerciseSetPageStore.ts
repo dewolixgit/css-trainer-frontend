@@ -1,13 +1,14 @@
-import { computed, IReactionDisposer, makeObservable, reaction } from 'mobx';
+import { action, computed, IReactionDisposer, makeObservable } from 'mobx';
 
+import {
+  ITaskProgressModel,
+  TaskSavePayload,
+} from 'config/store/exerciseSetPageStore/taskProgressModel';
 import {
   IExerciseSetPageStore,
   ITasksSetStatusModel,
-  ITaskProgressModel,
   ITaskTheoryModel,
 } from 'config/store/exerciseSetPageStore/types';
-import { MOCK_ACHIEVEMENTS_API_DATA_MAP } from 'entities/achievement';
-import { TaskStatusApi } from 'entities/task';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
@@ -19,6 +20,8 @@ import { TASKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/contentFlowB
 import { INFO_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/infoFlowBlocks';
 import { TASKS_SET_STATUS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/tasksSetStatus';
 import { sleep } from 'utils/async';
+
+type PrivateFields = '_onTaskComplete';
 
 export class ExerciseSetPageStore implements IExerciseSetPageStore {
   readonly section = new FieldModel(TasksSetSectionEnum.theory);
@@ -33,17 +36,19 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
   private readonly _disposers: IReactionDisposer[] = [];
 
   constructor() {
-    makeObservable(this, {
+    makeObservable<this, PrivateFields>(this, {
       currentTaskInSet: computed,
       currentTaskIndexInSet: computed,
+
+      _onTaskComplete: action.bound,
     });
 
-    this._disposers.push(
-      reaction(
-        () => this.taskProgress.value?.completed,
-        () => this._onTaskComplete()
-      )
-    );
+    // this._disposers.push(
+    //   reaction(
+    //     () => this.taskProgress.value?.completed,
+    //     () => this._onTaskComplete()
+    //   )
+    // );
   }
 
   get currentTaskInSet() {
@@ -107,6 +112,8 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
           task: this.tasksSetStatus.value!.tasksStatus.items[1].data,
         },
         completedEarlier: this.tasksSetStatus.value!.tasksStatus.items[1].completed,
+        // Todo: Consider to subscribe or something else to react to task completion
+        onTaskCompleted: this._onTaskComplete,
       })
     );
 
@@ -151,47 +158,60 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
         },
         completedEarlier:
           this.tasksSetStatus.value?.tasksStatus.getEntityByKey(params.taskId)?.completed ?? false,
+        onTaskCompleted: this._onTaskComplete,
       })
     );
 
     this.meta.setLoadedSuccessMeta();
   }
 
-  private async _onTaskComplete(): Promise<void> {
+  private async _onTaskComplete({
+    completed,
+    tasksStatus,
+    achievements,
+  }: TaskSavePayload): Promise<void> {
     const taskProgress = this.taskProgress.value;
+    const tasksSetStatus = this.tasksSetStatus.value;
 
-    if (this.currentTaskInSet?.completed || !taskProgress) {
+    if (
+      this.currentTaskInSet?.completed ||
+      !taskProgress ||
+      !taskProgress.completed ||
+      !tasksSetStatus ||
+      !completed
+    ) {
       return;
     }
 
-    if (!taskProgress.completed) {
-      return;
+    // const updatedMockStatuses = TASKS_SET_STATUS_MOCK.tasksStatus.map<TaskStatusApi>((item) => {
+    //   if (item.data.id === taskProgress.task.id) {
+    //     return {
+    //       ...item,
+    //       completed: true,
+    //     };
+    //   }
+    //
+    //   return item;
+    // });
+
+    // TASKS_SET_STATUS_MOCK.tasksStatus = updatedMockStatuses;
+
+    // this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
+    this.tasksSetStatus.changeValue(
+      new TasksSetStatusModel({
+        id: tasksSetStatus.id,
+        parentTopicId: tasksSetStatus.parentTopicId,
+        tasksStatus,
+      })
+    );
+
+    if (achievements.length) {
+      this.achievementsController.showAchievements(achievements);
     }
 
-    this.inputSavingMeta.setLoadedStartMeta();
-
-    await sleep(2000);
-
-    const updatedMockStatuses = TASKS_SET_STATUS_MOCK.tasksStatus.map<TaskStatusApi>((item) => {
-      if (item.data.id === taskProgress.task.id) {
-        return {
-          ...item,
-          completed: true,
-        };
-      }
-
-      return item;
-    });
-
-    TASKS_SET_STATUS_MOCK.tasksStatus = updatedMockStatuses;
-
-    this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
-
-    if (Math.random() > 0.5) {
-      this.achievementsController.showAchievements([MOCK_ACHIEVEMENTS_API_DATA_MAP[1].data]);
-    }
-
-    this.inputSavingMeta.setLoadedSuccessMeta();
+    // if (Math.random() > 0.5) {
+    //   this.achievementsController.showAchievements([MOCK_ACHIEVEMENTS_API_DATA_MAP[1].data]);
+    // }
   }
 
   async goToNextTask(): Promise<void> {

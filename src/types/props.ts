@@ -28,3 +28,5 @@ export type BaseResponse<D = undefined, E = undefined> =
           isError: false;
           data: D;
         });
+
+export type BasePromiseResponse<D = undefined, E = undefined> = Promise<BaseResponse<D, E>>;

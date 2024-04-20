@@ -18,7 +18,7 @@ type Props = {
 const SavingLoader: React.FC<Props> = ({ className }) => {
   const store = useExerciseSetPageStore();
 
-  const show = store.inputSavingMeta.isLoading;
+  const show = Boolean(store.taskProgress.value?.saveInputMeta.isLoading);
 
   return (
     <Tooltip>

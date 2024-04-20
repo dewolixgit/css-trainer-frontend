@@ -5,7 +5,7 @@ import { ContentFlowBlock } from 'components/ContentFlowBlock';
 import { Title } from 'components/ui';
 import { FontWeightEnum } from 'config/fonts';
 import { SizeEnum } from 'config/size';
-import { ITaskProgressModel } from 'config/store/exerciseSetPageStore';
+import { ITaskProgressModel } from 'config/store/exerciseSetPageStore/taskProgressModel';
 
 import './Practice.module.scss';
 

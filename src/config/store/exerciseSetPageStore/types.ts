@@ -1,13 +1,11 @@
 import { ILocalStore } from 'config/localStore';
-import { ITaskStylist } from 'config/store/exerciseSetPageStore/taskStylist';
+import { ITaskProgressModel } from 'config/store/exerciseSetPageStore/taskProgressModel';
 import {
-  FlowBlockApiUnion,
-  FlowBlockInterfaceUnion,
   InfoFlowBlockApiUnion,
   InfoFlowBlockInterfaceUnion,
 } from 'entities/contentFlowBlock/types';
 import { IList } from 'entities/listModel';
-import { ITask, ITaskStatus, TaskApi, TaskStatusApi } from 'entities/task';
+import { ITaskStatus, TaskStatusApi } from 'entities/task';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
@@ -31,25 +29,6 @@ export type TasksSetStatusApi = {
   id: number;
   parentTopicId: number | null;
   tasksStatus: TaskStatusApi[];
-};
-
-export interface ITaskProgressModel extends ILocalStore {
-  readonly task: ITask;
-  readonly content: FlowBlockInterfaceUnion[];
-  readonly stylist: ITaskStylist;
-  readonly completed: boolean;
-  readonly wasCompletedInCurrentSession: boolean;
-}
-
-export type TaskProgressModelParams = {
-  task: ITask;
-  content: FlowBlockInterfaceUnion[];
-  completedEarlier: boolean;
-};
-
-export type TaskProgressApi = {
-  task: TaskApi;
-  content: FlowBlockApiUnion[];
 };
 
 export interface ITaskTheoryModel extends ILocalStore {

@@ -22,4 +22,10 @@ export class AchievementToastModel implements IAchievementToastModel {
       data: transformAchievementFromApi(api),
     });
   }
+
+  static fromObject(object: IAchievement): AchievementToastModel {
+    return new AchievementToastModel({
+      data: object,
+    });
+  }
 }

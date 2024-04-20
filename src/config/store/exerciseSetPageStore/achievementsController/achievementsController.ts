@@ -16,5 +16,5 @@ export type AchievementToastApi = ApiAchievementType;
 export interface IAchievementsController extends ILocalStore {
   readonly achievements: IField<IAchievementToastModel[]>;
 
-  showAchievements(achievements: AchievementToastApi[]): void;
+  showAchievements(achievements: IAchievement[]): void;
 }

@@ -1,10 +1,10 @@
 import { action, makeObservable } from 'mobx';
 
 import {
-  AchievementToastApi,
   IAchievementsController,
   IAchievementToastModel,
 } from 'config/store/exerciseSetPageStore/achievementsController';
+import { IAchievement } from 'entities/achievement';
 import { FieldModel } from 'models/FieldModel';
 import { AchievementToastModel } from 'stores/locals/ExerciseSetPageStore/AchievementsController/AchievementToastModel';
 
@@ -17,8 +17,8 @@ export class AchievementsController implements IAchievementsController {
     });
   }
 
-  showAchievements(achievements: AchievementToastApi[]): void {
-    this.achievements.changeValue(achievements.map(AchievementToastModel.fromApi));
+  showAchievements(achievements: IAchievement[]): void {
+    this.achievements.changeValue(achievements.map(AchievementToastModel.fromObject));
     this.achievements.value.forEach((item) => item.open.changeValue(true));
   }
 

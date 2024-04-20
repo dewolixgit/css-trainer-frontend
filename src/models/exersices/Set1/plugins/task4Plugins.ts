@@ -1,5 +1,6 @@
 import { sanitize } from 'dompurify';
 
+import { InputItemsExtractor } from 'config/store/exerciseSetPageStore/taskProgressModel';
 import {
   ITaskCheckerPlugin,
   ITaskStylistPlugin,
@@ -7,17 +8,31 @@ import {
 import { IInputFlowPartCode } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode';
 import { IPartCodeMixedRow } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow';
 import { IPartCodeMixedRowCodeElement } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement/partCodeMixedRowCodeElement';
+import { InputItemTypeEnum } from 'entities/contentFlowBlock/inputItem';
+import { IInputItemInput } from 'entities/contentFlowBlock/inputItem/inputItemInput';
 import { BaseTaskCheckerPlugin } from 'models/taskCheckerPlugin';
 import { BaseTaskStylistPlugin } from 'models/taskStylistPlugin';
 import { removeMultipleSpaces } from 'utils/string/removeMultipleSpaces';
 
+export const task4InputItemsExtractor: InputItemsExtractor = (inputs) => {
+  const input = inputs[0] as IInputFlowPartCode;
+  const row = input.rows[0] as IPartCodeMixedRow;
+  const field = row.elements[0] as IPartCodeMixedRowCodeElement;
+
+  return [
+    {
+      id: field.id,
+      type: InputItemTypeEnum.input,
+      value: field.value.value,
+    },
+  ];
+};
+
 export class Task4StylistPlugin extends BaseTaskStylistPlugin implements ITaskStylistPlugin {
   stylize(): string {
-    const input = this._inputs[0] as IInputFlowPartCode;
-    const row = input.rows[0] as IPartCodeMixedRow;
-    const field = row.elements[0] as IPartCodeMixedRowCodeElement;
+    const input = task4InputItemsExtractor(this._inputs)[0] as IInputItemInput;
 
-    const prepared = removeMultipleSpaces(field.value.value);
+    const prepared = removeMultipleSpaces(input.value);
 
     if (prepared === '.lamp:hover') {
       return `
@@ -43,11 +58,9 @@ export class Task4StylistPlugin extends BaseTaskStylistPlugin implements ITaskSt
 
 export class Task4CheckerPlugin extends BaseTaskCheckerPlugin implements ITaskCheckerPlugin {
   check(): boolean {
-    const input = this._inputs[0] as IInputFlowPartCode;
-    const row = input.rows[0] as IPartCodeMixedRow;
-    const field = row.elements[0] as IPartCodeMixedRowCodeElement;
+    const input = task4InputItemsExtractor(this._inputs)[0] as IInputItemInput;
 
     // eslint-disable-next-line wrap-regex
-    return removeMultipleSpaces(field.value.value) === '.lamp:hover';
+    return removeMultipleSpaces(input.value) === '.lamp:hover';
   }
 }

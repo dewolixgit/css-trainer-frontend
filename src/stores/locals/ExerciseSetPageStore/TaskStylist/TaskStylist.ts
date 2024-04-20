@@ -45,6 +45,7 @@ export class TaskStylist implements ITaskStylist {
     this._stylesTag.changeValue(styleTag);
     this.iframe.changeValue(iframe);
     this._checkerPlugin.init(iframe);
+    this.stylize();
   }
 
   stylize(): void {
