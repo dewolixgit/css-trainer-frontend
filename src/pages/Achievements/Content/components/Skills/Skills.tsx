@@ -2,6 +2,7 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 
 import { Spacing, SkeletonLoader, Title, SmoothOverflow } from 'components/ui';
+import { t } from 'config/translation';
 import { SKILLS_ORDER } from 'entities/skill';
 import { useAchievementsPageStore } from 'stores/locals';
 
@@ -9,17 +10,13 @@ import { SkillItemProgress } from './components';
 
 import './Skills.module.scss';
 
-{
-  /* Todo: Вынести в тексты */
-}
-
 const Skills: React.FC = () => {
   const store = useAchievementsPageStore();
 
   return (
     <>
       <Title tag="h2" textAlign="center">
-        Прогресс
+        {t().pages.achievements.left.title}
       </Title>
       <Spacing size={8} />
       <SmoothOverflow styleName="scroll">

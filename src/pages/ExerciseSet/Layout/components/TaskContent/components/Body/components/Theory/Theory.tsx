@@ -6,7 +6,8 @@ import { ContentFlowBlock } from 'components/ContentFlowBlock';
 import { Title } from 'components/ui';
 import { FontWeightEnum } from 'config/fonts';
 import { SizeEnum } from 'config/size';
-import { ITaskProgressModel, ITaskTheoryModel } from 'config/store/exerciseSetPageStore';
+import { ITaskTheoryModel } from 'config/store/exerciseSetPageStore';
+import { ITaskProgressModel } from 'config/store/exerciseSetPageStore/taskProgressModel';
 
 type Props = {
   className?: string;

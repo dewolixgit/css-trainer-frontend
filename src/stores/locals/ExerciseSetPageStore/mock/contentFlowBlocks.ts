@@ -43,7 +43,7 @@ export const CONTENT_FLOW_BLOCKS_MOCK_1: FlowBlockApiUnion[] = [
           {
             id: 2,
             type: PartCodeMixedRowElementType.code,
-            value: '',
+            value: 'red',
             symbolsLength: 10,
           },
           {
@@ -166,19 +166,19 @@ export const CONTENT_FLOW_BLOCKS_MOCK_3: FlowBlockApiUnion[] = [
           {
             id: 1,
             type: PartCodeMixedRowElementType.text,
-            text: 'top: 700px;\nleft: 20px;',
+            text: 'top: 700px;',
           },
         ],
       },
       {
         id: 3,
         type: PartCodeRowType.mixed,
-        tabs: 0,
+        tabs: 1,
         elements: [
           {
             id: 1,
             type: PartCodeMixedRowElementType.text,
-            text: '}',
+            text: 'left: 20px;',
           },
         ],
       },
@@ -190,7 +190,7 @@ export const CONTENT_FLOW_BLOCKS_MOCK_3: FlowBlockApiUnion[] = [
           {
             id: 1,
             type: PartCodeMixedRowElementType.text,
-            text: NBSP,
+            text: '}',
           },
         ],
       },
@@ -201,9 +201,21 @@ export const CONTENT_FLOW_BLOCKS_MOCK_3: FlowBlockApiUnion[] = [
         elements: [
           {
             id: 1,
+            type: PartCodeMixedRowElementType.text,
+            text: NBSP,
+          },
+        ],
+      },
+      {
+        id: 6,
+        type: PartCodeRowType.mixed,
+        tabs: 0,
+        elements: [
+          {
+            id: 1,
             type: PartCodeMixedRowElementType.code,
             value: '',
-            symbolsLength: 10,
+            symbolsLength: 15,
           },
           {
             id: 2,
@@ -213,19 +225,31 @@ export const CONTENT_FLOW_BLOCKS_MOCK_3: FlowBlockApiUnion[] = [
         ],
       },
       {
-        id: 6,
+        id: 7,
         type: PartCodeRowType.mixed,
         tabs: 1,
         elements: [
           {
             id: 1,
             type: PartCodeMixedRowElementType.text,
-            text: 'top: 700px;\nleft: 20px;',
+            text: 'top: 620px;',
           },
         ],
       },
       {
-        id: 7,
+        id: 72,
+        type: PartCodeRowType.mixed,
+        tabs: 1,
+        elements: [
+          {
+            id: 1,
+            type: PartCodeMixedRowElementType.text,
+            text: 'left: 220px;',
+          },
+        ],
+      },
+      {
+        id: 8,
         type: PartCodeRowType.mixed,
         tabs: 0,
         elements: [

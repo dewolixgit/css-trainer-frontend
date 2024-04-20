@@ -8,15 +8,9 @@ import { useExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore';
 const AchievementToasts: React.FC = () => {
   const store = useExerciseSetPageStore();
 
-  const achievementsController = store.taskProgress.value?.achievementsController;
-
-  if (!achievementsController) {
-    return null;
-  }
-
   return (
     <>
-      {achievementsController.achievements.value.map((toast) => (
+      {store.achievementsController.achievements.value.map((toast) => (
         <AchievementToast
           key={toast.data.id}
           achievement={toast.data}

@@ -89,7 +89,7 @@
   }
 
   @include forMaxWidthTabletM {
-    padding: $indentXXXL;
+    padding: $indentXXXL 0;
   }
 
   @include forMaxWidthPhoneL {

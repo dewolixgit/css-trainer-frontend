@@ -22,14 +22,14 @@ const SkeletonContent: React.FC<SkeletonContentProps> = ({
 }) => {
   return (
     <div className={className}>
-      {config?.map((item) => {
+      {config?.map((item, index) => {
         switch (item) {
           case SkeletonContentItemEnum.textBlock:
-            return <SkeletonContentTextBlock styleName="item" />;
+            return <SkeletonContentTextBlock key={`${item}-${index}`} styleName="item" />;
           case SkeletonContentItemEnum.imageBlock:
-            return <SkeletonContentImageBlock styleName="item" />;
+            return <SkeletonContentImageBlock key={`${item}-${index}`} styleName="item" />;
           case SkeletonContentItemEnum.title:
-            return <SkeletonContentTitle styleName="item" />;
+            return <SkeletonContentTitle key={`${item}-${index}`} styleName="item" />;
           default:
             return null;
         }

@@ -5,7 +5,7 @@
   padding: var(--base-toast-indents);
 
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 
   @include hover {
     .link__icon {
@@ -41,4 +41,8 @@
 
     @include animate(transform);
   }
+}
+
+.dismiss {
+  flex-shrink: 0;
 }

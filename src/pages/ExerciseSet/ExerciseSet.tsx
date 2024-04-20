@@ -4,7 +4,6 @@ import { useParams } from 'react-router';
 
 import { BaseToastProvider } from 'components/ui/BaseToast/components';
 import { useLocalStore } from 'config/localStore';
-import { MOCK_ACHIEVEMENTS_API_DATA_MAP } from 'entities/achievement';
 import { ExerciseSetNavigationProvider } from 'pages/ExerciseSet/navigation';
 import {
   ExerciseSetPageStore,
@@ -26,30 +25,12 @@ const ExerciseSet: React.FC = () => {
 
   return (
     <BaseToastProvider>
-      <ExerciseSetNavigationProvider>
-        <ExerciseSetPageStoreProvider store={store}>
+      <ExerciseSetPageStoreProvider store={store}>
+        <ExerciseSetNavigationProvider>
           <Layout />
           <AchievementToasts />
-          {/* Todo: Show on task solving if must be */}
-          <button
-            onClick={() =>
-              store.taskProgress.value?.achievementsController.showAchievements([
-                MOCK_ACHIEVEMENTS_API_DATA_MAP[1].data,
-                MOCK_ACHIEVEMENTS_API_DATA_MAP[2].data,
-                MOCK_ACHIEVEMENTS_API_DATA_MAP[3].data,
-                MOCK_ACHIEVEMENTS_API_DATA_MAP[4].data,
-              ])
-            }
-            style={{
-              position: 'fixed',
-              top: 100,
-              left: 20,
-            }}
-          >
-            Open achievements
-          </button>
-        </ExerciseSetPageStoreProvider>
-      </ExerciseSetNavigationProvider>
+        </ExerciseSetNavigationProvider>
+      </ExerciseSetPageStoreProvider>
     </BaseToastProvider>
   );
 };

@@ -1,6 +1,8 @@
 :root {
   // Colors for content blocks
   --color-background-content-1: #5f8e3e;
+  --color-background-content-1-alpha-0: #{rgba(#5f8e3e, 0)};
+  --color-background-content-1-alpha-50: #{rgba(#5f8e3e, 0.5)};
   --color-text-content-1: #f9fff3;
   --color-text-content-1-alpha-10: #{rgba(#f9fff3, 0.10)};
   --shadow-content-1: 0 0 8px 4px #{rgba(#496d30, 0.15)};
@@ -72,4 +74,8 @@
   --color-base-toast-background-1: #5f8e3e;
   --color-base-toast-text-primary-1: #f9fff3;
   --color-base-toast-text-secondary-1: #a7de81;
+
+  // Colors of dismiss button
+  --color-dismiss-button-background-primary-1: #{rgba(#a7de81, 0.2)};
+  --color-dismiss-button-body-primary-1: #a7de81;
 }

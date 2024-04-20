@@ -25,21 +25,21 @@ const bellKeyframes = keyframes`
   }
 `;
 
-export const Root = styled.div<{ day?: boolean }>`
+export const Root = styled.div<{ $day?: boolean }>`
   position: relative;
 
   width: 100%;
   height: 100%;
 
   background: url(${backgroundImage}) no-repeat center / cover;
-  background-color: ${({ day }) => (day ? 'skyblue' : '#ffffe9')};
+  background-color: ${({ $day }) => ($day ? 'skyblue' : '#ffffe9')};
 
   overflow: hidden;
 
   transition: background-color 300ms linear;
 `;
 
-export const Text = styled.div<{ pale?: boolean }>`
+export const Text = styled.div<{ $pale?: boolean }>`
   position: absolute;
   top: 510px;
   left: 380px;
@@ -49,7 +49,7 @@ export const Text = styled.div<{ pale?: boolean }>`
   font-family: 'Rubik', sans-serif;
   font-weight: 500;
 
-  color: ${({ pale }) => (pale ? '#f5f5f5' : 'red')};
+  color: ${({ $pale }) => ($pale ? '#f5f5f5' : 'red')};
   transform: rotate(10deg);
 
   transition: color 300ms linear;
@@ -60,15 +60,15 @@ export const Img = styled.img`
   object-position: center;
 `;
 
-export const CrowdsImg = styled(Img)<{ moved?: boolean }>`
+export const CrowdsImg = styled(Img)<{ $moved?: boolean }>`
   position: absolute;
   top: 530px;
   left: 190px;
   width: 500px;
   height: 500px;
 
-  ${({ moved }) =>
-    moved &&
+  ${({ $moved }) =>
+    $moved &&
     css`
       top: 700px;
       left: 20px;
@@ -77,15 +77,15 @@ export const CrowdsImg = styled(Img)<{ moved?: boolean }>`
   transition: top 300ms linear, left 300ms linear;
 `;
 
-export const WarriorImg = styled(Img)<{ moved?: boolean }>`
+export const WarriorImg = styled(Img)<{ $moved?: boolean }>`
   position: absolute;
   top: 700px;
   left: 600px;
   width: 450px;
   height: 450px;
 
-  ${({ moved }) =>
-    moved &&
+  ${({ $moved }) =>
+    $moved &&
     css`
       top: 620px;
       left: 220px;
@@ -94,19 +94,18 @@ export const WarriorImg = styled(Img)<{ moved?: boolean }>`
   transition: top 300ms linear, left 300ms linear;
 `;
 
-export const Lamp = styled(Img)<{ visible?: boolean }>`
+export const Lamp = styled(Img)<{ $visible?: boolean }>`
   position: absolute;
-  display: block;
-  top: 580px;
-  left: 480px;
-  width: 110px;
-  height: 110px;
+  top: 560px;
+  left: 460px;
+  width: 140px;
+  height: 140px;
 
-  display: ${({ visible }) => (visible ? 'block' : 'none')};
-  opacity: 0.8;
+  display: ${({ $visible }) => ($visible ? 'block' : 'none')};
+  opacity: 0.6;
 
   animation: ${bellKeyframes} 0.8s infinite linear;
   transform-origin: bottom center;
 
-  transition: opacity 300ms linear;
+  transition: opacity 100ms linear;
 `;

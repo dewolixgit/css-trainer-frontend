@@ -18,24 +18,24 @@ const Layout: React.FC<Props> = ({ taskId }) => {
   const isTask4 = taskId === 4;
 
   return (
-    <s.Root className={SET_1_CLASSNAMES.background} day={!isTask1 && !isTask2}>
-      <s.Text pale={taskId === 1} className={SET_1_CLASSNAMES.text}>
+    <s.Root className={SET_1_CLASSNAMES.background} $day={!isTask1 && !isTask2}>
+      <s.Text $pale={taskId === 1} className={SET_1_CLASSNAMES.text}>
         Danger!
       </s.Text>
       <s.WarriorImg
-        moved={isTask4}
+        $moved={isTask4}
         className={SET_1_CLASSNAMES.mainCharacter}
         src={warrior}
         alt="Главный герой"
       />
       <s.CrowdsImg
-        moved={isTask4}
-        className={SET_1_CLASSNAMES.crowds}
+        $moved={isTask4}
+        className={SET_1_CLASSNAMES.crowd}
         src={crowds}
         alt="Толпа людей"
       />
       <s.Lamp
-        visible={isTask4}
+        $visible={isTask4}
         className={SET_1_CLASSNAMES.lamp}
         src={lamp}
         alt="Лампочка, символизирующая внезапно пришедшую идею"

@@ -21,3 +21,7 @@ export * from './Pennant';
 export * from './CodeContainer';
 
 export * from './SkeletonContent';
+
+export * from './DismissIcon';
+
+export * from './DismissButton';

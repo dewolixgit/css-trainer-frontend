@@ -1,14 +1,11 @@
 import { ILocalStore } from 'config/localStore';
-import { IAchievementsController } from 'config/store/exerciseSetPageStore/achievementsController';
-import { ITaskStylist } from 'config/store/exerciseSetPageStore/taskStylist';
+import { ITaskProgressModel } from 'config/store/exerciseSetPageStore/taskProgressModel';
 import {
-  FlowBlockApiUnion,
-  FlowBlockInterfaceUnion,
   InfoFlowBlockApiUnion,
   InfoFlowBlockInterfaceUnion,
 } from 'entities/contentFlowBlock/types';
 import { IList } from 'entities/listModel';
-import { ITask, ITaskStatus, TaskApi, TaskStatusApi } from 'entities/task';
+import { ITaskStatus, TaskStatusApi } from 'entities/task';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
@@ -34,23 +31,6 @@ export type TasksSetStatusApi = {
   tasksStatus: TaskStatusApi[];
 };
 
-export interface ITaskProgressModel extends ILocalStore {
-  readonly task: ITask;
-  readonly content: FlowBlockInterfaceUnion[];
-  readonly achievementsController: IAchievementsController;
-  readonly stylist: ITaskStylist;
-}
-
-export type TaskProgressModelParams = {
-  task: ITask;
-  content: FlowBlockInterfaceUnion[];
-};
-
-export type TaskProgressApi = {
-  task: TaskApi;
-  content: FlowBlockApiUnion[];
-};
-
 export interface ITaskTheoryModel extends ILocalStore {
   readonly content: InfoFlowBlockInterfaceUnion[];
 }
@@ -69,10 +49,16 @@ export interface IExerciseSetPageStore extends ILocalStore {
   readonly taskProgress: FieldModel<ITaskProgressModel | null>;
   readonly taskTheory: FieldModel<ITaskTheoryModel | null>;
   readonly meta: MetaModel;
+  readonly inputSavingMeta: MetaModel;
 
   readonly currentTaskInSet: ITaskStatus | null;
   readonly currentTaskIndexInSet: number | null;
+  readonly isCurrentTaskFirst: boolean;
+  readonly isCurrentTaskLast: boolean;
 
   init(params: { tasksSetId: number }): Promise<void>;
   reload(params: { taskId: number }): Promise<void>;
+
+  goToPreviousTask(): Promise<void>;
+  goToNextTask(): Promise<void>;
 }

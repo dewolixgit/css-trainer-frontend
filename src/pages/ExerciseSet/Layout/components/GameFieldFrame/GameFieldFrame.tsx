@@ -6,6 +6,7 @@ import { StyleSheetManager } from 'styled-components';
 import { ThematicLoader } from 'components/ui/loaders';
 import { LoaderSizeEnum } from 'config/components/loaders';
 import { TASKS } from 'models/exersices/config';
+import { SavingLoader } from 'pages/ExerciseSet/Layout/components/GameFieldFrame/components';
 import { useScale } from 'pages/ExerciseSet/Layout/components/GameFieldFrame/useScale';
 import { useExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore';
 
@@ -67,6 +68,7 @@ const GameFieldFrame: React.FC = () => {
           <ThematicLoader size={LoaderSizeEnum.xxxxl} />
         </div>
       )}
+      <SavingLoader styleName="saving-loader" />
     </div>
   );
 };

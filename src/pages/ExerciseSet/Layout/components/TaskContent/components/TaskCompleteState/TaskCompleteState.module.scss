@@ -18,8 +18,6 @@
 }
 
 .root {
-  width: 228px;
-
   box-shadow: var(--shadow-highlight-1);
   background-color: var(--color-hightlight-active-background-1);
   color: var(--color-hightlight-active-text-1);
@@ -34,6 +32,45 @@
   justify-content: flex-end;
 
   animation: slide-in 300ms ease-out;
+}
+
+.link {
+  $self: &;
+
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+
+  text-decoration: underline;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  @include animate(opacity);
+
+  @include hover {
+    opacity: 0.7;
+
+    #{$self}__arrow {
+      transform: translateX(2px);
+    }
+  }
+
+  &_disabled {
+    opacity: 0.7;
+  }
+
+  &__arrow {
+    display: inline;
+    height: 14px;
+    width: 16px;
+    margin-bottom: -1px;
+    margin-left: $indentXXSS;
+
+    @include animate(transform);
+  }
 }
 
 @keyframes slide-in {

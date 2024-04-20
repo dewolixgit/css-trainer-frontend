@@ -1,10 +1,12 @@
+import * as Toast from '@radix-ui/react-toast';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Flex, Spacing, Text, Title } from 'components/ui';
+import { DismissButton, Flex, Spacing, Text, Title } from 'components/ui';
 import { AchievementIcon } from 'components/ui/AchievementIcon';
 import { BaseToast, BaseToastProps } from 'components/ui/BaseToast';
 import { AchievementIconSize } from 'config/components/achievementIcon';
+import { DismissButtonColor, DismissButtonSize } from 'config/components/dismiss';
 import { FontWeightEnum } from 'config/fonts';
 import { ROUTES } from 'config/router';
 import { SizeEnum } from 'config/size';
@@ -18,9 +20,18 @@ type Props = BaseToastProps & {
   achievement: IAchievement;
 };
 
-const AchievementToast: React.FC<Props> = ({ achievement, className, ...props }) => {
+const AchievementToast: React.FC<Props> = ({ achievement, className, onOpenChange, ...props }) => {
+  const onClose = React.useCallback(
+    (e: React.MouseEvent) => {
+      onOpenChange?.(false);
+      e.stopPropagation();
+      e.preventDefault();
+    },
+    [onOpenChange]
+  );
+
   return (
-    <BaseToast className={className} {...props}>
+    <BaseToast className={className} onOpenChange={onOpenChange} {...props}>
       <Link to={ROUTES.achievements.create()} styleName="root">
         <AchievementIcon
           icon={achievement.icon}
@@ -41,6 +52,13 @@ const AchievementToast: React.FC<Props> = ({ achievement, className, ...props })
             <ArrowVectorRightSvg styleName="link__icon" />
           </Flex>
         </Flex>
+        <Toast.Close onClick={onClose} asChild>
+          <DismissButton
+            styleName="dismiss"
+            size={DismissButtonSize.m}
+            color={DismissButtonColor.primary}
+          />
+        </Toast.Close>
       </Link>
     </BaseToast>
   );
