@@ -7,6 +7,7 @@
 
   @include forMaxWidthDesktopS {
     grid-gap: $indentXXXL;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @include forMaxWidthTabletM {

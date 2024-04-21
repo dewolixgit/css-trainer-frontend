@@ -8,25 +8,34 @@ import { ITopicPreview, TopicPreviewTypeEnum } from 'entities/topicPreview';
 
 type Props = {
   className?: string;
-  item: ITopicPreview;
+  item?: ITopicPreview;
+  loading?: boolean;
 };
 
-const TopicCard: React.FC<Props> = ({ item, className }) => {
-  const linkPayload = React.useMemo<LinkProps & { state?: ExerciseSetHistoryState }>(
-    () =>
-      item.type === TopicPreviewTypeEnum.topic
-        ? {
-            to: ROUTES.topics.topic.create(item.id),
-          }
-        : {
-            to: ROUTES.exerciseSet.create(item.id),
-            state: {
-              fromCommonTopics: !item.parentTopicId,
-              fromTopicId: item.parentTopicId,
-            },
+const TopicCard: React.FC<Props> = ({ item, loading, className }) => {
+  const linkPayload = React.useMemo<LinkProps & { state?: ExerciseSetHistoryState }>(() => {
+    if (!item || loading) {
+      return {
+        to: '/',
+      };
+    }
+
+    return item.type === TopicPreviewTypeEnum.topic
+      ? {
+          to: ROUTES.topics.topic.create(item.id),
+        }
+      : {
+          to: ROUTES.exerciseSet.create(item.id),
+          state: {
+            fromCommonTopics: !item.parentTopicId,
+            fromTopicId: item.parentTopicId,
           },
-    [item.id, item.parentTopicId, item.type]
-  );
+        };
+  }, [item, loading]);
+
+  if (loading || !item) {
+    return <TopicCardLayout.Skeleton className={className} />;
+  }
 
   return (
     <TopicCardLayout

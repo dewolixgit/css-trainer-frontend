@@ -10,6 +10,7 @@ export const ROUTES = {
     mask: '/topics',
     create: (): string => '/topics',
     topic: {
+      parameter: 'topicId',
       mask: '/topics/:topicId',
       // Todo: Типизация id темы
       create: (topicId: number): string => `/topics/${topicId}`,

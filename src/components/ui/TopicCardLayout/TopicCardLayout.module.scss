@@ -1,15 +1,15 @@
 @import "~styles/mixins";
+@import "./commonStyles";
 
 .card {
   position: relative;
 
-  height: 330px;
-  box-shadow: var(--shadow-content-1);
   color: var(--color-topic-card-text-1);
   background-color: var(--color-topic-card-background-1);
-  border-radius: $borderRadiusXL;
 
   text-align: center;
+
+  @include topicCardRootStyles;
 
   @include backgroundImageCover;
 

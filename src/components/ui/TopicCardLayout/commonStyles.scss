@@ -1,0 +1,5 @@
+@mixin topicCardRootStyles {
+  height: 330px;
+  box-shadow: var(--shadow-content-1);
+  border-radius: $borderRadiusXL;
+}

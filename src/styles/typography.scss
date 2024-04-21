@@ -7,7 +7,7 @@
   line-height: $line-height;
 
   @include base-heading;
-  @include adaptiveRule("font-size", 38px, 38px, 42px, 42px, 42px);
+  @include adaptiveRule("font-size", 30px, 36px, 40px, 40px, 40px);
 }
 
 @mixin heading-xl-medium($line-height: 1.3) {
@@ -21,7 +21,7 @@
   line-height: $line-height;
 
   @include base-heading;
-  @include adaptiveRule("font-size", 32px, 32px, 36px, 36px, 36px);
+  @include adaptiveRule("font-size", 28px, 32px, 32px, 36px, 36px);
 }
 
 @mixin heading-m-medium($line-height: 1.3) {

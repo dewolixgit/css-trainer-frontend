@@ -6,7 +6,13 @@ import { Button } from 'components/ui';
 import { t } from 'config/translation';
 import CheckSvg from 'img/svgComponents/check.c.svg';
 
+import { TopicCardSkeleton } from './TopicCardSkeleton';
+
 import './TopicCardLayout.module.scss';
+
+interface ITopicCardComposition {
+  Skeleton: typeof TopicCardSkeleton;
+}
 
 type Props = {
   className?: string;
@@ -58,4 +64,10 @@ const TopicCardLayout: React.FC<Props> = ({
   );
 };
 
-export default TopicCardLayout;
+const Memoized = React.memo(TopicCardLayout);
+
+// @ts-ignore
+Memoized.Skeleton = TopicCardSkeleton;
+
+// @ts-ignore
+export default Memoized as typeof TopicCardLayout & ITopicCardComposition;
