@@ -1,18 +1,5 @@
 @import "~styles/mixins";
 
-@keyframes skeleton {
- 0% {
-   background-position: 100% 100%;
- }
-
-  100% {
-    background-position: 0 0;
-  }
-}
-
 .skeleton {
-  background: linear-gradient(45deg, var(--color-skeleton-base-1) 30%, var(--color-skeleton-highlight-1) 50%, var(--color-skeleton-base-1) 70%);
-  background-size: 800% 100%;
-
-  animation: skeleton linear 1.5s infinite;
+  @include skeletonLoaderPrimary;
 }

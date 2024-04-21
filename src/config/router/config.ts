@@ -10,6 +10,7 @@ export const ROUTES = {
     mask: '/topics',
     create: (): string => '/topics',
     topic: {
+      parameter: 'topicId',
       mask: '/topics/:topicId',
       // Todo: Типизация id темы
       create: (topicId: number): string => `/topics/${topicId}`,
@@ -18,7 +19,7 @@ export const ROUTES = {
   exerciseSet: {
     mask: '/set/:setId',
     // Todo: Типизация id набора
-    create: (setId: string): string => `/set/${setId}`,
+    create: (setId: number): string => `/set/${setId}`,
   },
   trialSet: {
     mask: '/trial_set/:setId',

@@ -17,6 +17,11 @@
       394px
   );
 
+  &_loading {
+    border-radius: 0 0 $borderRadiusCircle $borderRadiusCircle;
+    @include skeletonLoaderPrimary;
+  }
+
   &__content {
     flex-grow: 1;
 
@@ -29,6 +34,10 @@
     text-align: center;
   }
 
+  &_loading &__content {
+    background-color: transparent;
+  }
+
   &__tail {
     flex-grow: 1;
 
@@ -37,4 +46,12 @@
     width: 100%;
     margin-top: -1px;
   }
+
+  &_loading &__tail {
+    color: transparent;
+  }
+}
+
+.title {
+  @include linesClamp(1);
 }

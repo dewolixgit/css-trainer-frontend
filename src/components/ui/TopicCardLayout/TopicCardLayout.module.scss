@@ -1,0 +1,191 @@
+@import "~styles/mixins";
+@import "./commonStyles";
+
+.card {
+  position: relative;
+
+  color: var(--color-topic-card-text-1);
+  background-color: var(--color-topic-card-background-1);
+
+  text-align: center;
+
+  @include topicCardRootStyles;
+
+  @include backgroundImageCover;
+
+  &:hover {
+    &::before {
+      background-color: var(--color-black-alpha-80);
+
+      @include forTabletAndPhones {
+        background-color: var(--color-black-alpha-60);
+      }
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background-color: var(--color-black-alpha-60);
+    border-radius: inherit;
+
+    @include animate(background-color);
+
+    @include square(100%);
+  }
+}
+
+.desktop-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-color: transparent;
+
+  @include square(100%);
+
+  @include forTabletAndPhones {
+    display: none;
+  }
+
+  &:hover {
+    .static {
+      transform: translate(0, -20px);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .hover {
+      transform: translate(0, 0);
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  .static {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    transform: translate(0, 0);
+
+    background-color: transparent;
+
+    @include animate([visibility, opacity, transform]);
+
+    @include square(100%);
+
+    .check {
+      position: absolute;
+      top: $indentXXXL;
+
+      width: 46px;
+      height: 32px;
+
+      @include centerPosX;
+    }
+
+    .title {
+      position: absolute;
+
+      @include centerPos;
+    }
+  }
+
+  .hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0, 20px);
+
+    background-color: transparent;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: $indentXXXL;
+
+    @include animate([visibility, opacity, transform]);
+
+    @include square(100%);
+
+    .description {
+      @include linesClamp(4);
+    }
+
+    .button {
+      margin-top: $indentXXL;
+      max-width: 200px;
+    }
+  }
+}
+
+.mobile-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  padding: $indentXXXXL $indentXXL $indentXXL;
+
+  display: none;
+
+  @include square(100%);
+
+  @include forTabletAndPhones {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .check {
+    position: absolute;
+    top: $indentL;
+
+    width: 24px;
+    height: 30px;
+
+    @include centerPosX;
+  }
+
+  .title {
+    margin-bottom: $indentXS;
+  }
+
+  .description {
+    height: 56px;
+    margin-bottom: $indentXM;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__inner {
+      @include linesClamp(3);
+    }
+  }
+
+  .button {
+    max-width: 200px;
+  }
+}
+
+.title {
+  @include heading-m-medium;
+}
+
+.description {
+  @include text-m;
+}
+
+.check {
+  color: var(--color-topic-card-check-1);
+}

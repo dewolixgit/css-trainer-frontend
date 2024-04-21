@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import * as React from 'react';
 
 import { Title } from 'components/ui';
@@ -6,13 +7,19 @@ import { CommonProps } from 'types/props';
 
 import './Pennant.module.scss';
 
-type Props = CommonProps;
+type Props = CommonProps & {
+  loading?: boolean;
+};
 
-const Pennant: React.FC<Props> = ({ children, className }) => {
+const Pennant: React.FC<Props> = ({ children, loading, className }) => {
   return (
-    <div styleName="pennant" className={className}>
+    <div styleName={cn('pennant', loading && 'pennant_loading')} className={className}>
       <div styleName="pennant__content">
-        <Title tag="h1">{children}</Title>
+        {!loading && (
+          <Title tag="h1" styleName="title">
+            {children}
+          </Title>
+        )}
       </div>
       <PennantTailSvg styleName="pennant__tail" />
     </div>
