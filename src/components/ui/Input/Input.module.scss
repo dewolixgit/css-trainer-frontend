@@ -1,0 +1,27 @@
+@import "~styles/mixins";
+
+.label {
+  display: inline-flex;
+  flex-direction: column;
+
+  color: var(--color-input-label-primary-1);
+
+  @include heading-xxxs;
+
+  &__stretched {
+    display: flex;
+  }
+}
+
+.input {
+  margin-top: $indentXXXS;
+  padding: $indentXXXS $indentXXS;
+
+  border-radius: $borderRadiusXS;
+  box-shadow: var(--shadow-highlight-1);
+  background-color: var(--color-input-background-primary-1);
+  color: var(--color-input-text-primary-1);
+
+  @include text-s;
+  @include inputStyles;
+}
