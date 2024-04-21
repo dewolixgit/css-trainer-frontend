@@ -78,14 +78,27 @@
   // Colors of dismiss button
   --color-dismiss-button-background-primary-1: #{rgba(#a7de81, 0.2)};
   --color-dismiss-button-body-primary-1: #a7de81;
+  --color-dismiss-button-background-secondary-1: #{rgba(#496d30, 0.4)};
+  --color-dismiss-button-body-secondary-1: #496d30;
+
+  // Colors of topic card component
   --color-topic-card-background-1: #f9fff3;
   --color-topic-card-text-1: #f9fff3;
   --color-topic-card-check-1: #a7de81;
-  --color-black-alpha-60: #{rgba(#000, 0.6)};
-  --color-black-alpha-80: #{rgba(#000, 0.8)};
 
   // Colors of input
   --color-input-background-primary-1: #f9fff3;
   --color-input-label-primary-1: #f9fff3;
   --color-input-text-primary-1: #000;
+  --color-input-placeholder-primary-1: #8b8b8b;
+  --color-input-invalid-primary-1: #ff5852;
+
+  // Colors of error toast
+  --color-error-toast-background-primary-1: #fff;
+  --color-error-toast-icon-primary-1: #ff5852;
+  --color-error-toast-text-primary-1: #496d30;
+
+  // Plain colors
+  --color-black-alpha-60: #{rgba(#000, 0.6)};
+  --color-black-alpha-80: #{rgba(#000, 0.8)};
 }

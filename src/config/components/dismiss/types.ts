@@ -1,5 +1,6 @@
 export enum DismissButtonColor {
   primary = 'primary',
+  secondary = 'secondary',
 }
 
 export enum DismissButtonSize {

@@ -11,5 +11,15 @@
         color: var(--color-dismiss-button-body-primary-1);
       }
     }
+
+    &-secondary {
+      .circle {
+        color: var(--color-dismiss-button-background-secondary-1);
+      }
+
+      .cross {
+        color: var(--color-dismiss-button-body-secondary-1);
+      }
+    }
   }
 }

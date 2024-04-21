@@ -1,23 +1,29 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
-import { Button } from 'components/ui';
-import { t } from 'config/translation';
+import { BaseToastProvider } from 'components/ui';
+import { useLocalStore } from 'config/localStore';
+import { AuthPageStoreProvider, AuthPageStore } from 'stores/locals/AuthPageStore';
+import { ErrorToastEmitter, ErrorToastEmitterProvider } from 'stores/locals/ErrorToastEmitter';
 
-import { Container, Form, Intro } from './components';
+import { ErrorToasts } from './ErrorToasts';
+import { Layout } from './Layout';
 
 import './Auth.module.scss';
 
 const Auth: React.FC = () => {
+  const errorEmitter = useLocalStore(() => new ErrorToastEmitter());
+
+  const store = useLocalStore(() => new AuthPageStore({ errorEmitter }));
+
   return (
-    <Container>
-      <Intro />
-      <Form styleName="form" />
-      <Button styleName="action">{t().pages.auth.registration.action}</Button>
-      <Link styleName="try" to="/">
-        {t().pages.auth.registration.try}
-      </Link>
-    </Container>
+    <AuthPageStoreProvider store={store}>
+      <ErrorToastEmitterProvider store={errorEmitter}>
+        <BaseToastProvider>
+          <Layout />
+          <ErrorToasts />
+        </BaseToastProvider>
+      </ErrorToastEmitterProvider>
+    </AuthPageStoreProvider>
   );
 };
 

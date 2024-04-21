@@ -13,7 +13,15 @@ export const AUTHENTICATION_PAGE_TEXTS_RU = {
     action: 'Войти',
   },
   form: {
-    emailLabel: 'Электронная почта',
-    passwordLabel: 'Пароль',
+    email: {
+      label: 'Электронная почта',
+      placeholder: 'Введите адрес',
+      invalidEmailError: 'Некорректный адрес электронной почты',
+    },
+    password: {
+      label: 'Пароль',
+      placeholder: 'Введите пароль',
+      tooShortError: 'Пароль должен содержать не\xa0менее шести символов',
+    },
   },
 };

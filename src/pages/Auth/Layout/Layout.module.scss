@@ -5,6 +5,7 @@
 }
 
 .action {
+  min-width: 200px;
   margin-top: $indentXXXLLL;
 }
 
@@ -17,13 +18,15 @@
   text-decoration: underline;
   text-align: center;
 
-  @include text-xs;
-
   @include centerPosX;
 
   @include animate(opacity);
 
   @include hover {
     opacity: 0.7;
+  }
+
+  &_disabled {
+    pointer-events: none;
   }
 }

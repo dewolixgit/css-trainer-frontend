@@ -1,12 +1,12 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 
-import { IField } from 'entities/fieldModel';
+import { FieldModelConfigParams, IField } from 'entities/fieldModel';
 
 export class FieldModel<T = string> implements IField<T> {
-  private _value: T;
-  private readonly _initialValue: T;
+  protected _value: T;
+  protected readonly _initialValue: T;
 
-  constructor(value: T, config?: { initialValue: T }) {
+  constructor(value: T, config?: FieldModelConfigParams<T>) {
     this._value = value;
     this._initialValue = config?.initialValue ?? value;
 
@@ -14,6 +14,7 @@ export class FieldModel<T = string> implements IField<T> {
       _value: observable.ref,
 
       value: computed,
+      empty: computed,
 
       changeValue: action.bound,
       reset: action.bound,

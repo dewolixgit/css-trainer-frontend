@@ -4,6 +4,7 @@ import * as React from 'react';
 import './Input.module.scss';
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  invalid?: boolean;
   stretched?: boolean;
   label?: string;
   value?: string;
@@ -18,6 +19,8 @@ const Input: React.FC<InputProps> = ({
   onChange: controlledOnChange,
   label,
   type = 'input',
+  invalid,
+  disabled,
   ...props
 }) => {
   const [uncontrolledValue, uncontrolledOnChangeValue] = React.useState(controlledValue ?? '');
@@ -34,9 +37,26 @@ const Input: React.FC<InputProps> = ({
   );
 
   return (
-    <label styleName={cn('label', stretched && 'label__stretched')} className={className}>
+    <label
+      styleName={cn(
+        'label',
+        stretched && 'label_stretched',
+        invalid && 'label_invalid',
+        disabled && 'label_disabled'
+      )}
+      aria-invalid={invalid}
+      aria-disabled={disabled}
+      className={className}
+    >
       {label}
-      <input styleName="input" type={type} value={value} onChange={handleChange} {...props} />
+      <input
+        styleName="input"
+        type={type}
+        value={value}
+        onChange={handleChange}
+        tabIndex={disabled ? -1 : undefined}
+        {...props}
+      />
     </label>
   );
 };
