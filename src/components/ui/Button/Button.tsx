@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import * as React from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 
 import { Transition } from 'components/Transition';
 import { BaseLink } from 'components/ui/BaseLink';
@@ -18,6 +19,7 @@ type Props = CommonProps & {
   loading?: boolean;
   disabled?: boolean;
   stretched?: boolean;
+  routerLink?: Pick<LinkProps, 'rel' | 'to' | 'state'>;
 };
 
 const Button = React.forwardRef<Element, Props>(
@@ -32,6 +34,7 @@ const Button = React.forwardRef<Element, Props>(
       loading = false,
       stretched = false,
       disabled = false,
+      routerLink,
     },
     ref
   ) => {
@@ -65,6 +68,23 @@ const Button = React.forwardRef<Element, Props>(
           <div styleName="button__inner">{children}</div>
           {spinner}
         </BaseLink>
+      );
+    }
+
+    if (routerLink) {
+      return (
+        <Link
+          to={routerLink.to}
+          className={commonStyles}
+          onClick={onClick}
+          state={routerLink.state}
+          rel={routerLink.rel}
+          // @ts-ignore (Todo: work with typings. Now should not break anything because of narrowing the type)
+          ref={ref}
+        >
+          <div styleName="button__inner">{children}</div>
+          {spinner}
+        </Link>
       );
     }
 

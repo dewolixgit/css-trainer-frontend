@@ -30,4 +30,6 @@ export * from './BaseLink';
 
 export * from './Button';
 
-export * from './TopicCard';
+export * from './TopicCardLayout';
+
+export * from './PageContainer';

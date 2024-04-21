@@ -1,0 +1,12 @@
+@import "~styles/mixins";
+
+.root {
+  width: 100%;
+
+  @include sidePadding(var(--adaptive-page-side-indent));
+
+  &__inner {
+    margin: 0 auto;
+    max-width: calc($minWidthDesktopM + 1px);
+  }
+}

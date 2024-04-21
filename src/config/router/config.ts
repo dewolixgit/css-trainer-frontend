@@ -18,7 +18,7 @@ export const ROUTES = {
   exerciseSet: {
     mask: '/set/:setId',
     // Todo: Типизация id набора
-    create: (setId: string): string => `/set/${setId}`,
+    create: (setId: number): string => `/set/${setId}`,
   },
   trialSet: {
     mask: '/trial_set/:setId',

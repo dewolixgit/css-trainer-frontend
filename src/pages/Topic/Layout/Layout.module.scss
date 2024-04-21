@@ -1,0 +1,14 @@
+@import "~styles/mixins";
+
+.header {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+
+  @include centerPosX;
+}
+
+.container {
+  padding-top: calc(var(--adaptive-pennant-header-height) + $indentXXXL);
+  padding-bottom: calc(var(--adaptive-tabbar-height) + $indentXXXL);
+}

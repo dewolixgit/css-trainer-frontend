@@ -133,7 +133,7 @@
   top: 0;
   left: 0;
 
-  padding: $indentXXL;
+  padding: $indentXXXXL $indentXXL $indentXXL;
 
   display: none;
 
@@ -161,7 +161,7 @@
   }
 
   .description {
-    height: 80px;
+    height: 56px;
     margin-bottom: $indentXM;
 
     display: flex;
@@ -169,7 +169,7 @@
     align-items: center;
 
     &__inner {
-      @include linesClamp(4);
+      @include linesClamp(3);
     }
   }
 

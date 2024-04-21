@@ -1,11 +1,12 @@
 import cn from 'classnames';
 import * as React from 'react';
+import { LinkProps } from 'react-router-dom';
 
 import { Button } from 'components/ui';
 import { t } from 'config/translation';
 import CheckSvg from 'img/svgComponents/check.c.svg';
 
-import './TopicCard.module.scss';
+import './TopicCardLayout.module.scss';
 
 type Props = {
   className?: string;
@@ -13,12 +14,12 @@ type Props = {
   name: string;
   description: string;
   backgroundImage: string;
-  link: string;
+  linkPayload?: Pick<LinkProps, 'to' | 'state' | 'rel'>;
 };
 
-const TopicCard: React.FC<Props> = ({
+const TopicCardLayout: React.FC<Props> = ({
   completed,
-  link,
+  linkPayload,
   description,
   name,
   className,
@@ -38,7 +39,7 @@ const TopicCard: React.FC<Props> = ({
         </div>
         <div styleName="hover">
           <div styleName="description">{description}</div>
-          <Button styleName="button" href={link} stretched>
+          <Button styleName="button" routerLink={linkPayload} stretched>
             {t().components.topicCard.go}
           </Button>
         </div>
@@ -49,7 +50,7 @@ const TopicCard: React.FC<Props> = ({
         <div styleName="description">
           <div styleName="description__inner">{description}</div>
         </div>
-        <Button styleName="button" href={link} stretched>
+        <Button styleName="button" routerLink={linkPayload} stretched>
           {t().components.topicCard.go}
         </Button>
       </div>
@@ -57,4 +58,4 @@ const TopicCard: React.FC<Props> = ({
   );
 };
 
-export default TopicCard;
+export default TopicCardLayout;

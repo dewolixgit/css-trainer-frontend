@@ -232,3 +232,8 @@
   scrollbar-face-color: $active-color;
   scrollbar-arrow-color: $bg-color;
 }
+
+@mixin sidePadding($padding) {
+  padding-left: $padding;
+  padding-right: $padding;
+}
