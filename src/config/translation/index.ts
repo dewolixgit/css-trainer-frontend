@@ -1,6 +1,7 @@
 import { ACHIEVEMENT_TOAST_TEXTS_RU } from 'config/translation/components/achievementToast';
 import { BASE_TOAST_TEXTS_RU } from 'config/translation/components/baseToast';
 import { TOPIC_CARD_TEXTS_RU } from 'config/translation/components/topicCard';
+import { AUTHENTICATION_PAGE_TEXTS_RU } from 'config/translation/pages/auth';
 import { EXERCISE_SET_PAGE_TEXTS_RU } from 'config/translation/pages/exerciseSet';
 import { TOPICS_PAGE_TEXTS_RU } from 'config/translation/pages/topics';
 
@@ -17,6 +18,7 @@ const T = {
     achievements: ACHIEVEMENTS_PAGE_TEXTS_RU,
     exerciseSet: EXERCISE_SET_PAGE_TEXTS_RU,
     topics: TOPICS_PAGE_TEXTS_RU,
+    auth: AUTHENTICATION_PAGE_TEXTS_RU,
   },
   entities: {
     skill: SKILL_TEXTS_RU,

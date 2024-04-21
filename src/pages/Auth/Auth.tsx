@@ -1,22 +1,23 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
-import { Text, Input } from 'components/ui';
-import { FontWeightEnum } from 'config/fonts';
-import { SizeEnum } from 'config/size';
+import { Button } from 'components/ui';
+import { t } from 'config/translation';
+
+import { Container, Form, Intro } from './components';
+
+import './Auth.module.scss';
 
 const Auth: React.FC = () => {
   return (
-    <div
-      style={{
-        backgroundColor: 'lightgreen',
-      }}
-    >
-      <Text tag="h1" weight={FontWeightEnum.medium} size={SizeEnum.m}>
-        Авторизация
-      </Text>
-      <Input label="Lorem ipsum" stretched />
-      <Input label="Lorem ipsum" />
-    </div>
+    <Container>
+      <Intro />
+      <Form styleName="form" />
+      <Button styleName="action">{t().pages.auth.registration.action}</Button>
+      <Link styleName="try" to="/">
+        {t().pages.auth.registration.try}
+      </Link>
+    </Container>
   );
 };
 

@@ -1,0 +1,33 @@
+@import "~styles/mixins";
+
+.container {
+  width: 100%;
+  max-width: 394px;
+  padding: var(--adaptive-page-vertical-indent) $indentXXXXLLL;
+
+  height: 100vh;
+  overflow: hidden;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  background-color: var(--color-background-content-1);
+  color: var(--color-text-content-1);
+
+  @include forMaxWidthPhoneL {
+    max-width: 100%;
+    padding: var(--adaptive-page-vertical-indent) $indentXXXXL;
+  }
+
+  &__inner {
+    position: relative;
+
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

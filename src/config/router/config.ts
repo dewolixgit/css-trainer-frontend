@@ -32,4 +32,4 @@ export const ROUTES = {
   },
 };
 
-export const ROUTES_WITHOUT_TABBAR = ['/set/'];
+export const ROUTES_WITHOUT_TABBAR = ['/set/', '/auth'];
