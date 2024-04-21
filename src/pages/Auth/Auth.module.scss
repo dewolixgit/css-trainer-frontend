@@ -1,0 +1,29 @@
+@import "~styles/mixins";
+
+.form {
+  margin-top: $indentXXXLL;
+}
+
+.action {
+  margin-top: $indentXXXLLL;
+}
+
+.try {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+
+  text-decoration: underline;
+  text-align: center;
+
+  @include text-xs;
+
+  @include centerPosX;
+
+  @include animate(opacity);
+
+  @include hover {
+    opacity: 0.7;
+  }
+}

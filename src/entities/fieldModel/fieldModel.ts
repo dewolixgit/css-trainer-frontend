@@ -5,3 +5,7 @@ export interface IField<T = string> {
   changeValue(value: T): void;
   reset(): void;
 }
+
+export type FieldModelConfigParams<T> = {
+  initialValue?: T;
+};

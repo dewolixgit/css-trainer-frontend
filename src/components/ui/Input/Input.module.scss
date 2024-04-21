@@ -1,0 +1,49 @@
+@import "~styles/mixins";
+
+.label {
+  display: inline-flex;
+  flex-direction: column;
+
+  color: var(--color-input-label-primary-1);
+
+  @include heading-xxxs;
+
+  &_stretched {
+    display: flex;
+  }
+
+  &_invalid {
+    .input {
+      border-color: var(--color-input-invalid-primary-1);
+    }
+  }
+
+  &_disabled {
+    pointer-events: none;
+
+    .input {
+      opacity: 0.7;
+    }
+  }
+}
+
+.input {
+  margin-top: $indentXXXS;
+  padding: $indentXXXS $indentXXSS;
+
+  border-radius: $borderRadiusXS;
+  box-shadow: var(--shadow-highlight-1);
+  background-color: var(--color-input-background-primary-1);
+  color: var(--color-input-text-primary-1);
+
+  border: 2px solid transparent;
+
+  @include animate(border-color opacity);
+
+  @include placeholderStyles {
+    color: var(--color-input-placeholder-primary-1);
+  }
+
+  @include text-s;
+  @include inputStyles;
+}

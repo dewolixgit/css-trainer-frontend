@@ -11,7 +11,6 @@ type Props = React.SVGProps<SVGSVGElement> & {
 
 const DismissIcon: React.FC<Props> = ({
   color = DismissButtonColor.primary,
-  // eslint-disable-next-line react/prop-types
   className,
   ...props
 }) => {

@@ -1,16 +1,29 @@
 import * as React from 'react';
 
-import { Text } from 'components/ui';
-import { FontWeightEnum } from 'config/fonts';
-import { SizeEnum } from 'config/size';
+import { BaseToastProvider } from 'components/ui';
+import { useLocalStore } from 'config/localStore';
+import { AuthPageStoreProvider, AuthPageStore } from 'stores/locals/AuthPageStore';
+import { ErrorToastEmitter, ErrorToastEmitterProvider } from 'stores/locals/ErrorToastEmitter';
+
+import { ErrorToasts } from './ErrorToasts';
+import { Layout } from './Layout';
+
+import './Auth.module.scss';
 
 const Auth: React.FC = () => {
+  const errorEmitter = useLocalStore(() => new ErrorToastEmitter());
+
+  const store = useLocalStore(() => new AuthPageStore({ errorEmitter }));
+
   return (
-    <div>
-      <Text tag="h1" weight={FontWeightEnum.medium} size={SizeEnum.m}>
-        Авторизация
-      </Text>
-    </div>
+    <AuthPageStoreProvider store={store}>
+      <ErrorToastEmitterProvider store={errorEmitter}>
+        <BaseToastProvider>
+          <Layout />
+          <ErrorToasts />
+        </BaseToastProvider>
+      </ErrorToastEmitterProvider>
+    </AuthPageStoreProvider>
   );
 };
 

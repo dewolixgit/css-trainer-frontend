@@ -1,0 +1,30 @@
+@import "~styles/mixins";
+
+.root {
+  display: flex;
+  align-items: center;
+
+  background-color: var(--color-error-toast-background-primary-1);
+
+  padding: $indentXXSS $indentXXS;
+  min-height: 38px;
+}
+
+.icon {
+  color: var(--color-error-toast-icon-primary-1);
+
+  flex-shrink: 0;
+
+  @include square(24px);
+}
+
+.text {
+  color: var(--color-error-toast-text-primary-1);
+  margin: 0 $indentXXS;
+
+  flex-grow: 1;
+}
+
+.dismiss {
+  flex-shrink: 0;
+}

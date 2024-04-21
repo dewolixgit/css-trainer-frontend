@@ -254,3 +254,22 @@
 
   animation: skeleton-primary linear 1.5s infinite;
 }
+
+@mixin placeholderStyles {
+  /* stylelint-disable-next-line */
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  /* stylelint-disable-next-line */
+  &::-moz-placeholder {
+    @content;
+  }
+  /* stylelint-disable-next-line */
+  &:-moz-placeholder {
+    @content;
+  }
+  /* stylelint-disable-next-line */
+  &:-ms-input-placeholder {
+    @content;
+  }
+}

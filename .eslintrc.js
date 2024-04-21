@@ -164,6 +164,7 @@ module.exports = {
     // Prettier
     'prettier/prettier': 'error',
     // React
+    'react/prop-types': 'off',
     'react/boolean-prop-naming': 'error',
     'react/hook-use-state': 'error',
     'react/no-children-prop': 'error',
