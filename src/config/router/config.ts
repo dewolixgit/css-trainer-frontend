@@ -22,9 +22,8 @@ export const ROUTES = {
     create: (setId: number): string => `/set/${setId}`,
   },
   trialSet: {
-    mask: '/trial_set/:setId',
-    // Todo: Типизация id набора
-    create: (setId: string): string => `/trial_set/${setId}`,
+    mask: '/trial-set',
+    create: (): string => '/trial_set',
   },
   achievements: {
     mask: '/achievements',
@@ -32,4 +31,4 @@ export const ROUTES = {
   },
 };
 
-export const ROUTES_WITHOUT_TABBAR = ['/set/', '/auth'];
+export const ROUTES_WITHOUT_TABBAR = ['/set/', '/auth', '/trial-set'];

@@ -1,0 +1,61 @@
+@import "~styles/mixins";
+
+.task-button {
+  $borderSize: 2px;
+
+  position: relative;
+
+  display: block;
+  padding: calc(100% - #{$borderSize} * 2) 0 0;
+  margin: 0;
+  border-radius: $borderRadiusCircle;
+
+  background-color: transparent;
+
+  @include text-m-medium-static(1);
+  @include animate([opacity, background-color, color, border-color]);
+
+  @include hover {
+    opacity: 0.7;
+  }
+
+  &_loading {
+    pointer-events: none;
+  }
+
+  &_completed {
+    background-color: var(--color-hightlight-active-background-1);
+    color: var(--color-hightlight-active-text-1);
+    border: $borderSize solid var(--color-hightlight-active-background-1);
+  }
+
+  &_next-to-solve {
+    background-color: transparent;
+    color: var(--color-hightlight-active-text-1);
+    border: $borderSize solid var(--color-hightlight-active-text-1);
+  }
+
+  &_active {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  &_disabled {
+    pointer-events: none;
+    background-color: var(--color-hightlight-inactive-background-1);
+    color: var(--color-hightlight-inactive-text-1);
+    border: $borderSize solid var(--color-hightlight-inactive-background-1);
+  }
+
+  &__inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @include square(100%);
+  }
+}
