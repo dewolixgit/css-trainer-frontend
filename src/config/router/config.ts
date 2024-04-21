@@ -23,7 +23,7 @@ export const ROUTES = {
   },
   trialSet: {
     mask: '/trial-set',
-    create: (): string => '/trial_set',
+    create: (): string => '/trial-set',
   },
   achievements: {
     mask: '/achievements',

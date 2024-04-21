@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ExerciseSetNavigationContextType } from 'pages/ExerciseSet/navigation';
+import { ExerciseSetNavigationContextType } from 'config/components/layouts/exerciseSetLayout/navigation';
 
 export const InnerExerciseSetNavigationContext =
   React.createContext<ExerciseSetNavigationContextType>({

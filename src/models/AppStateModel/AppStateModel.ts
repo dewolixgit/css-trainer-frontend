@@ -1,8 +1,10 @@
 import { action, computed, makeObservable, observable } from 'mobx';
 
+import { IAppStateModel } from 'config/store/appState/types';
+
 import { AppStateEnum } from './types';
 
-export class AppStateModel {
+export class AppStateModel implements IAppStateModel {
   state: AppStateEnum = AppStateEnum.notLoaded;
 
   constructor() {

@@ -1,10 +1,11 @@
+import { IUser } from 'entities/user';
 import { BasePromiseResponse } from 'types/props';
 import { sleep } from 'utils/async';
 
 export class AuthPageApiAdapter {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static async login(params: { password: string; email: string }): BasePromiseResponse<
-    true,
+    IUser,
     {
       validationErrorText: string | null;
     }
@@ -13,13 +14,15 @@ export class AuthPageApiAdapter {
 
     return {
       isError: false,
-      data: true,
+      data: {
+        id: 1,
+      },
     };
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   static async register(params: { password: string; email: string }): BasePromiseResponse<
-    true,
+    IUser,
     {
       validationErrorText: string | null;
     }
@@ -28,7 +31,9 @@ export class AuthPageApiAdapter {
 
     return {
       isError: false,
-      data: true,
+      data: {
+        id: 1,
+      },
     };
   }
 }

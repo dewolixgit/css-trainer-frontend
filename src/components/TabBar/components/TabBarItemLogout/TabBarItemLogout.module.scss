@@ -1,0 +1,7 @@
+@import "~styles/mixins";
+
+.exit {
+  color: var(--color-tabbar-item-logout-hightlight);
+  background-color: var(--color-tabbar-item-logout-background);
+  padding-left: $indentXXSS;
+}

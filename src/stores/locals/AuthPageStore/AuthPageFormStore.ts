@@ -20,8 +20,18 @@ export class AuthPageFormStore implements IAuthPageFormStore {
     });
 
     this.password = new FormFieldModel('', {
-      validator: (value) =>
-        value.trim().length >= 6 ? null : t().pages.auth.form.password.tooShortError,
+      validator: (value) => {
+        // eslint-disable-next-line wrap-regex
+        if (!/^[A-Za-z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]*$/.test(value)) {
+          return t().pages.auth.form.password.invalidError;
+        }
+
+        if (value.trim().length < 6) {
+          return t().pages.auth.form.password.tooShortError;
+        }
+
+        return null;
+      },
     });
   }
 

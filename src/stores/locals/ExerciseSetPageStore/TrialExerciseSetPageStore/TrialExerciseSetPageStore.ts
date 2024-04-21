@@ -8,6 +8,7 @@ import { TaskTheoryModel } from 'stores/locals/ExerciseSetPageStore/TaskTheoryMo
 import { TASKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/contentFlowBlocks';
 import { INFO_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/infoFlowBlocks';
 import { TASKS_SET_STATUS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/tasksSetStatus';
+import { sleep } from 'utils/async';
 
 export class TrialExerciseSetPageStore
   extends AbstractExerciseSetPageStore
@@ -16,6 +17,10 @@ export class TrialExerciseSetPageStore
   private _clientMockTasksSetStatus = new FieldModel<TasksSetStatusApi['tasksStatus']>([]);
 
   async init(): Promise<void> {
+    this.meta.setLoadedStartMeta();
+
+    await sleep(1000);
+
     this._clientMockTasksSetStatus.changeValue(TASKS_SET_STATUS_MOCK.tasksStatus);
 
     this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
@@ -48,6 +53,10 @@ export class TrialExerciseSetPageStore
     if (!this.meta.isLoaded || !tasksSetStatus) {
       return;
     }
+
+    this.meta.setLoadedStartMeta();
+
+    await sleep(1000);
 
     this.section.reset();
 

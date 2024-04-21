@@ -2,6 +2,7 @@ import cn from 'classnames';
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
+import { TabBarItemLayout } from 'components/TabBar/components/TabBarItemLayout';
 import { TabBarItemType } from 'config/components/tabBar';
 
 import './TabBarItem.module.scss';
@@ -24,9 +25,11 @@ const TabBarItem: React.FC<Props> = ({ item: { Icon, route, routeStartsWith } })
   }, [navigate, route]);
 
   return (
-    <button styleName={cn('tab', isActivePath && 'tab_active')} onClick={onClick}>
-      <Icon styleName="tab__icon" />
-    </button>
+    <TabBarItemLayout
+      styleName={cn('tab', isActivePath && 'tab_active')}
+      Icon={Icon}
+      onClick={onClick}
+    />
   );
 };
 

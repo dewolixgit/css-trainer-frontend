@@ -1,9 +1,14 @@
 import { action, makeObservable } from 'mobx';
 
+import { IRootStore } from 'config/store/rootStore';
+import { IUserStore } from 'config/store/userStore';
 import { AppStateModel } from 'models';
 
-export class RootStore {
+import { UserStore } from './user/UserStore';
+
+export class RootStore implements IRootStore {
   appState = new AppStateModel();
+  userStore: IUserStore = new UserStore(this);
 
   constructor() {
     makeObservable(this, {
@@ -14,7 +19,7 @@ export class RootStore {
   async init(): Promise<boolean> {
     this.appState.setLoading();
 
-    // Todo: Проверка авторизации
+    // Todo: Authentication check
 
     return true;
   }

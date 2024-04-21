@@ -23,7 +23,7 @@ const ErrorToast: React.FC<Props> = ({ text, className, ...props }) => {
       </Title>
       <Toast.Close asChild>
         <DismissButton
-          styleName="dimiss"
+          styleName="dismiss"
           size={DismissButtonSize.m}
           color={DismissButtonColor.secondary}
         />

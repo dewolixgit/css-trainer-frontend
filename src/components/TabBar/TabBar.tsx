@@ -5,7 +5,7 @@ import { Flex } from 'components/ui/Flex';
 import { getTabBarItems, TAB_BAR_ITEMS_ORDER } from 'config/components/tabBar';
 import { isRouteWithoutTabbar } from 'config/router';
 
-import { TabBarItem } from './components';
+import { TabBarItem, TabBarItemLogout } from './components';
 
 import './TabBar.module.scss';
 
@@ -22,10 +22,11 @@ const TabBar: React.FC = () => {
 
   return (
     <Flex styleName="tabbar" direction="column" alignItems="center">
-      <Flex styleName="tabbar__content" alignItems="center" justifyContent="space-around">
+      <Flex styleName="tabbar__content" alignItems="center" justifyContent="space-evenly">
         {TAB_BAR_ITEMS_ORDER.map((item) => (
           <TabBarItem key={item} item={tabs[item]} />
         ))}
+        <TabBarItemLogout />
       </Flex>
     </Flex>
   );
