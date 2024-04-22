@@ -25,4 +25,11 @@
   @include forMaxWidthPhoneL {
     padding: $indentXSS $indentXS calc(var(--achievement-toast-max-height) + var(--adaptive-page-vertical-indent) + $indentXSS);
   }
+
+  :global(#{$infoFlowTextBlockGlobalClass}) code {
+    background-color: var(--color-inline-code-background-1);
+    color: var(--color-inline-code-color-1);
+    border-radius: var(--inline-code-border-radius);
+    padding: 0 var(--inline-code-side-indent);
+  }
 }

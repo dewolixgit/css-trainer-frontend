@@ -110,4 +110,8 @@
   --color-tabbar-item-background-active-1: var(--color-background-void-1);
   --color-tabbar-item-logout-hightlight: #ffb4b1;
   --color-tabbar-item-logout-background: var(--color-background-void-1);
+
+  // Colors of inline code
+  --color-inline-code-background-1: var(--color-hightlight-active-background-1);
+  --color-inline-code-color-1: var(--color-hightlight-active-text-1);
 }

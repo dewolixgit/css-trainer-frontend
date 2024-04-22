@@ -34,6 +34,10 @@ a {
   text-decoration: none;
 }
 
+code {
+  @include base-code;
+}
+
 // Todo: Подумать над структурой файлов стилей
 :root {
   // Common page indents
@@ -63,4 +67,9 @@ a {
   // Achievements toast
   --achievement-toast-max-height: 0;
   @include adaptiveRule("--achievement-toast-max-height", 67px, 67px, 67px, 75px, 83px);
+
+  // Parameters of inline code
+  --inline-code-border-radius: #{$borderRadiusXXXS};
+  --inline-code-vertical-indent: #{$indentXXXXS};
+  --inline-code-side-indent: #{$indentXXXXS};
 }

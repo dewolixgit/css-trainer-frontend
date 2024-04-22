@@ -14,6 +14,7 @@ import { filterInputFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/ut
 import { IField } from 'entities/fieldModel';
 import { ITask } from 'entities/task';
 import { transformTask } from 'entities/task/utils';
+import { InfoFlowCodeBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowCodeBlock';
 import { InfoFlowImageBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowImageBlock';
 import { InfoFlowTextBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowTextBlock';
 import { InputFlowBlockDnd } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowBlockDnd';
@@ -105,6 +106,8 @@ export abstract class AbstractTaskProgressModel implements ITaskProgressModel {
               return InfoFlowTextBlock.fromApi(item);
             case InfoFlowBlockType.image:
               return InfoFlowImageBlock.fromApi(item);
+            case InfoFlowBlockType.code:
+              return InfoFlowCodeBlock.fromApi(item);
             default:
               throw new Error('Unknown info block type');
           }
