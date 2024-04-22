@@ -7,11 +7,13 @@ import {
   IAuthPageFormStore,
   IAuthPageStore,
 } from 'config/store/authPageStore';
+import { IRootStore } from 'config/store/rootStore';
 import { t } from 'config/translation';
 import { FormFieldModel } from 'models/FormFieldModel';
 import { MetaModel } from 'models/MetaModel';
 import { AuthPageApiAdapter } from 'stores/locals/AuthPageStore/AuthPageApiAdapter';
 import { AuthPageFormStore } from 'stores/locals/AuthPageStore/AuthPageFormStore';
+import { BasePromiseResponse } from 'types/props';
 
 export class AuthPageStore implements IAuthPageStore {
   readonly form: IAuthPageFormStore;
@@ -21,7 +23,7 @@ export class AuthPageStore implements IAuthPageStore {
 
   private readonly _errorEmitter: IErrorToastEmitter;
 
-  constructor(params: AuthPageStoreParams) {
+  constructor(params: AuthPageStoreParams, private readonly _rootStore: IRootStore) {
     this._errorEmitter = params.errorEmitter;
 
     this.form = new AuthPageFormStore({ errorEmitter: params.errorEmitter });
@@ -39,9 +41,12 @@ export class AuthPageStore implements IAuthPageStore {
     this._errorEmitter.reset();
   }
 
-  async login(): Promise<void> {
+  async login(): BasePromiseResponse<boolean> {
     if (this.meta.isLoading || this.mode.value !== AuthPageMode.login) {
-      return;
+      return {
+        isError: true,
+        data: false,
+      };
     }
 
     this._errorEmitter.reset();
@@ -51,7 +56,10 @@ export class AuthPageStore implements IAuthPageStore {
     if (validationError) {
       this._errorEmitter.showErrorToast(validationError);
 
-      return;
+      return {
+        isError: false,
+        data: false,
+      };
     }
 
     this.meta.setLoadedStartMeta();
@@ -65,20 +73,37 @@ export class AuthPageStore implements IAuthPageStore {
       if (result.data.validationErrorText) {
         this._errorEmitter.showErrorToast(result.data.validationErrorText);
         this.meta.setLoadedSuccessMeta();
-      } else {
-        this._errorEmitter.showErrorToast(t().common.unknownErrorOccurred);
-        this.meta.setLoadedErrorMeta();
+
+        return {
+          isError: false,
+          data: false,
+        };
       }
 
-      return;
+      this._errorEmitter.showErrorToast(t().common.unknownErrorOccurred);
+      this.meta.setLoadedErrorMeta();
+
+      return {
+        isError: true,
+        data: false,
+      };
     }
 
+    this._rootStore.userStore.setUser(result.data);
+
     this.meta.setLoadedSuccessMeta();
+
+    return {
+      isError: false,
+      data: true,
+    };
   }
 
-  async register(): Promise<void> {
+  async register(): BasePromiseResponse<boolean> {
     if (this.meta.isLoading || this.mode.value !== AuthPageMode.registration) {
-      return;
+      return {
+        isError: true,
+      };
     }
 
     this._errorEmitter.reset();
@@ -90,7 +115,10 @@ export class AuthPageStore implements IAuthPageStore {
     if (validationError) {
       this._errorEmitter.showErrorToast(validationError);
 
-      return;
+      return {
+        isError: false,
+        data: false,
+      };
     }
 
     this.meta.setLoadedStartMeta();
@@ -104,15 +132,30 @@ export class AuthPageStore implements IAuthPageStore {
       if (result.data.validationErrorText) {
         this._errorEmitter.showErrorToast(result.data.validationErrorText);
         this.meta.setLoadedSuccessMeta();
-      } else {
-        this._errorEmitter.showErrorToast(t().common.unknownErrorOccurred);
-        this.meta.setLoadedErrorMeta();
+
+        return {
+          isError: false,
+          data: false,
+        };
       }
 
-      return;
+      this._errorEmitter.showErrorToast(t().common.unknownErrorOccurred);
+      this.meta.setLoadedErrorMeta();
+
+      return {
+        isError: true,
+        data: false,
+      };
     }
 
+    this._rootStore.userStore.setUser(result.data);
+
     this.meta.setLoadedSuccessMeta();
+
+    return {
+      isError: false,
+      data: true,
+    };
   }
 
   destroy() {

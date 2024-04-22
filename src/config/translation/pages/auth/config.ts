@@ -22,6 +22,8 @@ export const AUTHENTICATION_PAGE_TEXTS_RU = {
       label: 'Пароль',
       placeholder: 'Введите пароль',
       tooShortError: 'Пароль должен содержать не\xa0менее шести символов',
+      invalidError:
+        'Пароль должен содержать только латинские буквы, цифры и\xa0специальные символы',
     },
   },
 };

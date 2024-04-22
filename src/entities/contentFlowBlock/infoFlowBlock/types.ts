@@ -8,6 +8,7 @@ import {
 export enum InfoFlowBlockType {
   text = 'text',
   image = 'image',
+  code = 'code',
 }
 
 export interface IInfoFlowBlock extends IContentFlowBlock {

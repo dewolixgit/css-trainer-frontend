@@ -1,4 +1,5 @@
 import { ILocalStore } from 'config/localStore';
+import { IAchievementsController } from 'config/store/exerciseSetPageStore/achievementsController';
 import { ITaskProgressModel } from 'config/store/exerciseSetPageStore/taskProgressModel';
 import {
   InfoFlowBlockApiUnion,
@@ -48,6 +49,7 @@ export interface IExerciseSetPageStore extends ILocalStore {
   readonly tasksSetStatus: FieldModel<ITasksSetStatusModel | null>;
   readonly taskProgress: FieldModel<ITaskProgressModel | null>;
   readonly taskTheory: FieldModel<ITaskTheoryModel | null>;
+  readonly achievementsController: IAchievementsController;
   readonly meta: MetaModel;
   readonly inputSavingMeta: MetaModel;
 

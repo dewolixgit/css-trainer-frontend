@@ -5,6 +5,7 @@ import {
 } from 'config/store/exerciseSetPageStore';
 import { InfoFlowBlockType } from 'entities/contentFlowBlock/infoFlowBlock';
 import { InfoFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
+import { InfoFlowCodeBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowCodeBlock';
 import { InfoFlowImageBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowImageBlock';
 import { InfoFlowTextBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowTextBlock';
 
@@ -23,6 +24,8 @@ export class TaskTheoryModel implements ITaskTheoryModel {
         switch (block.infoType) {
           case InfoFlowBlockType.image:
             return InfoFlowImageBlock.fromApi(block);
+          case InfoFlowBlockType.code:
+            return InfoFlowCodeBlock.fromApi(block);
           case InfoFlowBlockType.text:
           default:
             return InfoFlowTextBlock.fromApi(block);

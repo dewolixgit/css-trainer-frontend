@@ -101,4 +101,17 @@
   // Plain colors
   --color-black-alpha-60: #{rgba(#000, 0.6)};
   --color-black-alpha-80: #{rgba(#000, 0.8)};
+
+  // Tabbar colors
+  --color-tabbar-background: var(--color-background-content-1);
+  --color-tabbar-item-hightlight-inactive-1: var(--color-highlight-inactive-1);
+  --color-tabbar-item-background-inactive-1: var(--color-background-void-1);
+  --color-tabbar-item-hightlight-active-1: var(--color-highlight-active-1);
+  --color-tabbar-item-background-active-1: var(--color-background-void-1);
+  --color-tabbar-item-logout-hightlight: #ffb4b1;
+  --color-tabbar-item-logout-background: var(--color-background-void-1);
+
+  // Colors of inline code
+  --color-inline-code-background-1: var(--color-hightlight-active-background-1);
+  --color-inline-code-color-1: var(--color-hightlight-active-text-1);
 }

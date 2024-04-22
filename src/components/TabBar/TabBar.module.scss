@@ -1,6 +1,6 @@
 @import "~styles/mixins";
 
-$maxWidthContent: 228px;
+$maxWidthContent: 288px;
 
 .tabbar {
   position: fixed;
@@ -9,7 +9,7 @@ $maxWidthContent: 228px;
   width: 100%;
   height: var(--adaptive-tabbar-height);
 
-  background-color: var(--color-background-content-1);
+  background-color: var(--color-tabbar-background);
   border-radius: $borderRadiusXL $borderRadiusXL 0 0;
   box-shadow: var(--shadow-content-1);
 

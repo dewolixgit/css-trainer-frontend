@@ -38,6 +38,12 @@ export type TaskProgressApi = {
   content: FlowBlockApiUnion[];
 };
 
+export type TaskProgressModelParamsFromApi = {
+  api: TaskProgressApi;
+  completedEarlier: TaskProgressModelParams['completedEarlier'];
+  onTaskCompleted: TaskProgressModelParams['onTaskCompleted'];
+};
+
 export type InputItemsExtractor = (
   inputs: InputFlowBlockInterfaceUnion[]
 ) => InputItemInterfaceUnion[];

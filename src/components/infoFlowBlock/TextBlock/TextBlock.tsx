@@ -1,3 +1,4 @@
+import { sanitize } from 'dompurify';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -9,7 +10,9 @@ type Props = {
 };
 
 const TextBlock: React.FC<Props> = ({ flowBlock, className }) => {
-  return <p className={className}>{flowBlock.text}</p>;
+  const satitized = React.useMemo(() => sanitize(flowBlock.text), [flowBlock.text]);
+
+  return <p className={className} dangerouslySetInnerHTML={{ __html: satitized }} />;
 };
 
 export default observer(TextBlock);

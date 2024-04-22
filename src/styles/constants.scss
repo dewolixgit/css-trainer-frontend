@@ -38,3 +38,11 @@ $skeletonContentImageBlockBorderRadius: $borderRadiusM;
 
 // Z-index
 $zIndexToast: 1000;
+
+// Content flow blocks
+$infoFlowCodeBlockGlobalClass: ".info-flow-code-block";
+$infoFlowTextBlockGlobalClass: ".info-flow-text-block";
+$infoFlowImageBlockGlobalClass: ".info-flow-image-block";
+$inputFlowOnlyCodeGlobalClass: ".input-flow-only-code";
+$inputFlowPartCodeGlobalClass: ".input-flow-part-code";
+$inputFlowDndGlobalClass: ".input-flow-dnd";

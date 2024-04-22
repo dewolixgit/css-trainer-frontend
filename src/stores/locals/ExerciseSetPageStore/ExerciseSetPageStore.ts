@@ -1,18 +1,6 @@
-import { action, computed, IReactionDisposer, makeObservable } from 'mobx';
-
-import {
-  ITaskProgressModel,
-  TaskSavePayload,
-} from 'config/store/exerciseSetPageStore/taskProgressModel';
-import {
-  IExerciseSetPageStore,
-  ITasksSetStatusModel,
-  ITaskTheoryModel,
-} from 'config/store/exerciseSetPageStore/types';
-import { TasksSetSectionEnum } from 'entities/tasksSet';
-import { FieldModel } from 'models/FieldModel';
-import { MetaModel } from 'models/MetaModel';
-import { AchievementsController } from 'stores/locals/ExerciseSetPageStore/AchievementsController';
+import { TaskSavePayload } from 'config/store/exerciseSetPageStore/taskProgressModel';
+import { IExerciseSetPageStore } from 'config/store/exerciseSetPageStore/types';
+import { AbstractExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore/AbstractSetPageStore';
 import { TaskProgressModel } from 'stores/locals/ExerciseSetPageStore/TaskProgressModel';
 import { TaskTheoryModel } from 'stores/locals/ExerciseSetPageStore/TaskTheoryModel';
 import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore/TasksSetStatusModel';
@@ -21,66 +9,10 @@ import { INFO_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/i
 import { TASKS_SET_STATUS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/tasksSetStatus';
 import { sleep } from 'utils/async';
 
-type PrivateFields = '_onTaskComplete';
-
-export class ExerciseSetPageStore implements IExerciseSetPageStore {
-  readonly section = new FieldModel(TasksSetSectionEnum.theory);
-  readonly taskProgress = new FieldModel<ITaskProgressModel | null>(null);
-  readonly taskTheory = new FieldModel<ITaskTheoryModel | null>(null);
-  readonly tasksSetStatus = new FieldModel<ITasksSetStatusModel | null>(null);
-  readonly achievementsController = new AchievementsController();
-
-  readonly meta = new MetaModel();
-  readonly inputSavingMeta = new MetaModel();
-
-  private readonly _disposers: IReactionDisposer[] = [];
-
-  constructor() {
-    makeObservable<this, PrivateFields>(this, {
-      currentTaskInSet: computed,
-      currentTaskIndexInSet: computed,
-
-      _onTaskComplete: action.bound,
-    });
-
-    // this._disposers.push(
-    //   reaction(
-    //     () => this.taskProgress.value?.completed,
-    //     () => this._onTaskComplete()
-    //   )
-    // );
-  }
-
-  get currentTaskInSet() {
-    return (
-      this.tasksSetStatus.value?.tasksStatus.getEntityByKey(
-        this.taskProgress.value?.task.id ?? -1
-      ) ?? null
-    );
-  }
-
-  get currentTaskIndexInSet() {
-    return (
-      this.tasksSetStatus.value?.tasksStatus.getEntityAndIndex(
-        this.taskProgress.value?.task.id ?? -1
-      )?.index ?? null
-    );
-  }
-
-  get isCurrentTaskFirst(): boolean {
-    return (
-      this.taskProgress.value?.task.id ===
-      this.tasksSetStatus.value?.tasksStatus.firstEntity?.data.id
-    );
-  }
-
-  get isCurrentTaskLast(): boolean {
-    return (
-      this.taskProgress.value?.task.id ===
-      this.tasksSetStatus.value?.tasksStatus.lastEntity?.data.id
-    );
-  }
-
+export class ExerciseSetPageStore
+  extends AbstractExerciseSetPageStore
+  implements IExerciseSetPageStore
+{
   async init(params: { tasksSetId: number }): Promise<void> {
     if (this.meta.isLoading) {
       return;
@@ -165,7 +97,7 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
     this.meta.setLoadedSuccessMeta();
   }
 
-  private async _onTaskComplete({
+  protected async _onTaskComplete({
     completed,
     tasksStatus,
     achievements,
@@ -183,19 +115,6 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
       return;
     }
 
-    // const updatedMockStatuses = TASKS_SET_STATUS_MOCK.tasksStatus.map<TaskStatusApi>((item) => {
-    //   if (item.data.id === taskProgress.task.id) {
-    //     return {
-    //       ...item,
-    //       completed: true,
-    //     };
-    //   }
-    //
-    //   return item;
-    // });
-
-    // TASKS_SET_STATUS_MOCK.tasksStatus = updatedMockStatuses;
-
     // this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
     this.tasksSetStatus.changeValue(
       new TasksSetStatusModel({
@@ -208,51 +127,5 @@ export class ExerciseSetPageStore implements IExerciseSetPageStore {
     if (achievements.length) {
       this.achievementsController.showAchievements(achievements);
     }
-
-    // if (Math.random() > 0.5) {
-    //   this.achievementsController.showAchievements([MOCK_ACHIEVEMENTS_API_DATA_MAP[1].data]);
-    // }
-  }
-
-  async goToNextTask(): Promise<void> {
-    const tasksSetStatus = this.tasksSetStatus.value;
-    const taskProgress = this.taskProgress.value;
-
-    if (!tasksSetStatus || !taskProgress || this.isCurrentTaskLast) {
-      return;
-    }
-
-    const nextTask = tasksSetStatus?.getNextTask(taskProgress?.task.id);
-
-    if (!nextTask) {
-      return;
-    }
-
-    await this.reload({ taskId: nextTask.data.id });
-  }
-
-  async goToPreviousTask(): Promise<void> {
-    const tasksSetStatus = this.tasksSetStatus.value;
-    const taskProgress = this.taskProgress.value;
-
-    if (!tasksSetStatus || !taskProgress || this.isCurrentTaskFirst) {
-      return;
-    }
-
-    const previousTask = tasksSetStatus?.getPreviousTask(taskProgress?.task.id);
-
-    if (!previousTask) {
-      return;
-    }
-
-    await this.reload({ taskId: previousTask.data.id });
-  }
-
-  destroy() {
-    this.tasksSetStatus.value?.destroy();
-    this.taskProgress.value?.destroy();
-    this.taskTheory.value?.destroy();
-    this.achievementsController.destroy();
-    this._disposers.forEach((disposer) => disposer());
   }
 }

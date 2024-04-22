@@ -1,4 +1,8 @@
 import {
+  IInfoFlowCodeBlock,
+  InfoFlowCodeBlockApi,
+} from 'entities/contentFlowBlock/infoFlowBlock/infoFlowCodeBlock';
+import {
   IInfoFlowImageBlock,
   InfoFlowImageBlockApi,
 } from 'entities/contentFlowBlock/infoFlowBlock/infoFlowImageBlock';
@@ -37,9 +41,15 @@ export type ContentFlowBlockApi = {
   id: number;
 };
 
-export type InfoFlowBlockInterfaceUnion = IInfoFlowTextBlock | IInfoFlowImageBlock;
+export type InfoFlowBlockInterfaceUnion =
+  | IInfoFlowTextBlock
+  | IInfoFlowImageBlock
+  | IInfoFlowCodeBlock;
 
-export type InfoFlowBlockApiUnion = InfoFlowTextBlockApi | InfoFlowImageBlockApi;
+export type InfoFlowBlockApiUnion =
+  | InfoFlowTextBlockApi
+  | InfoFlowImageBlockApi
+  | InfoFlowCodeBlockApi;
 
 export type InputFlowBlockInterfaceUnion = IInputFlowOnlyCode | IInputFlowPartCode | IInputFlowDnd;
 
