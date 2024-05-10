@@ -208,7 +208,7 @@ const getDevServer = () => ({
   proxy: {
     '/api': {
       changeOrigin: true,
-      target: 'https://localhost:3000',
+      target: 'https://localhost:3050',
       secure: true,
     },
   },

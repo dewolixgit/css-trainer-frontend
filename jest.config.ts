@@ -9,6 +9,8 @@ const config: Config = {
   },
   moduleNameMapper: {
     ['^utils/(.*)$']: '<rootDir>/src/utils/$1',
+    ['^config/(.*)$']: '<rootDir>/src/config/$1',
+    ['^stores/(.*)$']: '<rootDir>/src/stores/$1',
   },
 };
 

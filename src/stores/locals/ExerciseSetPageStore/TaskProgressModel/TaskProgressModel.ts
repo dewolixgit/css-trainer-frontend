@@ -21,6 +21,9 @@ export class TaskProgressModel extends AbstractTaskProgressModel implements ITas
 
     const saveResult = await this._apiAdapter.saveUserInput({ completed: checkResult });
 
+    // If completed first time, send to back a flag that we want to get tasksStatus and check achievements,
+    // show completed state ui and probably achievements
+
     const recheck = async () => {
       // If the input has changed since the last save, we need to save it again
       if (this._lastInputChangeTimestamp.value !== initialChangeTimestamp) {
