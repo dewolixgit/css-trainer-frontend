@@ -20,25 +20,32 @@ const Layout: React.FC = () => {
 
   const isRegistration = store.mode.value === AuthPageMode.registration;
 
-  const handleAction = React.useCallback(async () => {
-    if (store.meta.isLoading) {
-      return;
-    }
+  const handleSubmit = React.useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
 
-    const result = await (isRegistration ? store.register : store.login)();
+      if (store.meta.isLoading) {
+        return;
+      }
 
-    if (!result.isError && result.data) {
-      navigate(ROUTES.topics.create());
-    }
-  }, [isRegistration, navigate, store.login, store.meta.isLoading, store.register]);
+      const result = await (isRegistration ? store.register : store.login)();
+
+      if (!result.isError && result.data) {
+        navigate(ROUTES.topics.create());
+      }
+    },
+    [isRegistration, navigate, store.login, store.meta.isLoading, store.register]
+  );
 
   return (
     <Container>
       <Intro />
-      <Form styleName="form" />
-      <Button styleName="action" loading={store.meta.isLoading} onClick={handleAction}>
-        {isRegistration ? t().pages.auth.registration.action : t().pages.auth.login.action}
-      </Button>
+      <form styleName="form" onSubmit={handleSubmit}>
+        <Form />
+        <Button styleName="action" loading={store.meta.isLoading} type="submit">
+          {isRegistration ? t().pages.auth.registration.action : t().pages.auth.login.action}
+        </Button>
+      </form>
       {isRegistration && (
         <Link
           styleName={cn('try', store.meta.isLoading && 'try_disabled')}

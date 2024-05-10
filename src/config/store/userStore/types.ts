@@ -8,6 +8,6 @@ export interface IUserStore {
 
   readonly isAuthenticated: boolean;
 
-  setUser(user: IUser): void;
+  setUser(user: IUser | null): void;
   logout(): Promise<void>;
 }

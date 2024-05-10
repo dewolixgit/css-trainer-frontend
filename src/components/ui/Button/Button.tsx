@@ -20,7 +20,7 @@ type Props = CommonProps & {
   disabled?: boolean;
   stretched?: boolean;
   routerLink?: Pick<LinkProps, 'rel' | 'to' | 'state'>;
-};
+} & Pick<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'>;
 
 const Button = React.forwardRef<Element, Props>(
   (
@@ -35,6 +35,7 @@ const Button = React.forwardRef<Element, Props>(
       stretched = false,
       disabled = false,
       routerLink,
+      type = 'button',
     },
     ref
   ) => {
@@ -62,6 +63,7 @@ const Button = React.forwardRef<Element, Props>(
           target="_self"
           rel=""
           href={href}
+          type={type}
           // @ts-ignore (Todo: work with typings. Now should not break anything because of narrowing the type)
           ref={ref}
         >
@@ -79,6 +81,7 @@ const Button = React.forwardRef<Element, Props>(
           onClick={onClick}
           state={routerLink.state}
           rel={routerLink.rel}
+          type={type}
           // @ts-ignore (Todo: work with typings. Now should not break anything because of narrowing the type)
           ref={ref}
         >
@@ -89,8 +92,14 @@ const Button = React.forwardRef<Element, Props>(
     }
 
     return (
-      // @ts-ignore (Todo: work with typings. Now should not break anything because of narrowing the type)
-      <button className={commonStyles} onClick={onClick} disabled={disabled || loading} ref={ref}>
+      <button
+        className={commonStyles}
+        onClick={onClick}
+        disabled={disabled || loading}
+        type={type}
+        // @ts-ignore (Todo: work with typings. Now should not break anything because of narrowing the type)
+        ref={ref}
+      >
         <div styleName="button__inner">{children}</div>
         {spinner}
       </button>
