@@ -1,12 +1,14 @@
 import * as React from 'react';
 
 import { useLocalStore } from 'config/localStore';
+import { useRootStore } from 'stores/globals';
 import { AchievementsPageStore, AchievementsPageStoreProvider } from 'stores/locals';
 
 import { Content } from './Content';
 
 const Achievements: React.FC = () => {
-  const store = useLocalStore(() => new AchievementsPageStore());
+  const rootStore = useRootStore();
+  const store = useLocalStore(() => new AchievementsPageStore(rootStore));
 
   React.useEffect(() => {
     store.init();

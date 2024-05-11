@@ -44,4 +44,10 @@ export const ENDPOINTS = {
     getUrl: () => `${API_URL}tasks/save-input`,
     method: 'POST',
   },
+
+  // User
+  achievements: {
+    getUrl: () => `${API_URL}users/skills`,
+    method: 'GET',
+  },
 } as const satisfies Record<string, Endpoint>;

@@ -1,18 +1,20 @@
 import { ILocalStore } from 'config/localStore';
-import { MOCK_ACHIEVEMENTS_API_DATA_LIST } from 'entities/achievement';
-import { SKILLS_ORDER } from 'entities/skill';
+import { IRootStore } from 'config/store/rootStore';
+import { IAchievementModel } from 'entities/achievement';
+import { ISkillProgressModel, SKILLS_ORDER } from 'entities/skill';
 import { FieldModel, MetaModel } from 'models';
-import { AchievementModel, SkillProgressModel } from 'models/achievements';
 import { BaseResponse } from 'types/props';
 
 import { AchievementsPageApiAdapter } from './AchievementsPageApiAdapter';
 
 export class AchievementsPageStore implements ILocalStore {
-  readonly skills: FieldModel<SkillProgressModel[] | null> = new FieldModel(null);
-  readonly achievements: FieldModel<AchievementModel[] | null> = new FieldModel(null);
+  readonly skills: FieldModel<ISkillProgressModel[] | null> = new FieldModel(null);
+  readonly achievements: FieldModel<IAchievementModel[] | null> = new FieldModel(null);
   readonly characterImage: FieldModel<string | null> = new FieldModel(null);
 
   readonly meta = new MetaModel();
+
+  constructor(private readonly _rootStore: IRootStore) {}
 
   init = async (): Promise<void> => {
     await this._handleGetData();
@@ -27,7 +29,7 @@ export class AchievementsPageStore implements ILocalStore {
 
     this.meta.setLoadedStartMeta();
 
-    const response = await AchievementsPageApiAdapter.getAchievementsData();
+    const response = await AchievementsPageApiAdapter.getAchievementsData(this._rootStore.apiStore);
 
     if (response.isError || !response.data) {
       this.meta.setLoadedErrorMeta();
@@ -37,12 +39,8 @@ export class AchievementsPageStore implements ILocalStore {
       };
     }
 
-    this.skills.changeValue(
-      SKILLS_ORDER.map((skill) => SkillProgressModel.fromApi(response.data.skills[skill]))
-    );
-
-    this.achievements.changeValue(MOCK_ACHIEVEMENTS_API_DATA_LIST.map(AchievementModel.fromApi));
-
+    this.skills.changeValue(SKILLS_ORDER.map((skill) => response.data.skills[skill]));
+    this.achievements.changeValue(response.data.achievements);
     this.characterImage.changeValue(response.data.characterImage);
 
     this.meta.setLoadedSuccessMeta();

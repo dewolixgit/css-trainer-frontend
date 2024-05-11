@@ -2,13 +2,13 @@ import { observer } from 'mobx-react';
 import * as React from 'react';
 
 import { Flex, Spacing, Text } from 'components/ui';
-import { SkillProgressModel } from 'models/achievements';
+import { ISkillProgressModel } from 'entities/skill';
 
 import './SkillItemProgress.module.scss';
 
 type Props = {
   className?: string;
-  model: SkillProgressModel;
+  model: ISkillProgressModel;
 };
 
 const SkillItemProgress: React.FC<Props> = ({ className, model }) => {

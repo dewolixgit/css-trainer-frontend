@@ -33,13 +33,15 @@ const AchievementToast: React.FC<Props> = ({ achievement, className, onOpenChang
   return (
     <BaseToast className={className} onOpenChange={onOpenChange} {...props}>
       <Link to={ROUTES.achievements.create()} styleName="root">
-        <AchievementIcon
-          icon={achievement.icon}
-          size={AchievementIconSize.m}
-          completed
-          noShadow
-          styleName="icon"
-        />
+        {achievement.icon && (
+          <AchievementIcon
+            icon={achievement.icon}
+            size={AchievementIconSize.m}
+            completed
+            noShadow
+            styleName="icon"
+          />
+        )}
         <Flex flexGrow={1} direction="column" alignItems="flex-start">
           <Title tag="h5" size={SizeEnum.xxxs} weight={FontWeightEnum.medium} styleName="title">
             {t().components.achievementToast.youHaveGot(achievement.name)}
