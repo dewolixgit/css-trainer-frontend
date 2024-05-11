@@ -1,3 +1,4 @@
+import { IRootStore } from 'config/store/rootStore';
 import { ITopicsPageStore } from 'config/store/topicsPageStore';
 import { IField } from 'entities/fieldModel';
 import { IList } from 'entities/listModel';
@@ -5,11 +6,14 @@ import { ITopicPreview } from 'entities/topicPreview';
 import { FieldModel } from 'models/FieldModel';
 import { ListModel } from 'models/ListModel';
 import { MetaModel } from 'models/MetaModel';
-import { TopicsPageApiAdapter } from 'stores/locals/TopicsPageStore/TopicsPageApiAdapter';
+
+import { TopicsPageApiAdapter } from './TopicsPageApiAdapter';
 
 export class TopicsPageStore implements ITopicsPageStore {
   readonly meta = new MetaModel();
-  readonly topics: IField<IList<ITopicPreview, number> | null> = new FieldModel(null);
+  readonly topics: IField<IList<ITopicPreview, string> | null> = new FieldModel(null);
+
+  constructor(private readonly _rootStore: IRootStore) {}
 
   async init(): Promise<void> {
     if (this.meta.isLoading) {
@@ -18,7 +22,7 @@ export class TopicsPageStore implements ITopicsPageStore {
 
     this.meta.setLoadedStartMeta();
 
-    const result = await TopicsPageApiAdapter.getTopicsAndNormalize();
+    const result = await TopicsPageApiAdapter.getTopicsAndNormalize(this._rootStore.apiStore);
 
     if (result.isError) {
       this.meta.setLoadedErrorMeta();
@@ -26,7 +30,7 @@ export class TopicsPageStore implements ITopicsPageStore {
       return;
     }
 
-    this.topics.changeValue(new ListModel(result.data, (topic) => topic.id));
+    this.topics.changeValue(new ListModel(result.data, (topic) => topic.clientId));
 
     this.meta.setLoadedSuccessMeta();
   }

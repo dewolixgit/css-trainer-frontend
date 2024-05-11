@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 
 import { useLocalStore } from 'config/localStore';
 import { ROUTES } from 'config/router';
+import { useRootStore } from 'stores/globals';
 import { TopicPageStore, TopicPageStoreProvider } from 'stores/locals/TopicPageStore';
 
 import { Layout } from './Layout';
@@ -16,7 +17,11 @@ const Topic: React.FC = () => {
     throw new Error('Invalid topic id');
   }
 
-  const store = useLocalStore(() => new TopicPageStore({ parentTopicId: topicIdNumber }));
+  const rootStore = useRootStore();
+
+  const store = useLocalStore(
+    () => new TopicPageStore(rootStore, { parentTopicId: topicIdNumber })
+  );
 
   React.useEffect(() => {
     store.init();

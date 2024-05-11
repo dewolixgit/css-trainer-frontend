@@ -6,6 +6,6 @@ import { ITopicPreview } from 'entities/topicPreview';
 
 export interface ITopicsPageStore extends ILocalStore {
   readonly meta: IMetaModel;
-  readonly topics: IField<IList<ITopicPreview, number> | null>;
+  readonly topics: IField<IList<ITopicPreview, string> | null>;
   init(): Promise<void>;
 }

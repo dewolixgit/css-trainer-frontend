@@ -21,4 +21,12 @@ export const ENDPOINTS = {
     getUrl: () => `${API_URL}auth/authorize`,
     method: 'GET',
   },
+  topics: {
+    getUrl: () => `${API_URL}topics`,
+    method: 'GET',
+  },
+  tasksSets: {
+    getUrl: () => `${API_URL}tasks-sets/all`,
+    method: 'GET',
+  },
 } as const satisfies Record<string, Endpoint>;

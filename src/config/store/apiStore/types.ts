@@ -40,6 +40,6 @@ export type ApiStoreRequestResponse<D = undefined, E = undefined> = BasePromiseR
 export interface IApiStore {
   request<D = undefined, E = undefined>(
     endpoint: ApiStoreRequestEndpoint,
-    options: ApiStoreRequestOptions
+    options?: ApiStoreRequestOptions
   ): ApiStoreRequestResponse<D, E>;
 }

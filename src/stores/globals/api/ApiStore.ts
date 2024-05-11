@@ -39,6 +39,7 @@ export class ApiStore implements IApiStore {
       method: endpoint.method,
       url: endpoint.url,
       data,
+      params: data,
       headers,
     }).then(
       (response) => ({
