@@ -1,11 +1,8 @@
 import { TaskSavePayloadOnComplete } from 'config/store/exerciseSetPageStore/taskProgressModel';
 import { IExerciseSetPageStore } from 'config/store/exerciseSetPageStore/types';
-import { IRootStore } from 'config/store/rootStore';
+import { GetTasksSetStatusAndTaskDataApiProcessedPayload } from 'entities/tasksSet';
 import { AbstractExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore/AbstractSetPageStore';
-import {
-  ExerciseSetPageApiAdapter,
-  GetTasksSetStatusAndTaskDataApiProcessedPayload,
-} from 'stores/locals/ExerciseSetPageStore/ExerciseSetPageApiAdapter';
+import { ExerciseSetPageApiAdapter } from 'stores/locals/ExerciseSetPageStore/ExerciseSetPageApiAdapter';
 import { TaskProgressModel } from 'stores/locals/ExerciseSetPageStore/TaskProgressModel';
 import { TaskTheoryModel } from 'stores/locals/ExerciseSetPageStore/TaskTheoryModel';
 import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore/TasksSetStatusModel';
@@ -14,10 +11,6 @@ export class ExerciseSetPageStore
   extends AbstractExerciseSetPageStore
   implements IExerciseSetPageStore
 {
-  constructor(private readonly _rootStore: IRootStore) {
-    super();
-  }
-
   private _populatePageWithApiData(apiData: GetTasksSetStatusAndTaskDataApiProcessedPayload): void {
     this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(apiData.tasksSetStatus));
 

@@ -20,7 +20,7 @@ export class AuthPageStore implements IAuthPageStore {
   readonly form: IAuthPageFormStore;
 
   readonly meta = new MetaModel();
-  readonly mode = new FormFieldModel(AuthPageMode.login);
+  readonly mode = new FormFieldModel(AuthPageMode.registration);
 
   private readonly _errorEmitter: IErrorToastEmitter;
 

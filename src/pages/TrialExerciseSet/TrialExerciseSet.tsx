@@ -7,12 +7,14 @@ import {
   useCreateExerciseSetNavigationContextData,
 } from 'config/components/layouts/exerciseSetLayout';
 import { useLocalStore } from 'config/localStore';
+import { useRootStore } from 'stores/globals';
 import { ExerciseSetPageStoreProvider } from 'stores/locals/ExerciseSetPageStore';
 import { TrialExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore/TrialExerciseSetPageStore';
 
 // Todo: Adapt for very wide screens (wider than 1920px)
 const TrialExerciseSet: React.FC = () => {
-  const store = useLocalStore(() => new TrialExerciseSetPageStore());
+  const rootStore = useRootStore();
+  const store = useLocalStore(() => new TrialExerciseSetPageStore(rootStore));
 
   React.useEffect(() => {
     store.init();
