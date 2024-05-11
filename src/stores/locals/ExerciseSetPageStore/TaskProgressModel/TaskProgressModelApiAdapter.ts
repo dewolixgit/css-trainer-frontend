@@ -1,17 +1,26 @@
+import { ENDPOINTS } from 'config/api';
+import { IApiStore } from 'config/store/apiStore';
 import {
   InputItemsExtractor,
   ITaskProgressModelApiAdapter,
-  TaskSavePayload,
+  TaskSavePayloadOnComplete,
   TaskProgressModelApiAdapterParams,
+  TaskSavePayloadOnCompleteApi,
 } from 'config/store/exerciseSetPageStore/taskProgressModel';
-import { MOCK_ACHIEVEMENTS_API_DATA_MAP } from 'entities/achievement';
+import { IInputItem, InputItemApi } from 'entities/contentFlowBlock/inputItem';
 import { InputFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
-import { TaskStatusApi } from 'entities/task';
+import { transformTaskStatus } from 'entities/task/utils';
 import { AchievementModel } from 'models/achievements';
 import { TASKS } from 'models/exersices/config';
-import { TASKS_SET_STATUS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/tasksSetStatus';
 import { BasePromiseResponse } from 'types/props';
-import { sleep } from 'utils/async';
+import pipe from 'utils/operators/pipe';
+
+type SaveInputRequestPayload = {
+  taskId: number;
+  inputItems: InputItemApi[];
+  completed: boolean;
+  completedFirstly: boolean;
+};
 
 export class TaskProgressModelApiAdapter implements ITaskProgressModelApiAdapter {
   static i = 1;
@@ -26,48 +35,79 @@ export class TaskProgressModelApiAdapter implements ITaskProgressModelApiAdapter
     this._inputItemsExtractor = params.inputItemsExtractor;
   }
 
-  async saveUserInput(params: { completed: boolean }): BasePromiseResponse<TaskSavePayload> {
-    console.log(
-      'START CALL saveUserInput',
-      `#${TaskProgressModelApiAdapter.i}`,
-      params,
-      Date.now()
+  private _serializeInputItems(inputItems: IInputItem[]): InputItemApi[] {
+    return inputItems.map((item) => {
+      return {
+        inputId: item.id,
+        inputType: item.type,
+        order: item.order,
+        value: item.value,
+      };
+    });
+  }
+
+  async saveUserInput(
+    apiStore: IApiStore,
+    params: {
+      completed: boolean;
+      completedFirstly: boolean;
+    }
+  ): BasePromiseResponse<TaskSavePayloadOnComplete | null> {
+    const inputsForApi = pipe(this._inputs, this._inputItemsExtractor, this._serializeInputItems);
+
+    const response = await apiStore.request<TaskSavePayloadOnCompleteApi | null>(
+      {
+        url: ENDPOINTS.saveInput.getUrl(),
+        method: ENDPOINTS.saveInput.method,
+      },
+      {
+        data: {
+          taskId: this._taskId,
+          completed: params.completed,
+          completedFirstly: params.completedFirstly,
+          inputItems: inputsForApi,
+        } satisfies SaveInputRequestPayload,
+      }
     );
 
-    await sleep(300);
-
-    console.log('END CALL saveUserInput', `#${TaskProgressModelApiAdapter.i}`, params);
     TaskProgressModelApiAdapter.i++;
 
-    if (params.completed) {
-      const updatedMockStatuses = TASKS_SET_STATUS_MOCK.tasksStatus.map<TaskStatusApi>((item) => {
-        if (item.data.id === this._taskId) {
-          return {
-            ...item,
-            completed: true,
-          };
-        }
+    if (response.isError) {
+      return {
+        isError: true,
+      };
+    }
 
-        return item;
-      });
+    if (
+      params.completed &&
+      params.completedFirstly &&
+      (!response.data.payload || !response.data.payload.completed)
+    ) {
+      return {
+        isError: true,
+      };
+    }
 
-      TASKS_SET_STATUS_MOCK.tasksStatus = updatedMockStatuses;
+    if (!params.completed) {
+      return {
+        isError: false,
+        data: null,
+      };
+    }
+
+    if (params.completed && !params.completedFirstly) {
+      return {
+        isError: false,
+        data: null,
+      };
     }
 
     return {
       isError: false,
       data: {
-        completed: params.completed,
-        tasksStatus: params.completed ? TASKS_SET_STATUS_MOCK.tasksStatus : [],
-        achievements:
-          params.completed && this._taskId === 4
-            ? [
-                AchievementModel.fromApi({
-                  data: MOCK_ACHIEVEMENTS_API_DATA_MAP['4'].data,
-                  completed: true,
-                }),
-              ]
-            : [],
+        completed: true,
+        tasksStatus: response.data.payload?.tasksStatuses.map(transformTaskStatus) ?? null,
+        achievements: response.data.payload?.achievements.map(AchievementModel.fromApi) ?? null,
       },
     };
   }

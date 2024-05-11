@@ -38,8 +38,8 @@ export class ApiStore implements IApiStore {
     return axios({
       method: endpoint.method,
       url: endpoint.url,
-      data,
-      params: data,
+      data: endpoint.method === 'GET' ? null : data,
+      params: endpoint.method === 'GET' ? data : null,
       headers,
     }).then(
       (response) => ({

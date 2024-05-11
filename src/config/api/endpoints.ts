@@ -9,6 +9,7 @@ export type Endpoint = {
 };
 
 export const ENDPOINTS = {
+  // Authorization/authentication
   register: {
     getUrl: () => `${API_URL}auth/register`,
     method: 'POST',
@@ -21,12 +22,26 @@ export const ENDPOINTS = {
     getUrl: () => `${API_URL}auth/authorize`,
     method: 'GET',
   },
+
+  // Topics
   topics: {
     getUrl: () => `${API_URL}topics`,
     method: 'GET',
   },
+
+  // Tasks sets
   tasksSets: {
     getUrl: () => `${API_URL}tasks-sets/all`,
     method: 'GET',
+  },
+  tasksSetStatus: {
+    getUrl: (tasksSetId: number) => `${API_URL}tasks-sets/progress/${tasksSetId}`,
+    method: 'GET',
+  },
+
+  // Tasks
+  saveInput: {
+    getUrl: () => `${API_URL}tasks/save-input`,
+    method: 'POST',
   },
 } as const satisfies Record<string, Endpoint>;

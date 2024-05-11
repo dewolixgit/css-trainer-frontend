@@ -2,7 +2,7 @@ import { action, computed, makeObservable } from 'mobx';
 
 import {
   ITaskProgressModel,
-  TaskSavePayload,
+  TaskSavePayloadOnComplete,
 } from 'config/store/exerciseSetPageStore/taskProgressModel';
 import {
   IExerciseSetPageStore,
@@ -73,7 +73,7 @@ export abstract class AbstractExerciseSetPageStore implements IExerciseSetPageSt
     completed,
     tasksStatus,
     achievements,
-  }: TaskSavePayload): Promise<void>;
+  }: TaskSavePayloadOnComplete): Promise<void>;
 
   async goToNextTask(): Promise<void> {
     const tasksSetStatus = this.tasksSetStatus.value;
