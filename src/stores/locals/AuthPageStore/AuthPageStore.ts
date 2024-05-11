@@ -1,6 +1,7 @@
 import { action, makeObservable } from 'mobx';
 
 import { IErrorToastEmitter } from 'config/components/errorToastEmitter';
+import { LocalStorageKeys } from 'config/localStorage';
 import {
   AuthPageMode,
   AuthPageStoreParams,
@@ -64,13 +65,13 @@ export class AuthPageStore implements IAuthPageStore {
 
     this.meta.setLoadedStartMeta();
 
-    const result = await AuthPageApiAdapter.login({
+    const result = await AuthPageApiAdapter.login(this._rootStore.apiStore, {
       email: this.form.email.value.trim(),
       password: this.form.password.value.trim(),
     });
 
     if (result.isError) {
-      if (result.data.validationErrorText) {
+      if (result.data?.validationErrorText) {
         this._errorEmitter.showErrorToast(result.data.validationErrorText);
         this.meta.setLoadedSuccessMeta();
 
@@ -89,7 +90,8 @@ export class AuthPageStore implements IAuthPageStore {
       };
     }
 
-    this._rootStore.userStore.setUser(result.data);
+    this._rootStore.userStore.setUser(result.data.userData);
+    localStorage.setItem(LocalStorageKeys.token, result.data.accessToken);
 
     this.meta.setLoadedSuccessMeta();
 
@@ -110,8 +112,6 @@ export class AuthPageStore implements IAuthPageStore {
 
     const validationError = this.form.validate();
 
-    console.log('validationError', validationError);
-
     if (validationError) {
       this._errorEmitter.showErrorToast(validationError);
 
@@ -123,13 +123,13 @@ export class AuthPageStore implements IAuthPageStore {
 
     this.meta.setLoadedStartMeta();
 
-    const result = await AuthPageApiAdapter.register({
+    const result = await AuthPageApiAdapter.register(this._rootStore.apiStore, {
       email: this.form.email.value.trim(),
       password: this.form.password.value.trim(),
     });
 
     if (result.isError) {
-      if (result.data.validationErrorText) {
+      if (result.data?.validationErrorText) {
         this._errorEmitter.showErrorToast(result.data.validationErrorText);
         this.meta.setLoadedSuccessMeta();
 
@@ -148,7 +148,8 @@ export class AuthPageStore implements IAuthPageStore {
       };
     }
 
-    this._rootStore.userStore.setUser(result.data);
+    this._rootStore.userStore.setUser(result.data.userData);
+    localStorage.setItem(LocalStorageKeys.token, result.data.accessToken);
 
     this.meta.setLoadedSuccessMeta();
 

@@ -206,10 +206,18 @@ const getDevServer = () => ({
   hot: true,
   https: true,
   proxy: {
+    '/api-static': {
+      changeOrigin: true,
+      target: 'http://127.0.0.1:3050',
+      secure: true,
+    },
     '/api': {
       changeOrigin: true,
-      target: 'https://localhost:3000',
+      target: 'http://127.0.0.1:3050',
       secure: true,
+      pathRewrite: {
+        '^/api': '',
+      },
     },
   },
 });

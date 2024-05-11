@@ -1,5 +1,6 @@
 import { action, computed, makeObservable } from 'mobx';
 
+import { LocalStorageKeys } from 'config/localStorage';
 import { IRootStore } from 'config/store/rootStore';
 import { IUserStore } from 'config/store/userStore';
 import { IUser } from 'entities/user';
@@ -29,9 +30,10 @@ export class UserStore implements IUserStore {
 
   async logout(): Promise<void> {
     this.user.changeValue(null);
+    localStorage.removeItem(LocalStorageKeys.token);
   }
 
-  setUser(user: IUser): void {
+  setUser(user: IUser | null): void {
     this.user.changeValue(user);
   }
 }

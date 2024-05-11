@@ -1,5 +1,5 @@
 import { IExerciseSetPageStore, TasksSetStatusApi } from 'config/store/exerciseSetPageStore';
-import { TaskSavePayload } from 'config/store/exerciseSetPageStore/taskProgressModel';
+import { TaskSavePayloadOnComplete } from 'config/store/exerciseSetPageStore/taskProgressModel';
 import { FieldModel } from 'models/FieldModel';
 import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore';
 import { AbstractExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore/AbstractSetPageStore';
@@ -93,7 +93,7 @@ export class TrialExerciseSetPageStore
     this.meta.setLoadedSuccessMeta();
   }
 
-  protected async _onTaskComplete({ completed }: TaskSavePayload): Promise<void> {
+  protected async _onTaskComplete({ completed }: TaskSavePayloadOnComplete): Promise<void> {
     const taskProgress = this.taskProgress.value;
     const tasksSetStatus = this.tasksSetStatus.value;
 

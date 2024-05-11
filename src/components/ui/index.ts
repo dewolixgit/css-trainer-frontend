@@ -37,3 +37,5 @@ export * from './PageContainer';
 export * from './Input';
 
 export * from './BaseToast';
+
+export * from './Sanitized';

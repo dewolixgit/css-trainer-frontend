@@ -3,7 +3,7 @@ import { SvgrComponent } from 'types/props';
 
 export interface IAchievement {
   readonly id: number;
-  readonly icon: SvgrComponent;
+  readonly icon: SvgrComponent | null;
   readonly name: string;
   readonly description: string;
 }
@@ -96,14 +96,8 @@ export type AchievementId = keyof typeof ACHIEVEMENTS_CLIENT_DATA;
 
 export type AchievementModelParams = {
   id: number;
-  icon: SvgrComponent;
+  icon: SvgrComponent | null;
   name: string;
   description: string;
   completed: boolean;
 };
-
-// eslint-disable-next-line array-bracket-newline
-export const ACHIEVEMENTS_ORDER: AchievementId[] = [
-  15, 1, 10, 14, 18, 7, 6, 11, 17, 12, 2, 5, 3, 9, 4, 13, 8, 16,
-  // eslint-disable-next-line array-bracket-newline
-];

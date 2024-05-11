@@ -8,7 +8,6 @@ import {
 import { IInputFlowPartCode } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode';
 import { IPartCodeOnlyRow } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeOnlyRow';
 import { InputItemTypeEnum } from 'entities/contentFlowBlock/inputItem';
-import { IInputItemInput } from 'entities/contentFlowBlock/inputItem/inputItemInput';
 import { BaseTaskCheckerPlugin } from 'models/taskCheckerPlugin';
 import { BaseTaskStylistPlugin } from 'models/taskStylistPlugin';
 import { removeMultipleSpaces } from 'utils/string/removeMultipleSpaces';
@@ -20,7 +19,7 @@ export const task2InputItemsExtractor: InputItemsExtractor = (inputs) => {
   return [
     {
       id: row.id,
-      type: InputItemTypeEnum.input,
+      type: InputItemTypeEnum.partCodeOnlyRow,
       value: row.value.value,
     },
   ];
@@ -28,17 +27,17 @@ export const task2InputItemsExtractor: InputItemsExtractor = (inputs) => {
 
 export class Task2StylistPlugin extends BaseTaskStylistPlugin implements ITaskStylistPlugin {
   stylize(): string {
-    const input = task2InputItemsExtractor(this._inputs)[0] as IInputItemInput;
+    const input = task2InputItemsExtractor(this._inputs)[0];
 
-    return `.background { ${sanitize(input.value)} }`;
+    return `.background { ${sanitize(input.value!)} }`;
   }
 }
 
 export class Task2CheckerPlugin extends BaseTaskCheckerPlugin implements ITaskCheckerPlugin {
   check(): boolean {
-    const input = task2InputItemsExtractor(this._inputs)[0] as IInputItemInput;
+    const input = task2InputItemsExtractor(this._inputs)[0];
 
     // eslint-disable-next-line wrap-regex
-    return /^background-color:(\s)?(skyblue|lightblue);$/.test(removeMultipleSpaces(input.value));
+    return /^background-color:(\s)?(skyblue|lightblue);$/.test(removeMultipleSpaces(input.value!));
   }
 }

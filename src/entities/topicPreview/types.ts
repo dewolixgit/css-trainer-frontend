@@ -5,6 +5,7 @@ export enum TopicPreviewTypeEnum {
 
 export interface ITopicPreview {
   readonly id: number;
+  readonly clientId: string;
   readonly name: string;
   readonly description: string;
   readonly backgroundImage: string;

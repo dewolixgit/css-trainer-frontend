@@ -9,6 +9,7 @@ import {
   useCreateExerciseSetNavigationContextData,
 } from 'config/components/layouts/exerciseSetLayout';
 import { useLocalStore } from 'config/localStore';
+import { useRootStore } from 'stores/globals';
 import {
   ExerciseSetPageStore,
   ExerciseSetPageStoreProvider,
@@ -19,8 +20,9 @@ import { AchievementToasts } from './components';
 // Todo: Adapt for very wide screens (wider than 1920px)
 const ExerciseSet: React.FC = () => {
   const { setId } = useParams();
+  const rootStore = useRootStore();
 
-  const store = useLocalStore(() => new ExerciseSetPageStore());
+  const store = useLocalStore(() => new ExerciseSetPageStore(rootStore));
 
   React.useEffect(() => {
     store.init({ tasksSetId: Number(setId) });

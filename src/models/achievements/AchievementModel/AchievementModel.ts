@@ -12,7 +12,7 @@ export class AchievementModel implements ILocalStore, IAchievementModel {
   readonly name: string;
   readonly description: string;
   readonly completed: boolean;
-  readonly icon: SvgrComponent;
+  readonly icon: SvgrComponent | null;
 
   constructor(params: AchievementModelParams) {
     this.id = params.id;

@@ -1,15 +1,28 @@
-import { ITopicPreview, transformTopicPreviewFromApi } from 'entities/topicPreview';
-import { TOPICS_PAGE_TOPICS_MOCK_API } from 'stores/locals/TopicsPageStore/mock';
+import { ENDPOINTS } from 'config/api';
+import { IApiStore } from 'config/store/apiStore';
+import {
+  ITopicPreview,
+  TopicPreviewApi,
+  transformTopicPreviewFromApi,
+} from 'entities/topicPreview';
 import { BasePromiseResponse } from 'types/props';
-import { sleep } from 'utils/async';
 
 export class TopicsPageApiAdapter {
-  static async getTopicsAndNormalize(): BasePromiseResponse<ITopicPreview[]> {
-    await sleep(2000);
+  static async getTopicsAndNormalize(apiStore: IApiStore): BasePromiseResponse<ITopicPreview[]> {
+    const response = await apiStore.request<TopicPreviewApi[]>({
+      url: ENDPOINTS.topics.getUrl(),
+      method: ENDPOINTS.topics.method,
+    });
+
+    if (response.isError) {
+      return {
+        isError: true,
+      };
+    }
 
     return {
       isError: false,
-      data: TOPICS_PAGE_TOPICS_MOCK_API.map(transformTopicPreviewFromApi),
+      data: response.data.payload.map(transformTopicPreviewFromApi),
     };
   }
 }

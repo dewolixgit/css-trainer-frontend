@@ -18,7 +18,7 @@ export const useAppLoad = (): UseAppLoadType => {
       const callbacks: (() => Promise<boolean | void>)[] = [rootStore.init];
 
       if (isFirstRender.current) {
-        // Todo: Загрузка статики
+        // Todo: Load statics
       }
 
       Promise.all(callbacks.map((callback) => callback())).then(([initSuccess]) => {

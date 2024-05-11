@@ -1,3 +1,4 @@
+import { IRootStore } from 'config/store/rootStore';
 import { ITopicPageStore, TopicPageStoreParams } from 'config/store/topicPageStore';
 import { IField } from 'entities/fieldModel';
 import { IList } from 'entities/listModel';
@@ -15,7 +16,7 @@ export class TopicPageStore implements ITopicPageStore {
   readonly tasksSets: IField<IList<ITopicPreview, number> | null> = new FieldModel(null);
   readonly parentTopicName = new FieldModel<string | null>(null);
 
-  constructor(params: TopicPageStoreParams) {
+  constructor(private readonly _rootStore: IRootStore, params: TopicPageStoreParams) {
     this.parentTopicId = params.parentTopicId;
   }
 
@@ -26,7 +27,9 @@ export class TopicPageStore implements ITopicPageStore {
 
     this.meta.setLoadedStartMeta();
 
-    const result = await TopicPageApiAdapter.getTasksSetsAndNormalize();
+    const result = await TopicPageApiAdapter.getTasksSetsAndNormalize(this._rootStore.apiStore, {
+      parentTopicId: this.parentTopicId,
+    });
 
     if (result.isError) {
       this.meta.setLoadedErrorMeta();
