@@ -9,6 +9,7 @@ import {
   ITasksSetStatusModel,
   ITaskTheoryModel,
 } from 'config/store/exerciseSetPageStore/types';
+import { IRootStore } from 'config/store/rootStore';
 import { TasksSetSectionEnum } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { MetaModel } from 'models/MetaModel';
@@ -26,7 +27,7 @@ export abstract class AbstractExerciseSetPageStore implements IExerciseSetPageSt
   readonly meta = new MetaModel();
   readonly inputSavingMeta = new MetaModel();
 
-  constructor() {
+  constructor(protected readonly _rootStore: IRootStore) {
     makeObservable<this, PrivateFields>(this, {
       currentTaskInSet: computed,
       currentTaskIndexInSet: computed,

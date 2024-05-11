@@ -1,14 +1,13 @@
 import { IExerciseSetPageStore, TasksSetStatusApi } from 'config/store/exerciseSetPageStore';
 import { TaskSavePayloadOnComplete } from 'config/store/exerciseSetPageStore/taskProgressModel';
+import { GetTasksSetStatusAndTaskDataApiProcessedPayload } from 'entities/tasksSet';
 import { FieldModel } from 'models/FieldModel';
 import { TasksSetStatusModel } from 'stores/locals/ExerciseSetPageStore';
 import { AbstractExerciseSetPageStore } from 'stores/locals/ExerciseSetPageStore/AbstractSetPageStore';
 import { TrialTaskProgressModel } from 'stores/locals/ExerciseSetPageStore/TaskProgressModel/TrialTaskProgressModel';
 import { TaskTheoryModel } from 'stores/locals/ExerciseSetPageStore/TaskTheoryModel';
-import { TASKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/contentFlowBlocks';
-import { INFO_FLOW_BLOCKS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/infoFlowBlocks';
-import { TASKS_SET_STATUS_MOCK } from 'stores/locals/ExerciseSetPageStore/mock/tasksSetStatus';
-import { sleep } from 'utils/async';
+
+import { TrialExerciseSetApiAdapter } from './TrialExerciseSetApiAdapter';
 
 export class TrialExerciseSetPageStore
   extends AbstractExerciseSetPageStore
@@ -16,33 +15,46 @@ export class TrialExerciseSetPageStore
 {
   private _clientMockTasksSetStatus = new FieldModel<TasksSetStatusApi['tasksStatus']>([]);
 
-  async init(): Promise<void> {
-    this.meta.setLoadedStartMeta();
-
-    await sleep(1000);
-
-    this._clientMockTasksSetStatus.changeValue(TASKS_SET_STATUS_MOCK.tasksStatus);
-
-    this.tasksSetStatus.changeValue(TasksSetStatusModel.fromApi(TASKS_SET_STATUS_MOCK));
-
-    this.taskTheory.changeValue(
-      TaskTheoryModel.fromApi({
-        content: INFO_FLOW_BLOCKS_MOCK,
-      })
-    );
+  private _populateTheoryAndPractice(data: GetTasksSetStatusAndTaskDataApiProcessedPayload): void {
+    this.taskTheory.changeValue(TaskTheoryModel.fromApi(data.theory));
 
     this.taskProgress.changeValue(
       TrialTaskProgressModel.fromApi({
         api: {
-          // @ts-ignore
-          content: TASKS_MOCK[this.tasksSetStatus.value!.tasksStatus.items[0].data.id],
-          task: this.tasksSetStatus.value!.tasksStatus.items[0].data,
+          content: data.practice.content,
+          task: data.practice.task.data,
         },
-        completedEarlier: true,
+        completedEarlier: data.practice.task.completed,
         // Todo: Consider to subscribe or something else to react to task completion
         onTaskCompleted: this._onTaskComplete,
       })
     );
+  }
+
+  async init(): Promise<void> {
+    this.meta.setLoadedStartMeta();
+
+    const response = await TrialExerciseSetApiAdapter.getTrialTasksSetProgressAndTaskContent(
+      this._rootStore.apiStore
+    );
+
+    if (response.isError) {
+      this.meta.setLoadedErrorMeta();
+
+      return;
+    }
+
+    this._clientMockTasksSetStatus.changeValue(response.data.api.tasksSetStatus.tasksStatus);
+
+    this.tasksSetStatus.changeValue(
+      TasksSetStatusModel.fromApi({
+        id: 0,
+        parentTopicId: 0,
+        tasksStatus: response.data.api.tasksSetStatus.tasksStatus,
+      })
+    );
+
+    this._populateTheoryAndPractice(response.data.transformed);
 
     this.meta.setLoadedSuccessMeta();
   }
@@ -56,15 +68,20 @@ export class TrialExerciseSetPageStore
 
     this.meta.setLoadedStartMeta();
 
-    await sleep(1000);
-
     this.section.reset();
 
-    this.taskTheory.changeValue(
-      TaskTheoryModel.fromApi({
-        content: INFO_FLOW_BLOCKS_MOCK,
-      })
+    const response = await TrialExerciseSetApiAdapter.getTrialTasksSetProgressAndTaskContent(
+      this._rootStore.apiStore,
+      {
+        taskId: params.taskId,
+      }
     );
+
+    if (response.isError) {
+      this.meta.setLoadedErrorMeta();
+
+      return;
+    }
 
     this.tasksSetStatus.changeValue(
       TasksSetStatusModel.fromApi({
@@ -74,21 +91,7 @@ export class TrialExerciseSetPageStore
       })
     );
 
-    this.taskProgress.changeValue(
-      TrialTaskProgressModel.fromApi({
-        api: {
-          content:
-            // @ts-ignore
-            TASKS_MOCK[
-              this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data.id
-            ],
-          task: this.tasksSetStatus.value!.tasksStatus.getEntityByKey(params.taskId)!.data,
-        },
-        completedEarlier:
-          this.tasksSetStatus.value?.tasksStatus.getEntityByKey(params.taskId)?.completed ?? false,
-        onTaskCompleted: this._onTaskComplete,
-      })
-    );
+    this._populateTheoryAndPractice(response.data.transformed);
 
     this.meta.setLoadedSuccessMeta();
   }
@@ -96,6 +99,15 @@ export class TrialExerciseSetPageStore
   protected async _onTaskComplete({ completed }: TaskSavePayloadOnComplete): Promise<void> {
     const taskProgress = this.taskProgress.value;
     const tasksSetStatus = this.tasksSetStatus.value;
+
+    console.log(
+      'completed',
+      completed,
+      'taskProgress',
+      taskProgress,
+      'tasksSetStatus',
+      tasksSetStatus
+    );
 
     if (
       this.currentTaskInSet?.completed ||
@@ -110,6 +122,8 @@ export class TrialExerciseSetPageStore
     const completedTaskStatus = this._clientMockTasksSetStatus.value.find(
       (task) => task.data.id === taskProgress.task.id
     );
+
+    console.log('completedTaskStatus', completedTaskStatus);
 
     if (!completedTaskStatus) {
       return;

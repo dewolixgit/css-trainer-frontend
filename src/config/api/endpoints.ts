@@ -38,6 +38,10 @@ export const ENDPOINTS = {
     getUrl: (tasksSetId: number) => `${API_URL}tasks-sets/progress/${tasksSetId}`,
     method: 'GET',
   },
+  tasksSetStatusTrial: {
+    getUrl: () => `${API_URL}tasks-sets/progress/trial`,
+    method: 'GET',
+  },
 
   // Tasks
   saveInput: {
