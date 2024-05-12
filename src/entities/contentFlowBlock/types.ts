@@ -7,6 +7,10 @@ import {
   InfoFlowImageBlockApi,
 } from 'entities/contentFlowBlock/infoFlowBlock/infoFlowImageBlock';
 import {
+  IInfoFlowListBlock,
+  InfoFlowListBlockApi,
+} from 'entities/contentFlowBlock/infoFlowBlock/infoFlowListBlock';
+import {
   IInfoFlowTextBlock,
   InfoFlowTextBlockApi,
 } from 'entities/contentFlowBlock/infoFlowBlock/infoFlowTextBlock';
@@ -43,11 +47,13 @@ export type ContentFlowBlockApi = {
 
 export type InfoFlowBlockInterfaceUnion =
   | IInfoFlowTextBlock
+  | IInfoFlowListBlock
   | IInfoFlowImageBlock
   | IInfoFlowCodeBlock;
 
 export type InfoFlowBlockApiUnion =
   | InfoFlowTextBlockApi
+  | InfoFlowListBlockApi
   | InfoFlowImageBlockApi
   | InfoFlowCodeBlockApi;
 

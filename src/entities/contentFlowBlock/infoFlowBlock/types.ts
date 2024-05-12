@@ -7,6 +7,7 @@ import {
 
 export enum InfoFlowBlockType {
   text = 'text',
+  list = 'list',
   image = 'image',
   code = 'code',
 }

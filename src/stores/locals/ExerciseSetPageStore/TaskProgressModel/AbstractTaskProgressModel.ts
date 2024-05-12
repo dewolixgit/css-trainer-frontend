@@ -16,6 +16,7 @@ import { ITask } from 'entities/task';
 import { transformTask } from 'entities/task/utils';
 import { InfoFlowCodeBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowCodeBlock';
 import { InfoFlowImageBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowImageBlock';
+import { createInfoFlowListBlockFromApi } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowListBlock';
 import { InfoFlowTextBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowTextBlock';
 import { InputFlowBlockDnd } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowBlockDnd';
 import { InputFlowOnlyCode } from 'models/ContentFlowBlock/InputFlowBlock/InputFlowOnlyCode';
@@ -104,6 +105,8 @@ export abstract class AbstractTaskProgressModel implements ITaskProgressModel {
           switch (item.infoType) {
             case InfoFlowBlockType.text:
               return InfoFlowTextBlock.fromApi(item);
+            case InfoFlowBlockType.list:
+              return createInfoFlowListBlockFromApi(item);
             case InfoFlowBlockType.image:
               return InfoFlowImageBlock.fromApi(item);
             case InfoFlowBlockType.code:

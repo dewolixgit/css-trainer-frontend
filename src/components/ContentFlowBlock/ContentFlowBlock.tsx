@@ -5,6 +5,7 @@ import { CodeInput } from 'components/CodeInput';
 import { CodePlacer } from 'components/CodePlacer';
 import { CodeFlowBlock } from 'components/infoFlowBlock/CodeFlowBlock';
 import { ImageBlock } from 'components/infoFlowBlock/ImageBlock';
+import { ListBlock } from 'components/infoFlowBlock/ListBlock';
 import { TextBlock } from 'components/infoFlowBlock/TextBlock';
 import { CONTENT_FLOW_BLOCK_CLASSES } from 'config/contentFlowBlock/styles';
 import { InfoFlowBlockType } from 'entities/contentFlowBlock/infoFlowBlock';
@@ -44,6 +45,13 @@ const ContentFlowBlock: React.FC<Props> = ({ content, className, targetClassName
           <CodeFlowBlock
             flowBlock={content}
             className={cn(computedClassName, CONTENT_FLOW_BLOCK_CLASSES.infoFlowCodeBlock)}
+          />
+        );
+      case InfoFlowBlockType.list:
+        return (
+          <ListBlock
+            flowBlock={content}
+            className={cn(computedClassName, CONTENT_FLOW_BLOCK_CLASSES.infoFlowListBlock)}
           />
         );
       default:
