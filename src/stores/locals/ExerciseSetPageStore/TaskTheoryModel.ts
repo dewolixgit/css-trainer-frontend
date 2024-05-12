@@ -7,6 +7,7 @@ import { InfoFlowBlockType } from 'entities/contentFlowBlock/infoFlowBlock';
 import { InfoFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
 import { InfoFlowCodeBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowCodeBlock';
 import { InfoFlowImageBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowImageBlock';
+import { createInfoFlowListBlockFromApi } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowListBlock';
 import { InfoFlowTextBlock } from 'models/ContentFlowBlock/InfoFlowBlock/InfoFlowTextBlock';
 
 export class TaskTheoryModel implements ITaskTheoryModel {
@@ -26,6 +27,8 @@ export class TaskTheoryModel implements ITaskTheoryModel {
             return InfoFlowImageBlock.fromApi(block);
           case InfoFlowBlockType.code:
             return InfoFlowCodeBlock.fromApi(block);
+          case InfoFlowBlockType.list:
+            return createInfoFlowListBlockFromApi(block);
           case InfoFlowBlockType.text:
           default:
             return InfoFlowTextBlock.fromApi(block);
