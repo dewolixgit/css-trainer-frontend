@@ -1,3 +1,4 @@
+import { sanitize } from 'dompurify';
 import { observer } from 'mobx-react';
 import * as React from 'react';
 
@@ -15,11 +16,17 @@ type Props = {
 };
 
 const Practice: React.FC<Props> = ({ taskProgress, className }) => {
+  // Todo: now sanitize function works too frequently. Need to sanitize once on transformation from api data
+  const sanitized = React.useMemo(() => sanitize(taskProgress.task.name), [taskProgress.task.name]);
+
   return (
     <div styleName="root" className={className}>
-      <Title tag="h1" size={SizeEnum.m} weight={FontWeightEnum.medium}>
-        {taskProgress.task.name}
-      </Title>
+      <Title
+        tag="h1"
+        size={SizeEnum.m}
+        weight={FontWeightEnum.medium}
+        dangerouslySetInnerHTML={{ __html: sanitized }}
+      />
       {taskProgress.content.map((block) => {
         return <ContentFlowBlock key={block.id} content={block} styleName="block" />;
       })}

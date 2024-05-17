@@ -46,7 +46,7 @@ const ExerciseSetLayout: React.FC<Props> = ({ navigationContextData, store }) =>
                   } as React.CSSProperties
                 }
               >
-                <GameFieldFrame />
+                <GameFieldFrame outerScaleFactor={scaleScrollFactor} />
               </div>
             </div>
           </div>

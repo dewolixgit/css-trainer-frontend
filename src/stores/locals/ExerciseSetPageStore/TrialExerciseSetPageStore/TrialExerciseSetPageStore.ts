@@ -100,15 +100,6 @@ export class TrialExerciseSetPageStore
     const taskProgress = this.taskProgress.value;
     const tasksSetStatus = this.tasksSetStatus.value;
 
-    console.log(
-      'completed',
-      completed,
-      'taskProgress',
-      taskProgress,
-      'tasksSetStatus',
-      tasksSetStatus
-    );
-
     if (
       this.currentTaskInSet?.completed ||
       !taskProgress ||
@@ -122,8 +113,6 @@ export class TrialExerciseSetPageStore
     const completedTaskStatus = this._clientMockTasksSetStatus.value.find(
       (task) => task.data.id === taskProgress.task.id
     );
-
-    console.log('completedTaskStatus', completedTaskStatus);
 
     if (!completedTaskStatus) {
       return;

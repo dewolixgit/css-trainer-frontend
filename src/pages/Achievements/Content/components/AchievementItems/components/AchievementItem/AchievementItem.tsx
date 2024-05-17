@@ -27,7 +27,9 @@ const AchievementItem: React.FC<Props> = ({ model, className }) => {
           />
         )}
       </TooltipTrigger>
-      <ThemedTooltipContent>{model.description}</ThemedTooltipContent>
+      <ThemedTooltipContent>
+        <span dangerouslySetInnerHTML={{ __html: model.description }} />
+      </ThemedTooltipContent>
     </Tooltip>
   );
 };

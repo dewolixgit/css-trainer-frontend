@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import { sanitize } from 'dompurify';
 import * as React from 'react';
 import { LinkProps } from 'react-router-dom';
 
@@ -31,6 +32,10 @@ const TopicCardLayout: React.FC<Props> = ({
   className,
   backgroundImage,
 }) => {
+  // Todo: Sanitize on api data transformation
+  const sanitizedName = React.useMemo(() => sanitize(name), [name]);
+  const sanitizedDescription = React.useMemo(() => sanitize(description), [description]);
+
   return (
     <div
       styleName={cn('card', className)}
@@ -41,10 +46,10 @@ const TopicCardLayout: React.FC<Props> = ({
       <div styleName="desktop-view">
         <div styleName="static">
           {completed && <CheckSvg styleName="check" />}
-          <h3 styleName="title">{name}</h3>
+          <h3 styleName="title" dangerouslySetInnerHTML={{ __html: sanitizedName }} />
         </div>
         <div styleName="hover">
-          <div styleName="description">{description}</div>
+          <div styleName="description" dangerouslySetInnerHTML={{ __html: sanitizedDescription }} />
           <Button styleName="button" routerLink={linkPayload} stretched>
             {t().components.topicCard.go}
           </Button>
@@ -52,9 +57,12 @@ const TopicCardLayout: React.FC<Props> = ({
       </div>
       <div styleName="mobile-view">
         {completed && <CheckSvg styleName="check" />}
-        <h3 styleName="title">{name}</h3>
+        <h3 styleName="title" dangerouslySetInnerHTML={{ __html: sanitizedName }} />
         <div styleName="description">
-          <div styleName="description__inner">{description}</div>
+          <div
+            styleName="description__inner"
+            dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+          />
         </div>
         <Button styleName="button" routerLink={linkPayload} stretched>
           {t().components.topicCard.go}

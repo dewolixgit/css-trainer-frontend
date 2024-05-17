@@ -1,3 +1,8 @@
+import {
+  LampAchievementSvg,
+  StarAchievementSvg,
+  TwoStarsAchievementSvg,
+} from 'entities/achievement/icons';
 import PaletteSvg from 'img/svgComponents/palette.c.svg';
 import { SvgrComponent } from 'types/props';
 
@@ -20,15 +25,15 @@ export type AchievementClientType = {
 export const ACHIEVEMENTS_CLIENT_DATA = {
   [1]: {
     id: 1,
-    icon: PaletteSvg,
+    icon: LampAchievementSvg,
   },
   [2]: {
     id: 2,
-    icon: PaletteSvg,
+    icon: StarAchievementSvg,
   },
   [3]: {
     id: 3,
-    icon: PaletteSvg,
+    icon: TwoStarsAchievementSvg,
   },
   [4]: {
     id: 4,

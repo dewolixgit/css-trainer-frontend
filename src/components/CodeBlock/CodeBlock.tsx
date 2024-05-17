@@ -1,4 +1,3 @@
-import { sanitize } from 'dompurify';
 import * as React from 'react';
 
 import { CodeContainer, CodeContainerMain } from 'components/ui';
@@ -14,7 +13,6 @@ type Props = {
 
 const CodeBlock: React.FC<Props> = ({ code, className }) => {
   const linesCount = React.useMemo(() => countOccurrences(code, CODE_LINES_DIVIDER) + 1, [code]);
-  const sanitized = React.useMemo(() => sanitize(code), [code]);
 
   return (
     <CodeContainer
@@ -25,7 +23,7 @@ const CodeBlock: React.FC<Props> = ({ code, className }) => {
     >
       <CodeContainerMain>
         <pre styleName="pre">
-          <code styleName="code" dangerouslySetInnerHTML={{ __html: sanitized }} />
+          <code styleName="code">{code}</code>
         </pre>
       </CodeContainerMain>
     </CodeContainer>

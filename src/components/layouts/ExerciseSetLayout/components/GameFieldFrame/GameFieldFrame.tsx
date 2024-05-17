@@ -13,7 +13,14 @@ import { useScale } from './useScale';
 
 import './GameFieldFrame.module.scss';
 
-const GameFieldFrame: React.FC = () => {
+type Props = {
+  /**
+   * If the field is scaled from outer code, field should consider it
+   */
+  outerScaleFactor?: number;
+};
+
+const GameFieldFrame: React.FC<Props> = ({ outerScaleFactor = 1 }) => {
   const store = useInnerExerciseSetStore();
 
   const rootRef = React.useRef<HTMLDivElement | null>(null);
@@ -21,7 +28,7 @@ const GameFieldFrame: React.FC = () => {
 
   const [stylesTarget, setStylesTarget] = React.useState<HTMLLinkElement | null>(null);
 
-  const iframeScale = useScale(rootRef);
+  const iframeScale = useScale(rootRef, { outerScaleFactor });
 
   React.useEffect(() => {
     (() => {

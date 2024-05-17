@@ -5,6 +5,8 @@
   top: 0;
   left: 0;
 
+  min-height: 450px;
+
   overflow: auto;
   padding: $indentXSS $indentXXXL calc(var(--task-complete-state-height) + $indentXS) $indentXXXXXL;
 
@@ -26,7 +28,8 @@
     padding: $indentXSS $indentXS calc(var(--achievement-toast-max-height) + var(--adaptive-page-vertical-indent) + $indentXSS);
   }
 
-  :global(#{$infoFlowTextBlockGlobalClass}) code {
+  :global(#{$infoFlowTextBlockGlobalClass}) code,
+  :global(#{$infoFlowListBlockGlobalClass}) code {
     background-color: var(--color-inline-code-background-1);
     color: var(--color-inline-code-color-1);
     border-radius: var(--inline-code-border-radius);

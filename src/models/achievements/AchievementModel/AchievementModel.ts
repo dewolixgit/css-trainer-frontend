@@ -1,3 +1,5 @@
+import { sanitize } from 'dompurify';
+
 import { ILocalStore } from 'config/localStore';
 import {
   AchievementModelParams,
@@ -27,8 +29,8 @@ export class AchievementModel implements ILocalStore, IAchievementModel {
   static fromApi(params: ApiAchievementStatusType): AchievementModel {
     return new AchievementModel({
       id: params.data.id,
-      name: params.data.name,
-      description: params.data.description,
+      name: sanitize(params.data.name),
+      description: sanitize(params.data.description),
       icon: ACHIEVEMENTS_CLIENT_DATA[params.data.id]?.icon ?? null,
       completed: params.completed,
     });

@@ -2,7 +2,10 @@ import * as React from 'react';
 
 const IFRAME_SIZE = 1000;
 
-export const useScale = (rootRef: React.MutableRefObject<HTMLDivElement | null>) => {
+export const useScale = (
+  rootRef: React.MutableRefObject<HTMLDivElement | null>,
+  { outerScaleFactor = 1 }: { outerScaleFactor?: number } = {}
+) => {
   const [iframeScale, setIframeScale] = React.useState(1);
 
   React.useEffect(() => {
@@ -12,7 +15,8 @@ export const useScale = (rootRef: React.MutableRefObject<HTMLDivElement | null>)
       }
 
       const rootRect = rootRef.current.getBoundingClientRect();
-      const scale = rootRect.width / IFRAME_SIZE;
+
+      const scale = rootRect.width / outerScaleFactor / IFRAME_SIZE;
 
       setIframeScale(scale);
     };
@@ -25,7 +29,7 @@ export const useScale = (rootRef: React.MutableRefObject<HTMLDivElement | null>)
       window.removeEventListener('resize', updateIframeScale);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [outerScaleFactor]);
 
   return iframeScale;
 };

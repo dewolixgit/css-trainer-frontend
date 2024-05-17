@@ -43,9 +43,15 @@ const AchievementToast: React.FC<Props> = ({ achievement, className, onOpenChang
           />
         )}
         <Flex flexGrow={1} direction="column" alignItems="flex-start">
-          <Title tag="h5" size={SizeEnum.xxxs} weight={FontWeightEnum.medium} styleName="title">
-            {t().components.achievementToast.youHaveGot(achievement.name)}
-          </Title>
+          <Title
+            tag="h5"
+            size={SizeEnum.xxxs}
+            weight={FontWeightEnum.medium}
+            styleName="title"
+            dangerouslySetInnerHTML={{
+              __html: t().components.achievementToast.youHaveGot(achievement.name),
+            }}
+          />
           <Spacing size={4} />
           <Flex styleName="link" alignItems="center">
             <Text weight={FontWeightEnum.regular} size={SizeEnum.xs} tag="div">
