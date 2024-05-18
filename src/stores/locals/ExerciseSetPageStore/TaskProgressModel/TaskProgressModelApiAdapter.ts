@@ -10,8 +10,8 @@ import {
 import { IInputItem, InputItemApi } from 'entities/contentFlowBlock/inputItem';
 import { InputFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
 import { transformTaskStatus } from 'entities/task/utils';
+import { TASKS } from 'exercises/config';
 import { AchievementModel } from 'models/achievements';
-import { TASKS } from 'models/exersices/config';
 import { BasePromiseResponse } from 'types/props';
 import pipe from 'utils/operators/pipe';
 

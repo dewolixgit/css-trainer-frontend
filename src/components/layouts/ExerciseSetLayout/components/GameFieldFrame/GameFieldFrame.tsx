@@ -6,7 +6,7 @@ import { StyleSheetManager } from 'styled-components';
 import { useInnerExerciseSetStore } from 'components/layouts/ExerciseSetLayout/innerStoreContext';
 import { ThematicLoader } from 'components/ui/loaders';
 import { LoaderSizeEnum } from 'config/components/loaders';
-import { TASKS } from 'models/exersices/config';
+import { TASKS } from 'exercises/config';
 
 import { SavingLoader } from './components';
 import { useScale } from './useScale';

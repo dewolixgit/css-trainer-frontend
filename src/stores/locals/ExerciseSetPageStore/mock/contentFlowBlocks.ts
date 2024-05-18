@@ -4,7 +4,7 @@ import { InputFlowType } from 'entities/contentFlowBlock/inputFlowBlock';
 import { PartCodeRowType } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow';
 import { PartCodeMixedRowElementType } from 'entities/contentFlowBlock/inputFlowBlock/inputFlowPartCode/inputFlowPartCodeRow/partCodeMixedRow/partCodeMixedRowElement';
 import { ContentFlowBlockType, FlowBlockApiUnion } from 'entities/contentFlowBlock/types';
-import { SET_1_CLASSNAMES } from 'models/exersices/Set1/config';
+import { SET_1_CLASSNAMES } from 'exercises/Set1/config';
 
 export const CONTENT_FLOW_BLOCKS_MOCK_1: FlowBlockApiUnion[] = [
   {

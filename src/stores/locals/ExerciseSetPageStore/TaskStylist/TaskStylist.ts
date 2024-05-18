@@ -8,8 +8,8 @@ import {
   TaskStylistParams,
 } from 'config/store/exerciseSetPageStore/taskStylist';
 import { InputFlowBlockInterfaceUnion } from 'entities/contentFlowBlock/types';
+import { TASKS } from 'exercises/config';
 import { FieldModel } from 'models/FieldModel';
-import { TASKS } from 'models/exersices/config';
 import { StubTaskCheckerPlugin } from 'models/taskCheckerPlugin';
 import { StubTaskStylistPlugin } from 'models/taskStylistPlugin';
 

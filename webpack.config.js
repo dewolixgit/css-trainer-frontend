@@ -230,6 +230,7 @@ const ALIASES = [
   'components',
   'config',
   'entities',
+  'exercises',
   'img',
   'models',
   'pages',
