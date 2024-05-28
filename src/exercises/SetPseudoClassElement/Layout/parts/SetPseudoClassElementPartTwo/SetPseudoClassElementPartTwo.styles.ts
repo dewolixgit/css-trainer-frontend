@@ -1,12 +1,11 @@
 import styled, { css } from 'styled-components';
 
-import backgroundImage from 'exercises/SetPseudoClassElement/Layout/img/background.jpg';
 import plainScrollImage from 'exercises/SetPseudoClassElement/Layout/img/plain-scroll.svg';
+import backgroundImage from 'exercises/img/background-plank-wood.jpg';
+import blueScrollImage from 'exercises/img/blue-scroll.svg';
+import greenScrollImage from 'exercises/img/green-scroll.svg';
+import redScrollImage from 'exercises/img/red-scroll.svg';
 import { SetLayoutRoot } from 'exercises/ui';
-
-import blueScrollImage from './img/blue-scroll.svg';
-import greenScrollImage from './img/green-scroll.svg';
-import redScrollImage from './img/red-scroll.svg';
 
 export const Root = styled(SetLayoutRoot)`
   background: url('${backgroundImage}') no-repeat center / cover;

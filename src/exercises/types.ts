@@ -21,4 +21,13 @@ export enum TaskIds {
   task15 = 15,
   task16 = 16,
   task17 = 17,
+
+  // Set combinators
+  task18 = 18,
+  task19 = 19,
+  task20 = 20,
+  task21 = 21,
+  task22 = 22,
+  task23 = 23,
+  task24 = 24,
 }

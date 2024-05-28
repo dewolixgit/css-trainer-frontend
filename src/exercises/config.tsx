@@ -22,6 +22,7 @@ import {
   task4InputItemsExtractor,
   Task4StylistPlugin,
 } from 'exercises/Set1/plugins';
+import { Layout as SetCombinators } from 'exercises/SetCombinators/Layout';
 import { Layout as SetPseudoClassElementLayout } from 'exercises/SetPseudoClassElement/Layout';
 import {
   Task11CheckerPlugin,
@@ -90,6 +91,29 @@ import {
   Task9StylistPlugin,
 } from 'exercises/SetSelectors/plugins/task9Plugins';
 
+import {
+  Task18CheckerPlugin,
+  task18InputItemsExtractor,
+  Task18StylistPlugin,
+  Task19CheckerPlugin,
+  task19InputItemsExtractor,
+  Task19StylistPlugin,
+  Task20CheckerPlugin,
+  task20InputItemsExtractor,
+  Task20StylistPlugin,
+  Task21CheckerPlugin,
+  task21InputItemsExtractor,
+  Task21StylistPlugin,
+  Task22CheckerPlugin,
+  task22InputItemsExtractor,
+  Task22StylistPlugin,
+  Task23CheckerPlugin,
+  task23InputItemsExtractor,
+  Task23StylistPlugin,
+  Task24CheckerPlugin,
+  task24InputItemsExtractor,
+  Task24StylistPlugin,
+} from './SetCombinators/plugins';
 import { TaskIds } from './types';
 
 export const TASKS: Record<
@@ -220,5 +244,54 @@ export const TASKS: Record<
     StylistPlugin: Task17StylistPlugin,
     CheckerPlugin: Task17CheckerPlugin,
     inputItemsExtractor: task17InputItemsExtractor,
+  },
+  [TaskIds.task18]: {
+    id: TaskIds.task18,
+    layout: <SetCombinators taskId={TaskIds.task18} />,
+    StylistPlugin: Task18StylistPlugin,
+    CheckerPlugin: Task18CheckerPlugin,
+    inputItemsExtractor: task18InputItemsExtractor,
+  },
+  [TaskIds.task19]: {
+    id: TaskIds.task19,
+    layout: <SetCombinators taskId={TaskIds.task19} />,
+    StylistPlugin: Task19StylistPlugin,
+    CheckerPlugin: Task19CheckerPlugin,
+    inputItemsExtractor: task19InputItemsExtractor,
+  },
+  [TaskIds.task20]: {
+    id: TaskIds.task20,
+    layout: <SetCombinators taskId={TaskIds.task20} />,
+    StylistPlugin: Task20StylistPlugin,
+    CheckerPlugin: Task20CheckerPlugin,
+    inputItemsExtractor: task20InputItemsExtractor,
+  },
+  [TaskIds.task21]: {
+    id: TaskIds.task21,
+    layout: <SetCombinators taskId={TaskIds.task21} />,
+    StylistPlugin: Task21StylistPlugin,
+    CheckerPlugin: Task21CheckerPlugin,
+    inputItemsExtractor: task21InputItemsExtractor,
+  },
+  [TaskIds.task22]: {
+    id: TaskIds.task22,
+    layout: <SetCombinators taskId={TaskIds.task22} />,
+    StylistPlugin: Task22StylistPlugin,
+    CheckerPlugin: Task22CheckerPlugin,
+    inputItemsExtractor: task22InputItemsExtractor,
+  },
+  [TaskIds.task23]: {
+    id: TaskIds.task23,
+    layout: <SetCombinators taskId={TaskIds.task23} />,
+    StylistPlugin: Task23StylistPlugin,
+    CheckerPlugin: Task23CheckerPlugin,
+    inputItemsExtractor: task23InputItemsExtractor,
+  },
+  [TaskIds.task24]: {
+    id: TaskIds.task24,
+    layout: <SetCombinators taskId={TaskIds.task24} />,
+    StylistPlugin: Task24StylistPlugin,
+    CheckerPlugin: Task24CheckerPlugin,
+    inputItemsExtractor: task24InputItemsExtractor,
   },
 };

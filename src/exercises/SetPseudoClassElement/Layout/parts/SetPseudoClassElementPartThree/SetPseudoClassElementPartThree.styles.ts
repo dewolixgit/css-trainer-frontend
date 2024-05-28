@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
-import backgroundImage from 'exercises/SetPseudoClassElement/Layout/img/background.jpg';
 import scrollImage from 'exercises/SetPseudoClassElement/Layout/img/plain-scroll.svg';
+import backgroundImage from 'exercises/img/background-plank-wood.jpg';
 import { SetLayoutRoot } from 'exercises/ui';
 
 export const Root = styled(SetLayoutRoot)`
