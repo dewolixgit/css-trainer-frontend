@@ -32,11 +32,16 @@ export const task10InputItemsExtractor: InputItemsExtractor = (inputs) => {
 };
 
 const checkIsValid = (toCheck: string): boolean => {
+  const title = SET_SELECTORS_ELEMENTS_ATTRIBUTES.sword.title;
+
+  if (toCheck === `[data-title="${title}"]`) {
+    return true;
+  }
+
   const id = `#${SET_SELECTORS_ELEMENTS_ATTRIBUTES.sword.id}`;
   const tag = SET_SELECTORS_ELEMENTS_ATTRIBUTES.sword.tag;
   // eslint-disable-next-line no-useless-escape
   const className = `\.${SET_SELECTORS_ELEMENTS_ATTRIBUTES.sword.className}`;
-  const title = SET_SELECTORS_ELEMENTS_ATTRIBUTES.sword.title;
   const re = new RegExp(String.raw`^(${id}|${tag}|${className})\[data-title="${title}"\]$`);
 
   return re.test(toCheck);

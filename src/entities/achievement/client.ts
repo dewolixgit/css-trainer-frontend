@@ -1,6 +1,9 @@
 import {
+  FourStarsAchievementSvg,
   LampAchievementSvg,
+  RocketAchievementSvg,
   StarAchievementSvg,
+  ThreeStarsAchievementSvg,
   TwoStarsAchievementSvg,
 } from 'entities/achievement/icons';
 import PaletteSvg from 'img/svgComponents/palette.c.svg';
@@ -37,15 +40,15 @@ export const ACHIEVEMENTS_CLIENT_DATA = {
   },
   [4]: {
     id: 4,
-    icon: PaletteSvg,
+    icon: ThreeStarsAchievementSvg,
   },
   [5]: {
     id: 5,
-    icon: PaletteSvg,
+    icon: FourStarsAchievementSvg,
   },
   [6]: {
     id: 6,
-    icon: PaletteSvg,
+    icon: RocketAchievementSvg,
   },
   [7]: {
     id: 7,
