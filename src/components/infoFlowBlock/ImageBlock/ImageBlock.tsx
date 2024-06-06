@@ -18,7 +18,7 @@ const ImageBlock: React.FC<Props> = ({ flowBlock, className }) => {
       className={className}
       style={
         {
-          backgroundImage: `url(${flowBlock.url})`,
+          ['--background-image']: `url(${flowBlock.url})`,
           ['--lines-height']: `${flowBlock.linesHeight}em`,
         } as React.CSSProperties
       }

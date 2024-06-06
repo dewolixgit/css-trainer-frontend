@@ -30,9 +30,26 @@
 
   :global(#{$infoFlowTextBlockGlobalClass}) code,
   :global(#{$infoFlowListBlockGlobalClass}) code {
-    background-color: var(--color-inline-code-background-1);
+    position: relative;
+
     color: var(--color-inline-code-color-1);
-    border-radius: var(--inline-code-border-radius);
     padding: 0 var(--inline-code-side-indent);
+    white-space: nowrap;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+
+      background-color: var(--color-inline-code-background-1);
+      border-radius: var(--inline-code-border-radius);
+
+      width: 100%;
+      height: 92%;
+
+      @include centerPos;
+    }
   }
 }
