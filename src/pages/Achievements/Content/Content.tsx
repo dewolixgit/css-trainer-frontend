@@ -19,7 +19,7 @@ const Content: React.FC = () => {
           <Skills />
         </div>
         <div styleName="section-image">
-          {/* Todo: Плавность */}
+          {/* Todo: Transition animation */}
           {store.meta.isLoading ? (
             <SkeletonLoader styleName="section-image__loader" />
           ) : (

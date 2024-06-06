@@ -12,6 +12,7 @@ import { Topics } from 'pages/Topics';
 import { TrialExerciseSet } from 'pages/TrialExerciseSet';
 import { useRootStore } from 'stores/globals';
 
+import { Splash } from './components';
 import { useAppLoad } from './utils';
 
 const Root: React.FC = () => {
@@ -19,11 +20,11 @@ const Root: React.FC = () => {
   const { loadedSuccessfully, loadedWithError } = useAppLoad();
 
   if (loadedWithError) {
-    return <div>Ошибка</div>;
+    return <div>Error</div>;
   }
 
   if (!loadedSuccessfully) {
-    return <div>Загрузка...</div>;
+    return <Splash />;
   }
 
   return (

@@ -12,13 +12,11 @@ export const ROUTES = {
     topic: {
       parameter: 'topicId',
       mask: '/topics/:topicId',
-      // Todo: Типизация id темы
       create: (topicId: number): string => `/topics/${topicId}`,
     },
   },
   exerciseSet: {
     mask: '/set/:setId',
-    // Todo: Типизация id набора
     create: (setId: number): string => `/set/${setId}`,
   },
   trialSet: {
