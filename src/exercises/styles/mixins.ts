@@ -19,8 +19,27 @@ const backgroundImageContain = (image: string) => css`
   background-repeat: no-repeat;
 `;
 
+const centerX = css`
+  left: 50%;
+  transform: translateX(-50%);
+`;
+
+const centerY = css`
+  top: 50%;
+  transform: translateY(-50%);
+`;
+
+const centerXY = css`
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export const mixin = {
   square,
   animate,
   backgroundImageContain,
+  centerXY,
+  centerX,
+  centerY,
 };

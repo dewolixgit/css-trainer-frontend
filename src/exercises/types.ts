@@ -30,4 +30,17 @@ export enum TaskIds {
   task22 = 22,
   task23 = 23,
   task24 = 24,
+
+  // Set cascade and inheritance
+  task25 = 25,
+  task26 = 26,
+  task27 = 27,
+  task28 = 28,
+  task29 = 29,
+  task30 = 30,
+  task31 = 31,
+  task32 = 32,
+  task33 = 33,
+  task34 = 34,
+  task35 = 35,
 }
