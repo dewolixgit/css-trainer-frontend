@@ -215,9 +215,6 @@ const getDevServer = () => ({
       changeOrigin: true,
       target: 'http://127.0.0.1:3050',
       secure: true,
-      pathRewrite: {
-        '^/api': '',
-      },
     },
   },
 });
