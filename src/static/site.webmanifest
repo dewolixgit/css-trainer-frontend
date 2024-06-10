@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "The Lord of the Divs",
+    "short_name": "The Lord of the Divs",
     "icons": [
         {
             "src": "/static/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#548233",
+    "background_color": "#548233",
     "display": "standalone"
 }
