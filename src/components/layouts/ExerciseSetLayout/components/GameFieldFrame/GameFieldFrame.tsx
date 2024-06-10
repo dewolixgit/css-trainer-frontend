@@ -8,7 +8,7 @@ import { ThematicLoader } from 'components/ui/loaders';
 import { LoaderSizeEnum } from 'config/components/loaders';
 import { TASKS } from 'exercises/config';
 
-import { SavingLoader } from './components';
+import { GameFieldFrameRoot, SavingLoader } from './components';
 import { useScale } from './useScale';
 
 import './GameFieldFrame.module.scss';
@@ -66,7 +66,9 @@ const GameFieldFrame: React.FC<Props> = ({ outerScaleFactor = 1 }) => {
         >
           {mountNode &&
             createPortal(
-              <StyleSheetManager target={stylesTarget ?? undefined}>{layout}</StyleSheetManager>,
+              <StyleSheetManager target={stylesTarget ?? undefined}>
+                <GameFieldFrameRoot>{layout}</GameFieldFrameRoot>
+              </StyleSheetManager>,
               mountNode
             )}
         </iframe>
