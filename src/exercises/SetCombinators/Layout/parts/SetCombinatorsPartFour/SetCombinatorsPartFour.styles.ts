@@ -2,10 +2,10 @@ import styled, { css } from 'styled-components';
 
 import blueBoxImage from 'exercises/SetCombinators/Layout/img/box-blue.png';
 import greenBoxImage from 'exercises/SetCombinators/Layout/img/box-green.png';
-import regularBoxImage from 'exercises/SetCombinators/Layout/img/box-plain.png';
 import redBoxImage from 'exercises/SetCombinators/Layout/img/box-red.png';
 import { SetCombinatorsUtils } from 'exercises/SetCombinators/utils';
 import backgroundImage from 'exercises/img/background-plank-wood.jpg';
+import regularBoxImage from 'exercises/img/box-plain.png';
 import coinImage from 'exercises/img/coin.svg';
 import { mixin } from 'exercises/styles';
 import { SetLayoutRoot } from 'exercises/ui';

@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 import backgroundImage from 'exercises/SetCascadeInheritance/Layout/img/background.jpg';
-import duffelBagImage from 'exercises/SetCascadeInheritance/Layout/img/duffel-bag.png';
 import { SetCascadeInheritance } from 'exercises/SetCascadeInheritance/utils';
+import duffelBagImage from 'exercises/img/duffel-bag.png';
 import scrollImage from 'exercises/img/plain-scroll.svg';
 import { mixin } from 'exercises/styles';
 import { SetLayoutRoot } from 'exercises/ui';
 
-// Todo: change background image
 export const Root = styled(SetLayoutRoot).attrs({
   $backgroundImage: backgroundImage,
   $overlayOpaque: 0.3,

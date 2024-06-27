@@ -91,6 +91,7 @@ import {
   task9InputItemsExtractor,
   Task9StylistPlugin,
 } from 'exercises/SetSelectors/plugins/task9Plugins';
+import { Layout as SetSizesIndents } from 'exercises/SetSizesIndents/Layout';
 
 import {
   Task25CheckerPlugin,
@@ -150,6 +151,36 @@ import {
   task24InputItemsExtractor,
   Task24StylistPlugin,
 } from './SetCombinators/plugins';
+import {
+  Task36CheckerPlugin,
+  task36InputItemsExtractor,
+  Task36StylistPlugin,
+} from './SetSizesIndents/plugins/task36Plugins';
+import {
+  Task37CheckerPlugin,
+  task37InputItemsExtractor,
+  Task37StylistPlugin,
+} from './SetSizesIndents/plugins/task37Plugins';
+import {
+  Task38CheckerPlugin,
+  task38InputItemsExtractor,
+  Task38StylistPlugin,
+} from './SetSizesIndents/plugins/task38Plugins';
+import {
+  Task39CheckerPlugin,
+  task39InputItemsExtractor,
+  Task39StylistPlugin,
+} from './SetSizesIndents/plugins/task39Plugins';
+import {
+  Task40CheckerPlugin,
+  task40InputItemsExtractor,
+  Task40StylistPlugin,
+} from './SetSizesIndents/plugins/task40Plugins';
+import {
+  Task41CheckerPlugin,
+  task41InputItemsExtractor,
+  Task41StylistPlugin,
+} from './SetSizesIndents/plugins/task41Plugins';
 import { TaskIds } from './types';
 
 export const TASKS: Record<
@@ -406,5 +437,47 @@ export const TASKS: Record<
     StylistPlugin: Task35StylistPlugin,
     CheckerPlugin: Task35CheckerPlugin,
     inputItemsExtractor: task35InputItemsExtractor,
+  },
+  [TaskIds.task36]: {
+    id: TaskIds.task36,
+    layout: <SetSizesIndents taskId={TaskIds.task36} />,
+    StylistPlugin: Task36StylistPlugin,
+    CheckerPlugin: Task36CheckerPlugin,
+    inputItemsExtractor: task36InputItemsExtractor,
+  },
+  [TaskIds.task37]: {
+    id: TaskIds.task37,
+    layout: <SetSizesIndents taskId={TaskIds.task37} />,
+    StylistPlugin: Task37StylistPlugin,
+    CheckerPlugin: Task37CheckerPlugin,
+    inputItemsExtractor: task37InputItemsExtractor,
+  },
+  [TaskIds.task38]: {
+    id: TaskIds.task38,
+    layout: <SetSizesIndents taskId={TaskIds.task38} />,
+    StylistPlugin: Task38StylistPlugin,
+    CheckerPlugin: Task38CheckerPlugin,
+    inputItemsExtractor: task38InputItemsExtractor,
+  },
+  [TaskIds.task39]: {
+    id: TaskIds.task39,
+    layout: <SetSizesIndents taskId={TaskIds.task39} />,
+    StylistPlugin: Task39StylistPlugin,
+    CheckerPlugin: Task39CheckerPlugin,
+    inputItemsExtractor: task39InputItemsExtractor,
+  },
+  [TaskIds.task40]: {
+    id: TaskIds.task40,
+    layout: <SetSizesIndents taskId={TaskIds.task40} />,
+    StylistPlugin: Task40StylistPlugin,
+    CheckerPlugin: Task40CheckerPlugin,
+    inputItemsExtractor: task40InputItemsExtractor,
+  },
+  [TaskIds.task41]: {
+    id: TaskIds.task41,
+    layout: <SetSizesIndents taskId={TaskIds.task41} />,
+    StylistPlugin: Task41StylistPlugin,
+    CheckerPlugin: Task41CheckerPlugin,
+    inputItemsExtractor: task41InputItemsExtractor,
   },
 };

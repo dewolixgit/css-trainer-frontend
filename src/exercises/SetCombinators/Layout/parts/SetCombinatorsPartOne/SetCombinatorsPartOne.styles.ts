@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import backgroundImage from 'exercises/SetCombinators/Layout/img/background-nature.jpg';
 import bookImage from 'exercises/SetCombinators/Layout/img/book-2.png';
 import bootsImage from 'exercises/SetCombinators/Layout/img/boots.svg';
-import helmetImage from 'exercises/SetCombinators/Layout/img/helmet.svg';
 import YellowRoundPortionSvg from 'exercises/SetCombinators/Layout/img/potion-round.c.svg';
 import scrollImage from 'exercises/SetCombinators/Layout/img/scroll-regular.svg';
 import { SET_COMBINATORS_COLORS } from 'exercises/SetCombinators/Layout/styles/color';
+import helmetImage from 'exercises/img/helmet.svg';
 import { mixin } from 'exercises/styles';
 import { SetLayoutRoot } from 'exercises/ui';
 

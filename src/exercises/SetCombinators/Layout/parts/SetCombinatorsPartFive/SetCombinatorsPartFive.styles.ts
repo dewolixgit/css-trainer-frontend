@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
-import regularBoxImage from 'exercises/SetCombinators/Layout/img/box-plain.png';
 import { SetCombinatorsUtils } from 'exercises/SetCombinators/utils';
 import backgroundImage from 'exercises/img/background-plank-wood.jpg';
+import regularBoxImage from 'exercises/img/box-plain.png';
 import coinImage from 'exercises/img/coin.svg';
 import { mixin } from 'exercises/styles';
 import { SetLayoutRoot } from 'exercises/ui';

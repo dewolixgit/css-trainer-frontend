@@ -9,3 +9,5 @@ export { default as ThreeStarsAchievementSvg } from './three-stars.c.svg';
 export { default as FourStarsAchievementSvg } from './four-stars.c.svg';
 
 export { default as RocketAchievementSvg } from './rocket.c.svg';
+
+export { default as TwoRocketsAchievementSvg } from './two-rockets.c.svg';

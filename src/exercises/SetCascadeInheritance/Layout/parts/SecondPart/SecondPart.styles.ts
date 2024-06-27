@@ -4,14 +4,14 @@ import backgroundImage from 'exercises/SetCascadeInheritance/Layout/img/backgrou
 import bagImage from 'exercises/SetCascadeInheritance/Layout/img/bag-front-view.png';
 import purpleBerriesImage from 'exercises/SetCascadeInheritance/Layout/img/berries-purple.svg';
 import redToxicBerriesImage from 'exercises/SetCascadeInheritance/Layout/img/berries-red-toxic.svg';
-import redBerriesImage from 'exercises/SetCascadeInheritance/Layout/img/berries-red.svg';
 import binImage from 'exercises/SetCascadeInheritance/Layout/img/bin.png';
 import bucketImage from 'exercises/SetCascadeInheritance/Layout/img/bucket.png';
 import cloverImage from 'exercises/SetCascadeInheritance/Layout/img/clover.svg';
 import herbsImage from 'exercises/SetCascadeInheritance/Layout/img/healing-herbs.svg';
 import jarImage from 'exercises/SetCascadeInheritance/Layout/img/jar.png';
 import toxicMushroomImage from 'exercises/SetCascadeInheritance/Layout/img/mushroom-toxic.svg';
-import mushroomImage from 'exercises/SetCascadeInheritance/Layout/img/mushroom.svg';
+import redBerriesImage from 'exercises/img/berries-red.svg';
+import mushroomImage from 'exercises/img/mushroom.svg';
 import { SetLayoutRoot } from 'exercises/ui';
 
 import { mixin } from '../../../../styles';

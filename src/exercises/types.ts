@@ -43,4 +43,12 @@ export enum TaskIds {
   task33 = 33,
   task34 = 34,
   task35 = 35,
+
+  // Set sizes and indents
+  task36 = 36,
+  task37 = 37,
+  task38 = 38,
+  task39 = 39,
+  task40 = 40,
+  task41 = 41,
 }

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import bookImage1 from 'exercises/SetCombinators/Layout/img/book-1.png';
 import bookImage2 from 'exercises/SetCombinators/Layout/img/book-2.png';
 import bookImage3 from 'exercises/SetCombinators/Layout/img/book-3.png';
-import boxImage from 'exercises/SetCombinators/Layout/img/box-plain.png';
 import backgroundImage from 'exercises/img/background-plank-wood.jpg';
+import bookImage1 from 'exercises/img/book-1.png';
+import boxImage from 'exercises/img/box-plain.png';
 import { mixin } from 'exercises/styles';
 import { SetLayoutRoot } from 'exercises/ui';
 
