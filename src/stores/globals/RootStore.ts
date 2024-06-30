@@ -1,6 +1,11 @@
 import { action, makeObservable } from 'mobx';
 
-import { ApiAuthCommonResponse, ApiMessageCommonResponse, ENDPOINTS } from 'config/api';
+import {
+  ApiAuthCommonResponse,
+  ApiErrorMessage,
+  ApiMessageCommonResponse,
+  ENDPOINTS,
+} from 'config/api';
 import { LocalStorageKeys } from 'config/localStorage';
 import { IRootStore } from 'config/store/rootStore';
 import { IUserStore } from 'config/store/userStore';
@@ -41,6 +46,16 @@ export class RootStore implements IRootStore {
     if (response.isError) {
       this.userStore.setUser(null);
       localStorage.removeItem(LocalStorageKeys.token);
+
+      if (
+        !response.data.clientSide &&
+        response.data.apiError.payload.message === ApiErrorMessage.unauthorized
+      ) {
+        this.appState.setLoadedSuccessfully();
+
+        return true;
+      }
+
       this.appState.setLoadedWithError();
 
       return false;
